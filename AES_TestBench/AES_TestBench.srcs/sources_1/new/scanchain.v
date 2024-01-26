@@ -59,6 +59,9 @@ module SCAN_OUT_CELL (Dout_DUT, Si, scan_clock, se, So);
 
   always @(posedge scan_clock) begin
     if (se) begin
+      w1 <= Si;
+    end
+    else begin
       w1 <= Dout_DUT;
     end
   end

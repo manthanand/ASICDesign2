@@ -46,11 +46,6 @@ AES_Core AES_Core(.SI(SI), .SE(SE), .SU(SU), .SCLK(scan_clk), .SO(SO), .RSTN(RST
 integer i;
 
 initial begin
-	$dumpfile ("example1_scanin.vpd");
-	$dumpvars(0,AES_Testbench);
-end
-
-initial begin
 	CLK = 0;
 	scan_clk = 0;
 	SU = 0;
