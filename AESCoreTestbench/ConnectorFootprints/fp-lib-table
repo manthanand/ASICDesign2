@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name pmod-conn_6x2)(type KiCad)(uri "$(KIPRJMOD)/pmod-conn_6x2.pretty")(options "")(descr ""))
-)
