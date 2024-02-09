@@ -56,28 +56,29 @@ initial begin
 	Drdy = 1'b0;
 	RSTn = 1'b0;
 	EN = 1'b0;
+	
 	#20
 	RSTn = 1;
-end
 
-initial begin
  	for (i=0; i<264; i=i+1) begin
  	  	@(posedge scan_clk) begin
  	  	  	SI <= SCAN_IN_REG[i];
  	  	end
  	end
 	#10
+
   	@(posedge scan_clk)
-  		SU <= 1;
-  	 	SE <= 0;
+  	SU <= 1;
+  	SE <= 0;
 	#10
+
   	@(posedge scan_clk)
-  	 	SU <= 0;
+  	SU <= 0;
   	#10
+
 	@(posedge CLK);
 	#2.5
 	Krdy = 1;
-	// Drdy = 1;
 	EN = 1;
 
 	@(posedge CLK);
@@ -85,30 +86,22 @@ initial begin
 	Krdy = 0;
 	#0.5
 	Drdy = 1;
+
 	@(posedge CLK);
 	#2.5
-	//#1
 	Drdy = 0;
-	//	@(posedge CLK);
-	//	#2.5
 	# 200
-	// while(BSY);
 
 	@(posedge CLK);
 	SE = 1;
-	//start shifting
  
  	for (i=0; i<132; i=i+1) begin
  	  	@(posedge scan_clk) begin
  	  	  	SCAN_OUT_REG[i] <= SO;
  	  	end
  	end
-
-end
-
-initial begin
- 	#20000
- 	$finish;
+ 	
+	$finish;
 end
 
 always #5  CLK = ~CLK;
