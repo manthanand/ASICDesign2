@@ -75,9 +75,8 @@ end
 // 1 initialization 记得等下还有其他的时候记得补一下 
 always@(posedge clk ) 
 begin 
-
-if (timer==10)
-begin
+case(timer)
+32'd00: begin
     SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
 	SU <= 1'b0;
     SI <= 1'b0;
@@ -86,79 +85,77 @@ begin
     Drdy <= 1'b0;
     RSTn <= 1'b0;
     EN <= 1'b0;
-	RSTn <= 0;
+end 
 
+32'd10: begin
+    SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
+	SU <= 1'b0;
+    SI <= 1'b0;
+	SE <= 1'b1;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    RSTn <= 1'b0;
+    EN <= 1'b0;
+end
 
-else if (timer==30)
-
-    //SI <= 0;
+32'd30: begin
 	SU <= 1'b0;
 	SE <= 1'b1;
     Krdy <= 1'b0;
     Drdy <= 1'b0;
     EN <= 1'b0;
 	RSTn <= 1'b1;
-else  
- 
-if (timer==1070)
-
-	SU <= 1'b1;
+end
+32'd1070: begin
+    SU <= 1'b1;
 	SE <= 1'b0;
     Krdy <= 1'b0;
     Drdy <= 1'b0;
     EN <= 1'b0;
 	RSTn <= 1'b1;
-else  
- 
-if (timer==1072)
+end
+32'd1072: begin
     SU <= 1'b0;
 	SE <= 1'b0;
     Krdy <= 1'b0;
     Drdy <= 1'b0;
     EN <= 1'b0;
 	RSTn <= 1'b1;
-else  
- 
-if (timer==1074)
+end
+32'd1074:begin
     SU <= 1'b0;
 	SE <= 1'b0;
     Krdy <= 1'b1;
     Drdy <= 1'b0;
     EN <= 1'b1;
 	RSTn <= 1'b1;
-else 
-
-if (timer==1076)
+end
+32'd1076: begin
     SU <= 1'b0;
 	SE <= 1'b0;
     Krdy <= 1'b0;
     Drdy <= 1'b1;
     EN <= 1'b1;
 	RSTn <= 1'b1;
-else 
-
-if (timer==1078)
-    SU <= 1'b0;
+end
+32'd1078:begin
+	SU <= 1'b0;
 	SE <= 1'b0;
     Krdy <= 1'b0;
     Drdy <= 1'b0;
     EN <= 1'b1;
 	RSTn <= 1'b1;
-
-else 
-
-if (timer==1080)
-
-    SU <= 0;
-	SE <= 1;
-    Krdy <= 1'b0;
-	EN <= 1'b1;
-    Drdy <= 1'b0;
-
-
-else 
-    SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
-	SU <= SU;
+end
+32'd1080:begin
+     SU <= 0;
+	 SE <= 1;
+     Krdy <= 1'b0;
+	 EN <= 1'b1;
+     Drdy <= 1'b0;
+end
+default:begin
+	SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
+	 SU <= SU;
     SI <= SI;
 	SE <= SE;
     Krdy <= Krdy;
@@ -166,7 +163,10 @@ else
     RSTn <= RSTn;
     EN <= EN;
 	RSTn <= RSTn;
- end 
+end
+ 
+
+endcase
 end
 
 always@(posedge clk ) 
