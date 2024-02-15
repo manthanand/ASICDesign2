@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="AES_Testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="AES_Testbench" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="2,547.549 ns"></ZoomStartTime>
+      <ZoomEndTime time="3,830.550 ns"></ZoomEndTime>
+      <Cursor1Time time="3,035.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="324"></NameColumnWidth>
+      <ValueColumnWidth column_width="534"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="20" />
+   <wvobject fp_name="/AES_Testbench/test1/SCAN_IN_REG" type="array">
+      <obj_property name="ElementShortName">SCAN_IN_REG[264:0]</obj_property>
+      <obj_property name="ObjectShortName">SCAN_IN_REG[264:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/SCAN_OUT_REG" type="array">
+      <obj_property name="ElementShortName">SCAN_OUT_REG[131:0]</obj_property>
+      <obj_property name="ObjectShortName">SCAN_OUT_REG[131:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/runtest" type="logic">
+      <obj_property name="ElementShortName">runtest</obj_property>
+      <obj_property name="ObjectShortName">runtest</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/BSY" type="logic">
+      <obj_property name="ElementShortName">BSY</obj_property>
+      <obj_property name="ObjectShortName">BSY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/SO" type="logic">
+      <obj_property name="ElementShortName">SO</obj_property>
+      <obj_property name="ObjectShortName">SO</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/Krdy" type="logic">
+      <obj_property name="ElementShortName">Krdy</obj_property>
+      <obj_property name="ObjectShortName">Krdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/Drdy" type="logic">
+      <obj_property name="ElementShortName">Drdy</obj_property>
+      <obj_property name="ObjectShortName">Drdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/RSTn" type="logic">
+      <obj_property name="ElementShortName">RSTn</obj_property>
+      <obj_property name="ObjectShortName">RSTn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/EN" type="logic">
+      <obj_property name="ElementShortName">EN</obj_property>
+      <obj_property name="ObjectShortName">EN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/SU" type="logic">
+      <obj_property name="ElementShortName">SU</obj_property>
+      <obj_property name="ObjectShortName">SU</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/SE" type="logic">
+      <obj_property name="ElementShortName">SE</obj_property>
+      <obj_property name="ObjectShortName">SE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/SI" type="logic">
+      <obj_property name="ElementShortName">SI</obj_property>
+      <obj_property name="ObjectShortName">SI</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/SCLK" type="logic">
+      <obj_property name="ElementShortName">SCLK</obj_property>
+      <obj_property name="ObjectShortName">SCLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/testpassed" type="logic">
+      <obj_property name="ElementShortName">testpassed</obj_property>
+      <obj_property name="ObjectShortName">testpassed</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/CLKOUT" type="logic">
+      <obj_property name="ElementShortName">CLKOUT</obj_property>
+      <obj_property name="ObjectShortName">CLKOUT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/cntr" type="array">
+      <obj_property name="ElementShortName">cntr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cntr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/timer" type="array">
+      <obj_property name="ElementShortName">timer[31:0]</obj_property>
+      <obj_property name="ObjectShortName">timer[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/testrunning" type="logic">
+      <obj_property name="ElementShortName">testrunning</obj_property>
+      <obj_property name="ObjectShortName">testrunning</obj_property>
+   </wvobject>
+</wave_config>

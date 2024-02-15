@@ -19,93 +19,35 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`define MYKEY 128'h000102030405060708090a0b0c0d0e0f
-`define MYIN1 128'hB9D1C48E348FE771FA464A77A178FB07
-`define MYOUT1 128'h95F8847369A8573D76AF987AB30A5DE2
-
-`define MYIN2 128'hDCFEAD50D1D9FD08B386EFB08B142F74
-`define MYOUT2 128'h85E5F163C857B0AC1162E07DD3432B66
-
 module AES_Testbench;
 
-reg	[264:0] SCAN_IN_REG;
-reg [131:0] SCAN_OUT_REG;
-reg  Krdy;         // Key input ready
-reg  Drdy;         // Data input ready
-reg  RSTn;         // Reset (Low active)
-reg  EN;           // AES circuit enable
-reg  CLK;          // System clock
-wire  BSY;          // Busy signal
-wire CLKOUT;
-reg  scan_clk;
-reg SU, SI, SE;
+reg runtest = 0;
+reg clk = 0;
+wire testpassed;
+wire Krdy;
+wire Drdy;
+wire RSTn;
+wire EN;
+wire SU;
+wire SI;
+wire SE;
 wire SO;
+wire SCLK;
+wire CLK;
 
-AES_Core AES_Core(.SI(SI), .SE(SE), .SU(SU), .SCLK(scan_clk), .SO(SO), .RSTN(RSTn), .EN(EN), .BSY(BSY), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK), .CLKOUT(CLKOUT));
+AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed));
 
 integer i;
 
 initial begin
-	CLK = 0;
-	scan_clk = 0;
-	SU = 0;
-	SCAN_IN_REG = {8'b0, `MYIN1, `MYKEY};
-	SI = 0;
-	SE = 1;
-	Krdy = 1'b0;
-	Drdy = 1'b0;
-	RSTn = 1'b0;
-	EN = 1'b0;
-	
 	#20
-	RSTn = 1;
-
- 	for (i=0; i<264; i=i+1) begin
- 	  	@(posedge scan_clk) begin
- 	  	  	SI <= SCAN_IN_REG[i];
- 	  	end
- 	end
-	#10
-
-  	@(posedge scan_clk)
-  	SU <= 1;
-  	SE <= 0;
-	#10
-
-  	@(posedge scan_clk)
-  	SU <= 0;
-  	#10
-
-	@(posedge CLK);
-	#2.5
-	Krdy = 1;
-	EN = 1;
-
-	@(posedge CLK);
-	#2.5
-	Krdy = 0;
-	#0.5
-	Drdy = 1;
-
-	@(posedge CLK);
-	#2.5
-	Drdy = 0;
-	# 200
-
-	@(posedge CLK);
-	SE = 1;
- 
- 	for (i=0; i<132; i=i+1) begin
- 	  	@(posedge scan_clk) begin
- 	  	  	SCAN_OUT_REG[i] <= SO;
- 	  	end
- 	end
- 	
+	runtest = 1;
+	#20;
+	runtest = 0;
+	#200000
 	$finish;
 end
 
-always #5  CLK = ~CLK;
-always #20 scan_clk = ~scan_clk;
+always #5  clk = ~clk;
 
 endmodule
-

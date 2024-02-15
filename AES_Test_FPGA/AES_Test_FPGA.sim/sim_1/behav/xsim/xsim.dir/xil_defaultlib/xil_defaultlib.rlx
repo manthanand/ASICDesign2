@@ -1,0 +1,10 @@
+0.7
+2020.2
+Dec 14 2023
+13:13:15
+C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
+C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sim_1/imports/AES_TestBench/AES_TestBench.srcs/sources_1/new/AES_Testbench.v,1707509104,verilog,,,,AES_Testbench,,,,,,,,
+C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/AES_Comp.v,1707456374,verilog,,C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/AES_Core.v,,AES_Comp;AES_Comp_ENC;AES_Comp_EncCore;AES_Comp_GFinvComp;AES_Comp_MixColumns;AES_Comp_SboxComp;AES_Comp_SubBytesComp,,,,,,,,
+C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/AES_Core.v,1707456374,verilog,,C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/AES_Testbenchsp.v,,AES_Core,,,,,,,,
+C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/AES_Testbenchsp.v,1707509776,verilog,,C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/scanchain.v,,AES_Testbenchsp,,,,,,,,
+C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/scanchain.v,1706229627,verilog,,C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sim_1/imports/AES_TestBench/AES_TestBench.srcs/sources_1/new/AES_Testbench.v,,SCAN_IN_CELL;SCAN_OUT_CELL;scan,,,,,,,,

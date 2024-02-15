@@ -11,27 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="17,192.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="19,698.001 ns"></ZoomEndTime>
-      <Cursor1Time time="20,000.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="252.200001 us"></ZoomEndTime>
+      <Cursor1Time time="0.025000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="324"></NameColumnWidth>
-      <ValueColumnWidth column_width="558"></ValueColumnWidth>
+      <ValueColumnWidth column_width="550"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="16" />
-   <wvobject fp_name="/AES_Testbench/SCAN_IN_REG" type="array">
-      <obj_property name="ElementShortName">SCAN_IN_REG[264:0]</obj_property>
-      <obj_property name="ObjectShortName">SCAN_IN_REG[264:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/AES_Testbench/SCAN_OUT_REG" type="array">
-      <obj_property name="ElementShortName">SCAN_OUT_REG[131:0]</obj_property>
-      <obj_property name="ObjectShortName">SCAN_OUT_REG[131:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/AES_Testbench/AES_Core/Dout" type="array">
-      <obj_property name="ElementShortName">Dout[127:0]</obj_property>
-      <obj_property name="ObjectShortName">Dout[127:0]</obj_property>
-   </wvobject>
+   <WVObjectSize size="14" />
    <wvobject fp_name="/AES_Testbench/Krdy" type="logic">
       <obj_property name="ElementShortName">Krdy</obj_property>
       <obj_property name="ObjectShortName">Krdy</obj_property>
@@ -52,18 +40,6 @@
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
    </wvobject>
-   <wvobject fp_name="/AES_Testbench/BSY" type="logic">
-      <obj_property name="ElementShortName">BSY</obj_property>
-      <obj_property name="ObjectShortName">BSY</obj_property>
-   </wvobject>
-   <wvobject fp_name="/AES_Testbench/CLKOUT" type="logic">
-      <obj_property name="ElementShortName">CLKOUT</obj_property>
-      <obj_property name="ObjectShortName">CLKOUT</obj_property>
-   </wvobject>
-   <wvobject fp_name="/AES_Testbench/scan_clk" type="logic">
-      <obj_property name="ElementShortName">scan_clk</obj_property>
-      <obj_property name="ObjectShortName">scan_clk</obj_property>
-   </wvobject>
    <wvobject fp_name="/AES_Testbench/SU" type="logic">
       <obj_property name="ElementShortName">SU</obj_property>
       <obj_property name="ObjectShortName">SU</obj_property>
@@ -79,6 +55,22 @@
    <wvobject fp_name="/AES_Testbench/SO" type="logic">
       <obj_property name="ElementShortName">SO</obj_property>
       <obj_property name="ObjectShortName">SO</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/runtest" type="logic">
+      <obj_property name="ElementShortName">runtest</obj_property>
+      <obj_property name="ObjectShortName">runtest</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/timer" type="array">
+      <obj_property name="ElementShortName">timer[31:0]</obj_property>
+      <obj_property name="ObjectShortName">timer[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/timer1" type="array">
+      <obj_property name="ElementShortName">timer1[1:0]</obj_property>
+      <obj_property name="ObjectShortName">timer1[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/AES_Testbench/i" type="array">
       <obj_property name="ElementShortName">i[31:0]</obj_property>
