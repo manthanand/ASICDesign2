@@ -37,8 +37,6 @@ wire CLK;
 
 AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed));
 
-integer i;
-
 initial begin
 	#20
 	runtest = 1;

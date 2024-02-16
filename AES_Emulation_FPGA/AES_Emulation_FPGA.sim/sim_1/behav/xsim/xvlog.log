@@ -1,0 +1,16 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.srcs/sources_1/new/AES_Comp.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Comp
+INFO: [VRFC 10-311] analyzing module AES_Comp_GFinvComp
+INFO: [VRFC 10-311] analyzing module AES_Comp_SboxComp
+INFO: [VRFC 10-311] analyzing module AES_Comp_SubBytesComp
+INFO: [VRFC 10-311] analyzing module AES_Comp_MixColumns
+INFO: [VRFC 10-311] analyzing module AES_Comp_EncCore
+INFO: [VRFC 10-311] analyzing module AES_Comp_ENC
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.srcs/sources_1/new/AES_Core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.srcs/sources_1/new/scanchain.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SCAN_IN_CELL
+INFO: [VRFC 10-311] analyzing module SCAN_OUT_CELL
+INFO: [VRFC 10-311] analyzing module scan
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.srcs/sim_1/imports/AES_TestBench/AES_TestBench.srcs/sources_1/new/AES_Testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Testbench

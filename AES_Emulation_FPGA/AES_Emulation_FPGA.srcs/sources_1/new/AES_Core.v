@@ -25,10 +25,10 @@
 
 module AES_Core(
     input SI, SE, SU, SCLK, RSTN, EN, KRDY, DRDY, CLK,
-    output SO, BSY//, CLKOUT
+    output SO, BSY, CLKOUT
     );
 
-//    assign CLKOUT = CLK;
+    assign CLKOUT = CLK;
   
     wire  [127:0] Kin;  // Key input
     wire  [127:0] Din;  // Data input

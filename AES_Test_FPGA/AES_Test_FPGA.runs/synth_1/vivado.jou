@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2.1 (64-bit)
+# SW Build 4081461 on Thu Dec 14 12:24:51 MST 2023
+# IP Build 4080415 on Thu Dec 14 21:01:57 MST 2023
+# SharedData Build 4077621 on Mon Dec 11 00:23:44 MST 2023
+# Start of session at: Fri Feb 16 11:24:11 2024
+# Process ID: 6696
+# Current directory: C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.runs/synth_1
+# Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.runs/synth_1/top.vds
+# Journal file: C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.runs/synth_1\vivado.jou
+# Running On: DESKTOP-RR47J6M, OS: Windows, CPU Frequency: 2803 MHz, CPU Physical cores: 4, Host memory: 16856 MB
+#-----------------------------------------------------------
+source top.tcl -notrace

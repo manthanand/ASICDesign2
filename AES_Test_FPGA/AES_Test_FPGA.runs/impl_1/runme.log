@@ -1,0 +1,98 @@
+
+*** Running vivado
+    with args -log top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+
+
+ECHO is off.
+ECHO is off.
+
+****** Vivado v2023.2.1 (64-bit)
+  **** SW Build 4081461 on Thu Dec 14 12:24:51 MST 2023
+  **** IP Build 4080415 on Thu Dec 14 21:01:57 MST 2023
+  **** SharedData Build 4077621 on Mon Dec 11 00:23:44 MST 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source top.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 461.262 ; gain = 183.344
+Command: link_design -top top -part xc7a35ticpg236-1L
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 857.117 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 7 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2023.2.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc]
+WARNING: [Vivado 12-584] No ports matched 'KRDY'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:147]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:147]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'KRDY'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:148]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:148]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'EN'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:150]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:150]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'EN'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:151]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:151]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SI'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:153]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:153]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SI'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:154]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:154]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'DRDY'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:156]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:156]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'DRDY'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:157]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:157]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RSTN'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:163]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:163]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RSTN'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:164]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:164]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SE'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:166]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:166]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SE'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:167]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:167]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SU'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:177]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:177]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'SU'. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:178]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:178]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 971.215 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+The system cannot find the path specified.
+7 Infos, 14 Warnings, 14 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 975.223 ; gain = 513.961
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35ti'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35ti'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net AES_Testbenchsp1/SI1_OBUF has multiple drivers: AES_Testbenchsp1/SI_reg/Q, and AES_Testbenchsp1/SI_reg__0/Q.
+INFO: [Project 1-461] DRC finished with 1 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 997.180 ; gain = 21.957
+INFO: [Common 17-83] Releasing license: Implementation
+12 Infos, 14 Warnings, 14 Critical Warnings and 2 Errors encountered.
+opt_design failed
+ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
+
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 16 11:25:38 2024...

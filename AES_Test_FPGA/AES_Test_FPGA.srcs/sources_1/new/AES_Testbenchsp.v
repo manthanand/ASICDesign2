@@ -1,3 +1,4 @@
+
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -19,165 +20,184 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`define MYKEY   128'h000102030405060708090a0b0c0d0e0f
-`define MYIN1   128'hB9D1C48E348FE771FA464A77A178FB07
-`define MYOUT1  128'h95F8847369A8573D76AF987AB30A5DE2
-`define MYIN2   128'hDCFEAD50D1D9FD08B386EFB08B142F74
-`define MYOUT2  128'h85E5F163C857B0AC1162E07DD3432B66
+`define MYKEY 128'h000102030405060708090a0b0c0d0e0f
+`define MYIN1 128'hB9D1C48E348FE771FA464A77A178FB07
+`define MYOUT1 128'h95F8847369A8573D76AF987AB30A5DE2
+`define MYIN2 128'hDCFEAD50D1D9FD08B386EFB08B142F74
+`define MYOUT2 128'h85E5F163C857B0AC1162E07DD3432B66
 
 module AES_Testbenchsp(
-	input clk, runtest, BSY, SO,
-	output Krdy, Drdy, RSTn, EN, SU, SE, SI, SCLK, CLK, testpassed
-);
-    reg	[264:0] SCAN_IN_REG;
-    reg [131:0] SCAN_OUT_REG;
-    reg Krdy; // Key input ready
-    reg Drdy; // Data input ready
-    reg RSTn; // Reset (Low active)
-    reg EN;   // AES circuit enable
-    reg SU, SI, SE;
-    reg SCLK;
-    wire CLKOUT;
-    assign CLK = clk;
-    assign SCLK = clk;
+	input clk, enable211,
+	output Krdy1, Drdy1,RSTn1,EN1,SU1, SI1, SE1,SO
+	 );
 
-    reg [31:0] cntr =   32'b10;
-    reg [31:0] timer =  32'b0;
-    reg [1:0] timer1 =  1'b0;
-    reg [1:0] clk1 =    1'b0;
-    reg [8:0] i =       9'b0;
-    reg testpassed =    1'b0;
-    reg testrunning =   1'b0;
+reg	[264:0] SCAN_IN_REG;
+reg [131:0] SCAN_OUT_REG;
+reg  Krdy;         // Key input ready
+reg  Drdy;         // Data input ready
+reg  RSTn;         // Reset (Low active)
+reg  EN;           // AES circuit enable
+reg  scan_clk;
+reg  SU, SI, SE;
 
-    //Intantiate AES Core within FPGA so if wires dont work, we can validate internally
-    AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK),.SO(SO), .BSY(BSY), .CLKOUT(CLKOUT));
 
-    // timer1 
-    always@(posedge clk or runtest) begin
-        if (timer >= 32'd199_999_999) timer <= 32'd0; //timer is set to 0 when reaches 200ms
-        else if (testrunning) timer <= timer + 1'b1; //if test is started, incrememnt timer
-        else if (runtest == 1) testrunning = 1'b1; //if test hasnt started, start test
-    	else timer <= 32'd0; //otherwise timer is set to 0
-    end
+//logic [31:0]   timer =0;  
+//logic [1:0]   timer1 =0;  
+//logic [1:0]   clk1 =0;  
+//logic [8:0]   i=0;
 
-    // 1 initialization
-    always@(posedge clk) begin 
-        if (timer == cntr) begin
-            SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
-        	SU <= 1'b0;
-            SI <= 1'b0;
-        	SE <= 1'b1;
-            Krdy <= 1'b0;
-            Drdy <= 1'b0;
-            RSTn <= 1'b0;
-            EN <= 1'b0;
-        	RSTn <= 0;
-            cntr <= cntr + 20;
-        end
+reg [31:0]  timer =0;  
+reg [1:0]   timer1 =0;  
+reg [1:0]   clk1 =0;  
+reg [8:0]   i=0;
 
-        else if (timer == cntr) begin
-            //SI <= 0;
-        	// SU <= 1'b0;
-        	// SE <= 1'b1;
-            // Krdy <= 1'b0;
-            // Drdy <= 1'b0;
-            // EN <= 1'b0;
-        	RSTn <= 1'b1;
-            cntr <= cntr + (264 * 4);
-        end
 
-        else if (timer == cntr) begin
-        	SU <= 1'b1;
-        	SE <= 1'b0;
-            // Krdy <= 1'b0;
-            // Drdy <= 1'b0;
-            // EN <= 1'b0;
-        	// RSTn <= 1'b1;
-            cntr <= cntr + 2;
-        end
+// timer1 
+always@(posedge clk ) 
+begin
+if(0)
+          timer <=32'd0;
+else if(timer >=32'd199_999_999)
+          timer <=32'd0;
+else if (enable211==1)
+            timer <= timer +1'b1;
+	else 
+	timer <=32'd0;
 
-        else if (timer == cntr) begin
-            SU <= 1'b0;
-        	// SE <= 1'b0;
-            // Krdy <= 1'b0;
-            // Drdy <= 1'b0;
-            // EN <= 1'b0;
-        	// RSTn <= 1'b1;
-            cntr <= cntr + 2;
-        end
 
-        else if (timer == cntr) begin
-            // SU <= 1'b0;
-        	// SE <= 1'b0;
-            Krdy <= 1'b1;
-            // Drdy <= 1'b0;
-            EN <= 1'b1;
-        	// RSTn <= 1'b1;
-            cntr <= cntr + 2;
-        end
+end
+// timer2
+always@(posedge clk ) 
+begin
+if(0)
+        timer1 <=2'd0;
+else if(timer1 >=2'd3)
+          timer1 <=2'd0;
+else
+        timer1 <= timer1 +1'b1;
+end
 
-        else if (timer == cntr) begin
-            // SU <= 1'b0;
-        	// SE <= 1'b0;
-            Krdy <= 1'b0;
-            Drdy <= 1'b1;
-            // EN <= 1'b1;
-        	// RSTn <= 1'b1;
-            cntr <= cntr + 2;
-        end
+// 1 initialization 记得等下还有其他的时候记得补一下 
+always@(posedge clk ) 
+begin 
+case(timer)
+32'd00: begin
+    SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
+	SU <= 1'b0;
+    SI <= 1'b0;
+	SE <= 1'b1;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    RSTn <= 1'b0;
+    EN <= 1'b0;
+end 
 
-        else if (timer == cntr) begin
-            // SU <= 1'b0;
-        	// SE <= 1'b0;
-            // Krdy <= 1'b0;
-            Drdy <= 1'b0;
-            // EN <= 1'b1;
-        	// RSTn <= 1'b1;
-            cntr <= cntr + 2;
-        end
+32'd10: begin
+    SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
+	SU <= 1'b0;
+    SI <= 1'b0;
+	SE <= 1'b1;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    RSTn <= 1'b0;
+    EN <= 1'b0;
+end
 
-        else if (timer == cntr) begin
-            while(BSY); //wait for AES to finish
-            // SU <= 1'b0;
-        	SE <= 1'b1;
-            // Krdy <= 1'b0;
-        	// EN <= 1'b1;
-            // Drdy <= 1'b0;
-            cntr <= cntr + (132 * 4);
-        end
+32'd30: begin
+	SU <= 1'b0;
+	SE <= 1'b1;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    EN <= 1'b0;
+	RSTn <= 1'b1;
+end
+32'd1070: begin
+    SU <= 1'b1;
+	SE <= 1'b0;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    EN <= 1'b0;
+	RSTn <= 1'b1;
+end
+32'd1072: begin
+    SU <= 1'b0;
+	SE <= 1'b0;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    EN <= 1'b0;
+	RSTn <= 1'b1;
+end
+32'd1074:begin
+    SU <= 1'b0;
+	SE <= 1'b0;
+    Krdy <= 1'b1;
+    Drdy <= 1'b0;
+    EN <= 1'b1;
+	RSTn <= 1'b1;
+end
+32'd1076: begin
+    SU <= 1'b0;
+	SE <= 1'b0;
+    Krdy <= 1'b0;
+    Drdy <= 1'b1;
+    EN <= 1'b1;
+	RSTn <= 1'b1;
+end
+32'd1078:begin
+	SU <= 1'b0;
+	SE <= 1'b0;
+    Krdy <= 1'b0;
+    Drdy <= 1'b0;
+    EN <= 1'b1;
+	RSTn <= 1'b1;
+end
+32'd1080:begin
+     SU <= 0;
+	 SE <= 1;
+     Krdy <= 1'b0;
+	 EN <= 1'b1;
+     Drdy <= 1'b0;
+end
+default:begin
+	SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
+	 SU <= SU;
+    SI <= SI;
+	SE <= SE;
+    Krdy <= Krdy;
+    Drdy <= Drdy;
+    RSTn <= RSTn;
+    EN <= EN;
+	RSTn <= RSTn;
+end
+ 
 
-        else if (timer == cntr) begin
-            // SU <= 1'b0;
-        	SE <= 1'b0;
-            // Krdy <= 1'b0;
-        	// EN <= 1'b1;
-            // Drdy <= 1'b0;
-            if (SCAN_OUT_REG == `MYOUT1) begin
-                testpassed <= 1'b1;
-            end
-            else testpassed <= 1'b0;
-            timer <= 32'd0; //reset timer to run test again
-        end
+endcase
+end
 
-        else begin
-            SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY}; 
-        	SU <= SU;
-            SI <= SI;
-        	SE <= SE;
-            Krdy <= Krdy;
-            Drdy <= Drdy;
-            RSTn <= RSTn;
-            EN <= EN;
-        	RSTn <= RSTn;
-        end 
-    end
+always@(posedge clk ) 
+begin 
+if (timer1==1)
+    begin 	  
+	    if(i==272)
+		begin
+	      i<=0;
+		end 
+		else 
+	  SI <= SCAN_IN_REG[i];  
+      i<=i+1'b1; 
+	end
 
-    always@(posedge clk ) begin 
-        if (timer1 == 1) begin 	  
-        	if(i == 272) i <= 1'b0;
-        	else SI <= SCAN_IN_REG[i];  
-            i <= i + 1'b1; 
-        end
-    end
+end
+
+
+
+assign Krdy1=Krdy;
+assign Drdy1=Drdy;
+assign RSTn1=RSTn;
+assign EN1=EN;
+assign SU1=SU;
+assign SI1=SI;
+assign SE1=SE;
+
 
 endmodule

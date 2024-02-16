@@ -43,7 +43,7 @@ module AES_Testbenchsp(
 
     reg [31:0] cntr =   32'd10;
     reg [31:0] timer =  32'b0;
-    reg [8:0] i =       9'b0;
+    reg [31:0] i =      32'b0;
     reg testpassed =    1'b0;
     reg testrunning =   1'b0;
     reg [4:0] ns = 5'b0;
@@ -71,8 +71,9 @@ module AES_Testbenchsp(
                 Drdy <= 1'b0;
                 RSTn <= 1'b0;
                 EN <= 1'b0;
-            	RSTn <= 0;
-                cntr <= cntr + 20;
+            	RSTn <= 1'b0;
+                cntr <= cntr + 2;
+                i <= 32'b0;
                 ns <= 1;
             end
 
@@ -84,14 +85,14 @@ module AES_Testbenchsp(
                 // Drdy <= 1'b0;
                 // EN <= 1'b0;
                 RSTn <= 1'b1;
-                if(i == 264) begin
-                    i <= 1'b0;
+                if(i == 263) begin
+                    i <= 32'b0;
                     cntr <= cntr + 1;
                     ns <= 2;
                 end
             	else begin
                     SI <= SCAN_IN_REG[i];  
-                    i <= i + 1'b1; 
+                    i <= i + 32'b1; 
                     cntr <= cntr + 1;
                 end
             end
@@ -125,7 +126,7 @@ module AES_Testbenchsp(
                 // Drdy <= 1'b0;
                 EN <= 1'b1;
             	// RSTn <= 1'b1;
-                cntr <= cntr + 2;
+                cntr <= cntr + 1;
                 ns <= 5;
             end
 
@@ -136,7 +137,7 @@ module AES_Testbenchsp(
                 Drdy <= 1'b1;
                 // EN <= 1'b1;
             	// RSTn <= 1'b1;
-                cntr <= cntr + 2;
+                cntr <= cntr + 1;
                 ns <= 6;
             end
 
@@ -151,7 +152,7 @@ module AES_Testbenchsp(
                 ns <= 7;
             end
 
-            else if (ns ==7) begin
+            else if (ns == 7) begin
                 if (BSY) cntr <= cntr + 1; //wait for AES to finish
                 else begin
                     SE <= 1'b1;
@@ -163,12 +164,12 @@ module AES_Testbenchsp(
             else if (ns == 8) begin
                 // SU <= 1'b0;
                 if(i == 132) begin
-                    i <= 1'b0;
+                    i <= 32'b0;
                     ns <= 9;
                 end
             	else begin
                     SCAN_OUT_REG[i] <= SO;  
-                    i <= i + 1'b1; 
+                    i <= i + 32'b1; 
                     cntr <= cntr + 1;
                 end
                 // Krdy <= 1'b0;

@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2023.2.1 (64-bit)
+# SW Build 4081461 on Thu Dec 14 12:24:51 MST 2023
+# IP Build 4080415 on Thu Dec 14 21:01:57 MST 2023
+# SharedData Build 4077621 on Mon Dec 11 00:23:44 MST 2023
+# Start of session at: Fri Feb 16 11:21:52 2024
+# Process ID: 25472
+# Current directory: C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent27316 C:\Users\manth\Github\ASICDesign2\AES_Test_FPGA\AES_Test_FPGA.xpr
+# Log file: C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/vivado.log
+# Journal file: C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA\vivado.jou
+# Running On: DESKTOP-RR47J6M, OS: Windows, CPU Frequency: 2803 MHz, CPU Physical cores: 4, Host memory: 16856 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.xpr
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/manth/Github/ASICDesign2/AES_Test_FPGA/AES_Test_FPGA.srcs/sources_1/new/top.v
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top top [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1

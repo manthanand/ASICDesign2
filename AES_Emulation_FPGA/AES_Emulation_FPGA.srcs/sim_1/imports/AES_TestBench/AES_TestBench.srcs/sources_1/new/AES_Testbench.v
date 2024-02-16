@@ -112,7 +112,8 @@ initial begin
 end
 
 always #5  CLK = ~CLK;
-always #20 scan_clk = ~scan_clk;
+// always #20 scan_clk = ~scan_clk;
+always #5 scan_clk = ~scan_clk;
 
 endmodule
 

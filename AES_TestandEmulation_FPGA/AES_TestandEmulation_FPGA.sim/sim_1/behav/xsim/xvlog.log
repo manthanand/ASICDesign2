@@ -1,0 +1,25 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Comp.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Comp
+INFO: [VRFC 10-311] analyzing module AES_Comp_GFinvComp
+INFO: [VRFC 10-311] analyzing module AES_Comp_SboxComp
+INFO: [VRFC 10-311] analyzing module AES_Comp_SubBytesComp
+INFO: [VRFC 10-311] analyzing module AES_Comp_MixColumns
+INFO: [VRFC 10-311] analyzing module AES_Comp_EncCore
+INFO: [VRFC 10-311] analyzing module AES_Comp_ENC
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Testbenchsp
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'Krdy' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:34]
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'Drdy' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:35]
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'RSTn' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:36]
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'EN' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:37]
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'SU' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:38]
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'SCLK' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:39]
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'testpassed' is not allowed [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:47]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/scanchain.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SCAN_IN_CELL
+INFO: [VRFC 10-311] analyzing module SCAN_OUT_CELL
+INFO: [VRFC 10-311] analyzing module scan
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sim_1/imports/AES_TestBench/AES_Testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AES_Testbench
