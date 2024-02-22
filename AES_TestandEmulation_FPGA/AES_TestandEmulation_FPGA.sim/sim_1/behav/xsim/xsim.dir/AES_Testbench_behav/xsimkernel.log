@@ -1,7 +1,7 @@
-Running: xsim.dir/AES_Testbench_behav/xsimk.exe -simmode gui -wdb AES_Testbench_behav.wdb -simrunnum 0 -socket 55675
+Running: xsim.dir/AES_Testbench_behav/xsimk.exe -simmode gui -wdb AES_Testbench_behav.wdb -simrunnum 0 -socket 56720
 Design successfully loaded
-Design Loading Memory Usage: 8800 KB (Peak: 8800 KB)
+Design Loading Memory Usage: 8796 KB (Peak: 8796 KB)
 Design Loading CPU Usage: 0 ms
 Simulation completed
-Simulation Memory Usage: 10136 KB (Peak: 10136 KB)
+Simulation Memory Usage: 10076 KB (Peak: 10076 KB)
 Simulation CPU Usage: 0 ms

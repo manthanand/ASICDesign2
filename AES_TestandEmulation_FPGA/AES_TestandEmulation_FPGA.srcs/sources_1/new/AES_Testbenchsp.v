@@ -183,7 +183,7 @@ module AES_Testbenchsp(
                 // Krdy <= 1'b0;
             	// EN <= 1'b1;
                 // Drdy <= 1'b0;
-                if (SCAN_OUT_REG == `MYOUT1) begin
+                if (SCAN_OUT_REG[127:0] == `MYOUT1) begin
                     testpassed <= 1'b1;
                 end
                 else testpassed <= 1'b0;
