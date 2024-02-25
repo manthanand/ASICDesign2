@@ -25,42 +25,49 @@
 `define MYIN2   128'hDCFEAD50D1D9FD08B386EFB08B142F74
 `define MYOUT2  128'h85E5F163C857B0AC1162E07DD3432B66
 
-module AES_Testbenchsp(
-	input clk, runtest, BSY, SO,
-	output Krdy, Drdy, RSTn, EN, SU, SE, SI, SCLK, CLK, testpassed
-);
+module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, SCLK, CLK, testpassed);
+    input clk;
+    input runtest;
+    input BSY;
+    input SO;
+    output reg Krdy; // Key input ready
+    output reg Drdy; // Data input ready
+    output reg RSTn; // Reset (Low active)
+    output reg EN;   // AES circuit enable
+    output reg SU;
+    output reg SI;
+    output reg SE;
+    output reg testpassed = 1'b0;
+    output CLK;
+    output SCLK;
+    
     reg	[264:0] SCAN_IN_REG;
     reg [131:0] SCAN_OUT_REG;
-    reg Krdy; // Key input ready
-    reg Drdy; // Data input ready
-    reg RSTn; // Reset (Low active)
-    reg EN;   // AES circuit enable
-    reg SU, SI, SE;
-    wire SCLK;
-    wire CLKOUT;
-    assign CLK = clk;
-    assign SCLK = clk;
+    reg [9:0] divider = 0;
+    assign CLK = divider[9];
+    assign SCLK = divider[9];
 
     reg [31:0] cntr =   32'd10;
     reg [31:0] timer =  32'b0;
     reg [31:0] i =      32'b0;
-    reg testpassed =    1'b0;
     reg testrunning =   1'b0;
     reg [4:0] ns = 5'b0;
+    
+    always @(posedge clk) divider <= divider + 1;
 
     //Intantiate AES Core within FPGA so if wires dont work, we can validate internally
-    AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK),.SO(SO), .BSY(BSY), .CLKOUT(CLKOUT));
+//    AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK),.SO(SO), .BSY(BSY), .CLKOUT(CLKOUT));
 
     // timer1 
-    always@(posedge clk or runtest) begin
-        if (timer >= 32'd199_999_999) timer <= 32'd0; //timer is set to 0 when reaches 200ms
+    always@(posedge CLK or posedge runtest) begin
+        if (timer >= 32'd199999) timer <= 32'd0; //timer is set to 0 when reaches 200ms
         else if (testrunning) timer <= timer + 1'b1; //if test is started, incrememnt timer
-        else if (runtest == 1) testrunning = 1'b1; //if test hasnt started, start test
+        else if (runtest == 1) testrunning <= 1'b1; //if test hasnt started, start test
     	else timer <= 32'd0; //otherwise timer is set to 0
     end
 
     // 1 initialization
-    always@(posedge clk) begin 
+    always@(posedge CLK) begin 
         if (timer == cntr) begin
             if (ns == 0) begin
                 SCAN_IN_REG <= {8'b0, `MYIN1, `MYKEY};
@@ -188,7 +195,6 @@ module AES_Testbenchsp(
                 end
                 else testpassed <= 1'b0;
                 ns <= 0;
-                timer <= 32'd0; //reset timer to run test again
             end
         end
 

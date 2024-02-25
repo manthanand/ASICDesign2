@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.1 (win64) Build 4081461 Thu Dec 14 12:24:51 MST 2023
-| Date         : Wed Feb  7 15:59:20 2024
+| Date         : Sat Feb 24 23:23:18 2024
 | Host         : DESKTOP-RR47J6M running 64-bit major release  (build 9200)
 | Command      : report_utilization -file AES_Core_utilization_placed.rpt -pb AES_Core_utilization_placed.pb
 | Design       : AES_Core

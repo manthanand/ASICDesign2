@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35ticpg236-1L" LaunchTime="1707343049" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/AES_Core.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35ticpg236-1L" LaunchTime="1708838480" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/AES_Core.dcp">
   <File Type="PA-TCL" Name="AES_Core.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="AES_Core_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="AES_Core_reports.tcl"/>
   <File Type="RDS-RDS" Name="AES_Core.vds"/>
   <File Type="RDS-UTIL" Name="AES_Core_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="AES_Core_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="AES_Core.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="AES_Core_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="AES_Core_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/AES_Comp.v">
