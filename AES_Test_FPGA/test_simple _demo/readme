@@ -1,0 +1,6 @@
+Following shows the simulation result. see in the test demo top file. 
+  
+When the ‘led1’ turns on, it says the start1 signal start to input the signal into the input2 machine. 
+
+When the ‘led2’ turns on, it shows the input signal(input2) is high, and the testbench is sending the signal.  
+
