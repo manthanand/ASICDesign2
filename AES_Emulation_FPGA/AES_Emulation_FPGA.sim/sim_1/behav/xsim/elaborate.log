@@ -5,21 +5,5 @@ Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.AES_Comp_GFinvComp
-Compiling module xil_defaultlib.AES_Comp_SboxComp
-Compiling module xil_defaultlib.AES_Comp_SubBytesComp
-Compiling module xil_defaultlib.AES_Comp_MixColumns
-Compiling module xil_defaultlib.AES_Comp_EncCore
-Compiling module xil_defaultlib.AES_Comp_ENC
-Compiling module xil_defaultlib.AES_Comp
-Compiling module xil_defaultlib.SCAN_IN_CELL
-Compiling module xil_defaultlib.SCAN_OUT_CELL
-Compiling module xil_defaultlib.scan
-Compiling module xil_defaultlib.AES_Core
-Compiling module xil_defaultlib.AES_Testbench
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot AES_Testbench_behav
+ERROR: [VRFC 10-3180] cannot find port 'CLKOUT' on this module [C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.srcs/sim_1/imports/AES_TestBench/AES_TestBench.srcs/sources_1/new/AES_Testbench.v:44]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.
