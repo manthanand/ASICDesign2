@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.1 (win64) Build 4081461 Thu Dec 14 12:24:51 MST 2023
-| Date         : Mon Mar 18 13:12:42 2024
+| Date         : Mon Mar 18 16:51:32 2024
 | Host         : DESKTOP-RR47J6M running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file AES_Testbenchsp_control_sets_placed.rpt
 | Design       : AES_Testbenchsp
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |   146 |
-|    Minimum number of control sets                        |   146 |
+| Total control sets                                       |   143 |
+|    Minimum number of control sets                        |   143 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   993 |
+| Unused register locations in slices containing registers |   968 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |   146 |
-| >= 0 to < 4        |   140 |
-| >= 4 to < 6        |     3 |
+| Total control sets |   143 |
+| >= 0 to < 4        |   137 |
+| >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     1 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     2 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              13 |            4 |
-| No           | No                    | Yes                    |               1 |            1 |
-| No           | Yes                   | No                     |               2 |            2 |
-| Yes          | No                    | No                     |             170 |          145 |
+| No           | No                    | No                     |              17 |            5 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |             133 |          130 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              45 |           17 |
+| Yes          | Yes                   | No                     |             106 |           33 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,152 +73,149 @@ Table of Contents
 +----------------+------------------------------+------------------+------------------+----------------+--------------+
 |  Clock Signal  |         Enable Signal        | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+------------------------------+------------------+------------------+----------------+--------------+
-|  CLK_OBUF_BUFG |                              | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG |                              | dbg1_i_1_n_0     |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG |                              | runtest_IBUF     |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SU_i_1_n_0                   | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | done3_out                    | RSTn_i_1_n_0     |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | Krdy_i_1_n_0                 | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | EN_i_1_n_0                   | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | Drdy_i_1_n_0                 | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | RSTn_i_1_n_0                 | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[0]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[100]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[101]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[102]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[24]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[29]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[120]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[30]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[124]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[127]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[114]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[12]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[28]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[31]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[106]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[117]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[32]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[27]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[33]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[113]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[2]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[21]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[34]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[110]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[14]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[126]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[19]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[16]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[103]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[108]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[121]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[22]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[13]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[23]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[112]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[17]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[115]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[119]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[25]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[10]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[109]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[111]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[116]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[104]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[11]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[125]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[15]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[18]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[1]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[105]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[20]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[26]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[118]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[122]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[107]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[123]_i_1_n_0    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[38]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[59]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[63]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[35]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[6]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[82]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[62]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[67]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[3]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[76]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[7]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[4]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[80]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[85]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[84]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[88]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[46]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[61]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[69]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[78]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[37]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[50]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[41]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[58]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[56]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[5]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[57]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[68]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[87]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[51]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[52]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[40]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[65]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[60]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[53]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[66]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[47]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[45]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[36]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[42]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[73]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[74]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[77]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[55]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[75]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[79]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[81]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[43]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[64]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[83]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[89]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[48]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[39]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[49]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[44]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[70]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[71]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[8]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[86]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[54]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[72]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[97]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[92]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[94]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[93]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[95]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[96]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[91]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[99]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[9]_i_1_n_0      |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[90]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SCAN_OUT_REG[98]_i_1_n_0     |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SE_i_1_n_0                   | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | SI5_out                      | SU12_out         |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | done3_out                    |                  |                1 |              1 |         1.00 |
-|  CLK_OBUF_BUFG | FSM_sequential_ns[3]_i_1_n_0 |                  |                3 |              4 |         1.33 |
-|  CLK_OBUF_BUFG | timer[8]_i_1_n_0             |                  |                2 |              5 |         2.50 |
-|  CLK_OBUF_BUFG | timer[8]_i_1_n_0             | timer[9]_i_1_n_0 |                2 |              5 |         2.50 |
+|  CLK_OBUF_BUFG | p_0_in[6]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[122]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[126]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | Krdy_i_1_n_0                 | SU11_out         |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[127]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | Drdy_i_1_n_0                 | SU11_out         |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | SI4_out                      | SU11_out         |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | SE_i_1_n_0                   | SU11_out         |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | SU_i_1_n_0                   | SU11_out         |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[120]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[118]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | testpassed3_out              |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | testpassed3_out              | RSTn_i_1_n_0     |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[123]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[32]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[34]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[35]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[5]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[8]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[33]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[40]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[14]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[42]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[39]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[44]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[45]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[2]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[47]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[18]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[21]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[22]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[41]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[48]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[1]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[116]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[11]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[17]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[27]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[38]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[49]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[10]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[31]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[25]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[36]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[30]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[37]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[46]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[43]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[50]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[51]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[28]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[4]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[0]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[12]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[15]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[3]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[13]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[19]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[26]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[7]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[9]                    |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[16]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[20]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[23]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[24]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[29]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[92]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[102]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[105]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[106]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[85]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[86]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[109]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[111]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[100]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[112]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[79]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[73]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[93]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[75]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[99]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[108]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[113]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[57]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[61]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[69]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[81]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[59]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[84]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[88]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[95]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[97]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[101]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[103]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[58]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[67]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[90]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[107]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[54]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[74]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[62]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[94]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[76]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[104]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[110]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[66]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[55]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[70]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[80]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[83]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[65]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[72]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[71]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[89]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[53]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[60]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[64]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[77]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[78]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[82]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[91]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[96]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[98]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[56]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[68]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[87]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[52]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[63]                   |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[114]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[115]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[125]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[119]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[124]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[117]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | p_0_in[121]                  |                  |                1 |              1 |         1.00 |
+|  CLK_OBUF_BUFG | EN_i_1_n_0                   | SU11_out         |                1 |              2 |         2.00 |
+|  CLK_OBUF_BUFG | RSTn_i_1_n_0                 | SU11_out         |                2 |              2 |         1.00 |
+|  CLK_OBUF_BUFG | FSM_sequential_ns[3]_i_1_n_0 |                  |                1 |              4 |         4.00 |
+|  CLK_OBUF_BUFG |                              |                  |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG |                              |                  |                4 |             13 |         3.25 |
-|  CLK_OBUF_BUFG | cntr[31]_i_1_n_0             |                  |               11 |             32 |         2.91 |
-|  CLK_OBUF_BUFG | i[31]_i_2_n_0                | SU12_out         |                7 |             32 |         4.57 |
+|  CLK_OBUF_BUFG | cntr                         | testpassed3_out  |               10 |             32 |         3.20 |
+|  CLK_OBUF_BUFG | i[31]_i_2_n_0                | SU11_out         |                9 |             32 |         3.56 |
+|  CLK_OBUF_BUFG | timer                        | timer0           |                5 |             32 |         6.40 |
 +----------------+------------------------------+------------------+------------------+----------------+--------------+
 
 

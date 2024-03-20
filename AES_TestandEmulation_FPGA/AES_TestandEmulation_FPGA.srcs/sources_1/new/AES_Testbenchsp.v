@@ -24,33 +24,38 @@
 `define MYOUT1  128'h95F8847369A8573D76AF987AB30A5DE2
 `define MYIN2   128'hDCFEAD50D1D9FD08B386EFB08B142F74
 `define MYOUT2  128'h85E5F163C857B0AC1162E07DD3432B66
+`define DIVIDER 14
 
-module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, SCLK, CLK, testpassed, rdy, done, dbg0, dbg1, testrunning);
-    input clk;
-    input runtest;
-    input BSY;
-    input SO;
+module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, SCLK, CLK, testpassed, rdy, done, dbg0, dbg1, dbg2);
+    input clk; // Clock
+    input runtest; // Start test
+    input BSY; // AES Busy
+    input SO; // Scan Chain Out
     output reg Krdy; // Key input ready
     output reg Drdy; // Data input ready
     output reg RSTn; // Reset (Low active)
-    output reg EN;   // AES circuit enable
-    output reg SU;   // Scan Chain Update
-    output reg SI;   // Scan Chain In
-    output reg SE;
+    output reg EN; // AES circuit enable
+    output reg SU; // Scan Chain Update
+    output reg SI; // Scan Chain In
+    output reg SE; // Scan Chain Enable
     output reg testpassed = 1'b0;
     output reg rdy = 1'b1;
     output reg done = 1'b0;
-    output reg dbg0 = 1'b0;
-    output reg dbg1 = 1'b0;
-    output reg testrunning =   1'b0;
+    output wire dbg0;
+    output wire dbg1;
+    output wire dbg2;
     output CLK;
     output SCLK;
+
+    assign dbg0 = BSY;
+    assign dbg1 = EN;
+    assign dbg2 = RSTn;
     
     reg	[264:0] SCAN_IN_REG;
     reg [131:0] SCAN_OUT_REG;
-    reg [12:0] divider = 0;
-    assign CLK = divider[12];
-    assign SCLK = divider[12];
+    reg [`DIVIDER:0] divider = 0;
+    assign CLK = divider[`DIVIDER];
+    assign SCLK = divider[`DIVIDER];
 
     reg [31:0] cntr =   32'd10;
     reg [31:0] timer =  32'd10;
@@ -60,7 +65,7 @@ module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, 
     always @(posedge clk) divider <= divider + 1;
 
     //Intantiate AES Core within FPGA so if wires dont work, we can validate internally
-    AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK),.SO(SO), .BSY(BSY), .CLKOUT(CLKOUT));
+   AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK),.SO(SO), .BSY(BSY), .CLKOUT(CLKOUT));
 
     reg [1:0] csbutton = 0;
 
@@ -75,31 +80,26 @@ module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, 
             end
             1: begin
                 if (done == 1) begin
-                    csbutton <= 0;
+                    csbutton <= 2;
+                    timer <= 0;
                 end
                 else begin
                     timer <= timer + 1;
                 end
             end
+            2: begin
+                if (runtest && !done) begin
+                    csbutton <= 1;
+                end
+                else if (runtest && done) begin
+                    timer <= timer + 1;
+                end
+                else begin
+                    csbutton <= 0;
+                end
+            end
         endcase
     end
-
-    // timer1 
-    // always@(posedge CLK or posedge runtest) begin
-    //     if (runtest == 1 && timer < 1000) begin
-    //         testrunning <= 1'b1; //if test hasnt started, start test
-    //     end
-    //     else if (timer >= 1000) begin
-    //         timer <= 32'd0; //timer is set to 0 when reaches 200ms
-    //         testrunning <= 0; //test is stopped
-    //     end
-    //     else if (testrunning) begin
-    //         timer <= timer + 1'b1; //if test is started, incrememnt timer
-    //     end
-    // 	else begin 
-    // 	   timer <= 32'd0; //otherwise timer is set to 0
-    // 	end
-    // end
 
     // 1 initialization
     always@(posedge CLK) begin 
@@ -117,10 +117,11 @@ module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, 
                 cntr <= cntr + 2;
                 i <= 32'b0;
                 ns <= 1;
+                done <= 1'b0;
             end
 
             else if (ns == 1) begin
-                done <= 0;
+                rdy <= 1'b0;
                 RSTn <= 1'b1;
                 if(i == 263) begin
                     i <= 32'b0;
@@ -182,7 +183,7 @@ module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, 
                 if(i == 132) begin
                     i <= 32'b0;
                     ns <= 9;
-                    cntr <= cntr + 1; ///changed here
+                    cntr <= cntr + 3; ///changed here
                 end
             	else begin
                     SCAN_OUT_REG[i] <= SO;  
@@ -201,6 +202,9 @@ module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, 
                 end
                 ns <= 0;
                 done <= 1;
+                cntr <= 10;
+                rdy <= 1'b1;
+                EN <= 0;
             end
         end
 

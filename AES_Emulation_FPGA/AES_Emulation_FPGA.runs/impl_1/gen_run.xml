@@ -18,10 +18,14 @@
   <File Type="BITSTR-MMI" Name="AES_Core.mmi"/>
   <File Type="ROUTE-METHODOLOGY-DRC" Name="AES_Core_methodology_drc_routed.rpt"/>
   <File Type="BITSTR-SYSDEF" Name="AES_Core.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="AES_Core_methodology_drc_routed.pb"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="AES_Core.ltx"/>
+  <File Type="BOOT-PDI-FILE" Name="AES_Core_boot.pdi"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="NPI_FILE" Name="AES_Core.npi"/>
   <File Type="OPT-DRC" Name="AES_Core_drc_opted.rpt"/>
+  <File Type="RBD_FILE" Name="AES_Core.rbd"/>
   <File Type="OPT-HWDEF" Name="AES_Core.hwdef"/>
   <File Type="PLACE-IO" Name="AES_Core_io_placed.rpt"/>
   <File Type="PLACE-UTIL" Name="AES_Core_utilization_placed.rpt"/>
@@ -55,17 +59,13 @@
   <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="AES_Core_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="AES_Core_bus_skew_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="AES_Core_bus_skew_postroute_physopted.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="AES_Core_methodology_drc_routed.pb"/>
   <File Type="ROUTE-DRC-RPX" Name="AES_Core_drc_routed.rpx"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="AES_Core_methodology_drc_routed.rpx"/>
   <File Type="PDI-FILE" Name="AES_Core.pdi"/>
-  <File Type="BOOT-PDI-FILE" Name="AES_Core_boot.pdi"/>
   <File Type="PL-PDI-FILE" Name="AES_Core_pld.pdi"/>
   <File Type="RCFI_FILE" Name="AES_Core.rcfi"/>
   <File Type="CFI_FILE" Name="AES_Core.cfi"/>
   <File Type="RNPI_FILE" Name="AES_Core.rnpi"/>
-  <File Type="NPI_FILE" Name="AES_Core.npi"/>
-  <File Type="RBD_FILE" Name="AES_Core.rbd"/>
   <File Type="ROUTE-RQS" Name="AES_Core_routed.rqs"/>
   <File Type="POSTROUTE-PHYSOPT-RQS" Name="AES_Core_postroute_physopted.rqs"/>
   <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>

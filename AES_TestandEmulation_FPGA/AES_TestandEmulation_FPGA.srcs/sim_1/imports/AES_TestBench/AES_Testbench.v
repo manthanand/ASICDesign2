@@ -42,10 +42,10 @@ initial begin
 	runtest = 1;
 	#20;
 //	runtest = 0;
-	#100000000
-	runtest = 1;
-	#20;
-//	runtest = 0;
+	#75000000
+	runtest = 0;
+	#90000;
+//	runtest = 1;
 	#100000000
 	$finish;
 end

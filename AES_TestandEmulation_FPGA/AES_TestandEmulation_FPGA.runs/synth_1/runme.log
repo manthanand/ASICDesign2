@@ -14,7 +14,7 @@ ECHO is off.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source AES_Testbenchsp.tcl -notrace
-create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 460.883 ; gain = 184.281
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:07 . Memory (MB): peak = 457.414 ; gain = 182.293
 Command: read_checkpoint -auto_incremental -incremental C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/utils_1/imports/synth_1/AES_Core.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/utils_1/imports/synth_1/AES_Core.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -27,27 +27,26 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 11200
+INFO: [Synth 8-7075] Helper process launched with PID 8700
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1295.578 ; gain = 440.219
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:07 . Memory (MB): peak = 1296.141 ; gain = 441.363
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'AES_Testbenchsp' [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:28]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:73]
 INFO: [Synth 8-6155] done synthesizing module 'AES_Testbenchsp' (0#1) [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:28]
-WARNING: [Synth 8-7137] Register timer_reg in module AES_Testbenchsp has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:70]
-WARNING: [Synth 8-3917] design AES_Testbenchsp has port rdy driven by constant 1
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 1408.613 ; gain = 553.254
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 1408.555 ; gain = 553.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1408.613 ; gain = 553.254
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1408.555 ; gain = 553.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1408.613 ; gain = 553.254
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1408.555 ; gain = 553.777
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1408.613 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 1408.555 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -58,31 +57,40 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/AES_Testbenchsp_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1515.027 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1440.578 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1515.027 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1440.578 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35ticpg236-1L
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'csbutton_reg' in module 'AES_Testbenchsp'
 INFO: [Synth 8-802] inferred FSM for state register 'ns_reg' in module 'AES_Testbenchsp'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE0 |                              001 |                               00
+                 iSTATE1 |                              010 |                               01
+                  iSTATE |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'csbutton_reg' using encoding 'one-hot' in module 'AES_Testbenchsp'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -100,35 +108,36 @@ INFO: [Synth 8-802] inferred FSM for state register 'ns_reg' in module 'AES_Test
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'ns_reg' using encoding 'sequential' in module 'AES_Testbenchsp'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:18 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:18 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 3     
-	   2 Input   10 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 4     
 +---Registers : 
 	              265 Bit    Registers := 1     
 	              132 Bit    Registers := 1     
 	               32 Bit    Registers := 3     
-	                1 Bit    Registers := 12    
+	                1 Bit    Registers := 10    
 +---Muxes : 
 	   2 Input  132 Bit        Muxes := 2     
 	  10 Input  132 Bit        Muxes := 1     
 	   2 Input   32 Bit        Muxes := 4     
-	   7 Input   32 Bit        Muxes := 1     
-	   2 Input   10 Bit        Muxes := 2     
+	   3 Input   32 Bit        Muxes := 1     
+	   8 Input   32 Bit        Muxes := 1     
 	  10 Input    4 Bit        Muxes := 1     
-	   5 Input    1 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 22    
-	   9 Input    1 Bit        Muxes := 2     
-	   8 Input    1 Bit        Muxes := 2     
-	   3 Input    1 Bit        Muxes := 2     
-	   4 Input    1 Bit        Muxes := 2     
-	   7 Input    1 Bit        Muxes := 3     
-	  10 Input    1 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 28    
+	   3 Input    1 Bit        Muxes := 3     
+	   9 Input    1 Bit        Muxes := 1     
+	   7 Input    1 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 8     
+	   8 Input    1 Bit        Muxes := 1     
+	  10 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -145,27 +154,26 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3917] design AES_Testbenchsp has port rdy driven by constant 1
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:23 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:28 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:28 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -183,37 +191,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -230,43 +238,41 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     2|
-|2     |CARRY4 |    42|
-|3     |LUT1   |     5|
-|4     |LUT2   |    29|
-|5     |LUT3   |    86|
-|6     |LUT4   |    23|
-|7     |LUT5   |    23|
-|8     |LUT6   |   175|
-|9     |MUXF7  |     1|
-|10    |FDPE   |     1|
-|11    |FDRE   |   227|
-|12    |FDSE   |     3|
-|13    |IBUF   |     4|
-|14    |OBUF   |    15|
+|2     |CARRY4 |    50|
+|3     |LUT1   |     3|
+|4     |LUT2   |    20|
+|5     |LUT3   |    89|
+|6     |LUT4   |    48|
+|7     |LUT5   |   117|
+|8     |LUT6   |    94|
+|9     |FDRE   |   251|
+|10    |FDSE   |     3|
+|11    |IBUF   |     4|
+|12    |OBUF   |    15|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:31 . Memory (MB): peak = 1515.027 ; gain = 553.254
-Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1515.027 ; gain = 659.668
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:31 . Memory (MB): peak = 1440.578 ; gain = 553.777
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1440.578 ; gain = 585.801
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1515.027 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 43 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1440.578 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 50 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1515.027 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1441.730 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Synth Design complete | Checksum: 372a18a0
+Synth Design complete | Checksum: b3d6863e
 INFO: [Common 17-83] Releasing license: Synthesis
-25 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+28 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1515.027 ; gain = 1051.191
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1515.027 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:40 . Memory (MB): peak = 1441.730 ; gain = 980.344
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1441.730 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.runs/synth_1/AES_Testbenchsp.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file AES_Testbenchsp_utilization_synth.rpt -pb AES_Testbenchsp_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar 18 13:12:01 2024...
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 18 16:50:51 2024...

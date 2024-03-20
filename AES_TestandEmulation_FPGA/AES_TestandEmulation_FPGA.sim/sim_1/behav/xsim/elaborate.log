@@ -5,7 +5,7 @@ Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3129] assignment to input 'SO' [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:63]
+WARNING: [VRFC 10-3129] assignment to input 'SO' [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v:67]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
