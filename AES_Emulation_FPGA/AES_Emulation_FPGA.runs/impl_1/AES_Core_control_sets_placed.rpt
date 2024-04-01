@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.1 (win64) Build 4081461 Thu Dec 14 12:24:51 MST 2023
-| Date         : Sat Feb 24 23:23:18 2024
+| Date         : Wed Mar 27 13:14:19 2024
 | Host         : DESKTOP-RR47J6M running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file AES_Core_control_sets_placed.rpt
 | Design       : AES_Core
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     8 |
-|    Minimum number of control sets                        |     8 |
+| Total control sets                                       |     9 |
+|    Minimum number of control sets                        |     9 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    15 |
+| Unused register locations in slices containing registers |    18 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,9 +39,9 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     8 |
+| Total control sets |     9 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     1 |
+| >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
@@ -58,29 +58,30 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             388 |          141 |
+| No           | No                    | No                     |             393 |          140 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |             385 |          137 |
+| Yes          | No                    | No                     |             385 |          141 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             268 |          122 |
+| Yes          | Yes                   | No                     |             268 |          108 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------+----------------------------+------------------------------+------------------+----------------+--------------+
-|   Clock Signal  |        Enable Signal       |       Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
-+-----------------+----------------------------+------------------------------+------------------+----------------+--------------+
-|  CLK_IBUF_BUFG  |                            |                              |                3 |              4 |         1.33 |
-|  CLK_IBUF_BUFG  | AES_Comp/AES_Comp_ENC/Rrg  | AES_Comp/AES_Comp_ENC/p_0_in |                4 |             12 |         3.00 |
-|  CLK_IBUF_BUFG  | AES_Comp/AES_Comp_ENC/Drg  |                              |               63 |            128 |         2.03 |
-|  CLK_IBUF_BUFG  | AES_Comp/AES_Comp_ENC/Krg  | AES_Comp/AES_Comp_ENC/p_0_in |               50 |            128 |         2.56 |
-|  CLK_IBUF_BUFG  | AES_Comp/AES_Comp_ENC/KrgX | AES_Comp/AES_Comp_ENC/p_0_in |               68 |            128 |         1.88 |
-|  SCLK_IBUF_BUFG |                            |                              |               54 |            128 |         2.37 |
-|  SU_IBUF_BUFG   |                            |                              |               84 |            256 |         3.05 |
-|  SCLK_IBUF_BUFG | SE_IBUF                    |                              |               74 |            258 |         3.49 |
-+-----------------+----------------------------+------------------------------+------------------+----------------+--------------+
++----------------+----------------------------+------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |        Enable Signal       |       Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+----------------------------+------------------------------+------------------+----------------+--------------+
+|  CLKAES_BUFG   |                            |                              |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG |                            |                              |                5 |              5 |         1.00 |
+|  CLKAES_BUFG   | AES_Comp/AES_Comp_ENC/Rrg  | AES_Comp/AES_Comp_ENC/p_0_in |                4 |             12 |         3.00 |
+|  CLKAES_BUFG   | AES_Comp/AES_Comp_ENC/Drg  |                              |               61 |            128 |         2.10 |
+|  CLKAES_BUFG   | AES_Comp/AES_Comp_ENC/KrgX | AES_Comp/AES_Comp_ENC/p_0_in |               65 |            128 |         1.97 |
+|  CLKAES_BUFG   | AES_Comp/AES_Comp_ENC/Krg  | AES_Comp/AES_Comp_ENC/p_0_in |               39 |            128 |         3.28 |
+|  SCLKAES_BUFG  |                            |                              |               51 |            128 |         2.51 |
+|  SU_IBUF_BUFG  |                            |                              |               81 |            256 |         3.16 |
+|  SCLKAES_BUFG  | SE_IBUF                    |                              |               80 |            258 |         3.22 |
++----------------+----------------------------+------------------------------+------------------+----------------+--------------+
 
 

@@ -3,8 +3,8 @@
 # SW Build 4081461 on Thu Dec 14 12:24:51 MST 2023
 # IP Build 4080415 on Thu Dec 14 21:01:57 MST 2023
 # SharedData Build 4077621 on Mon Dec 11 00:23:44 MST 2023
-# Start of session at: Sat Feb 24 23:21:23 2024
-# Process ID: 25872
+# Start of session at: Wed Mar 27 13:12:40 2024
+# Process ID: 28464
 # Current directory: C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.runs/synth_1
 # Command line: vivado.exe -log AES_Core.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source AES_Core.tcl
 # Log file: C:/Users/manth/Github/ASICDesign2/AES_Emulation_FPGA/AES_Emulation_FPGA.runs/synth_1/AES_Core.vds

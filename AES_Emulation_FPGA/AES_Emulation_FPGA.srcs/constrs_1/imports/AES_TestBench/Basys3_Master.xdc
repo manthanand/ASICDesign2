@@ -3,10 +3,10 @@
 ## - uncomment the lines corresponding to used pins
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 ## Clock signal
-#set_property PACKAGE_PIN W5 [get_ports CLK]                           
-#  set_property IOSTANDARD LVCMOS33 [get_ports CLK]
-#  create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports CLK]
- 
+set_property PACKAGE_PIN W5 [get_ports clk]                           
+  set_property IOSTANDARD LVCMOS33 [get_ports clk]
+  create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports clk]
+
 ## Switches
 # set_property PACKAGE_PIN V17 [get_ports {RST}]                    
 #   set_property IOSTANDARD LVCMOS33 [get_ports {RST}]
@@ -42,12 +42,12 @@
     #set_property IOSTANDARD LVCMOS33 [get_ports {sw[15]}]
  
 ## LEDs
-#set_property PACKAGE_PIN U16 [get_ports {led[0]}]                  
-#   set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
-#set_property PACKAGE_PIN E19 [get_ports {led[1]}]                  
-#   set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
-#set_property PACKAGE_PIN U19 [get_ports {led[2]}]                  
-#   set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
+set_property PACKAGE_PIN U16 [get_ports {dbg0}]                  
+   set_property IOSTANDARD LVCMOS33 [get_ports {dbg0}]
+set_property PACKAGE_PIN E19 [get_ports {dbg1}]                  
+   set_property IOSTANDARD LVCMOS33 [get_ports {dbg1}]
+set_property PACKAGE_PIN U19 [get_ports {dbg2}]                  
+   set_property IOSTANDARD LVCMOS33 [get_ports {dbg2}]
 #set_property PACKAGE_PIN V19 [get_ports {led[3]}]                  
 #   set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]
 #set_property PACKAGE_PIN W18 [get_ports {led[4]}]                  
@@ -158,7 +158,7 @@ set_property PACKAGE_PIN A15 [get_ports {DRDY}]
 #Sch name = JB8
 set_property PACKAGE_PIN A17 [get_ports {CLK}]                  
     set_property IOSTANDARD LVCMOS33 [get_ports {CLK}]
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {CLK_IBUF}]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {CLK_IBUF}]
 #Sch name = JB9
 set_property PACKAGE_PIN C15 [get_ports {RSTN}]                 
     set_property IOSTANDARD LVCMOS33 [get_ports {RSTN}]
@@ -177,8 +177,8 @@ set_property PACKAGE_PIN M18 [get_ports {SCLK}]
 set_property PACKAGE_PIN N17 [get_ports {SU}]                   
     set_property IOSTANDARD LVCMOS33 [get_ports {SU}]
 #Sch name = JC4
-#set_property PACKAGE_PIN P18 [get_ports {CLKOUT}]                   
-#    set_property IOSTANDARD LVCMOS33 [get_ports {CLKOUT}]
+set_property PACKAGE_PIN P18 [get_ports {SI}]                   
+   set_property IOSTANDARD LVCMOS33 [get_ports {SI}]
 ##Sch name = JC7
 #set_property PACKAGE_PIN L17 [get_ports {JC[4]}]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports {JC[4]}]
@@ -191,6 +191,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 ##Sch name = JC10
 #set_property PACKAGE_PIN R18 [get_ports {JC[7]}]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
+    
 ##Pmod Header JXADC
 ##Sch name = XA1_P
 #set_property PACKAGE_PIN J3 [get_ports {JXADC[0]}]             
@@ -216,6 +217,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 ##Sch name = XA4_N
 #set_property PACKAGE_PIN N1 [get_ports {JXADC[7]}]             
     #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[7]}]
+    
 ##VGA Connector
 #set_property PACKAGE_PIN G19 [get_ports {vgaRed[0]}]               
     #set_property IOSTANDARD LVCMOS33 [get_ports {vgaRed[0]}]
@@ -245,11 +247,13 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
     #set_property IOSTANDARD LVCMOS33 [get_ports Hsync]
 #set_property PACKAGE_PIN R19 [get_ports Vsync]                     
     #set_property IOSTANDARD LVCMOS33 [get_ports Vsync]
+    
 ##USB-RS232 Interface
 #set_property PACKAGE_PIN B18 [get_ports RsRx]                      
     #set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
 #set_property PACKAGE_PIN A18 [get_ports RsTx]                      
     #set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+    
 ##USB HID (PS/2)
 #set_property PACKAGE_PIN C17 [get_ports PS2Clk]                        
     #set_property IOSTANDARD LVCMOS33 [get_ports PS2Clk]
@@ -257,6 +261,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 #set_property PACKAGE_PIN B17 [get_ports PS2Data]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports PS2Data]   
     #set_property PULLUP true [get_ports PS2Data]
+    
 ##Quad SPI Flash
 ##Note that CCLK_0 cannot be placed in 7 series devices. You can access it using the
 ##STARTUPE2 primitive.
@@ -270,3 +275,14 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
     #set_property IOSTANDARD LVCMOS33 [get_ports {QspiDB[3]}]
 #set_property PACKAGE_PIN K19 [get_ports QspiCSn]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports QspiCSn]
+
+# ## Setting input & output delays
+# set input_clock [get_ports {CLK}]
+# set tco_max 30
+# set tco_min 10
+# set trce_dly_max 1
+# set trce_dly_min 0
+# set input_ports {KRDY, DRDY, EN, SI, RSTN, SE, SE}
+
+# set_input_delay -clock $input_clock -max [expr $tco_max + $trce_dly_max] [get_ports $input_ports]
+# set_input_delay -clock $input_clock -min [expr $tco_min + $trce_dly_min] [get_ports $input_ports]

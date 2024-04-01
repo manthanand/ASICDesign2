@@ -192,6 +192,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 ##Sch name = JC10
 #set_property PACKAGE_PIN R18 [get_ports {JC[7]}]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
+
 ##Pmod Header JXADC
 ##Sch name = XA1_P
 #set_property PACKAGE_PIN J3 [get_ports {JXADC[0]}]             
@@ -217,6 +218,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 ##Sch name = XA4_N
 #set_property PACKAGE_PIN N1 [get_ports {JXADC[7]}]             
     #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[7]}]
+
 ##VGA Connector
 #set_property PACKAGE_PIN G19 [get_ports {vgaRed[0]}]               
     #set_property IOSTANDARD LVCMOS33 [get_ports {vgaRed[0]}]
@@ -246,11 +248,13 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
     #set_property IOSTANDARD LVCMOS33 [get_ports Hsync]
 #set_property PACKAGE_PIN R19 [get_ports Vsync]                     
     #set_property IOSTANDARD LVCMOS33 [get_ports Vsync]
+
 ##USB-RS232 Interface
 #set_property PACKAGE_PIN B18 [get_ports RsRx]                      
     #set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
-#set_property PACKAGE_PIN A18 [get_ports RsTx]                      
-    #set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+#set_property PACKAGE_PIN A18 [get_ports TxD]                      
+#    set_property IOSTANDARD LVCMOS33 [get_ports TxD]
+
 ##USB HID (PS/2)
 #set_property PACKAGE_PIN C17 [get_ports PS2Clk]                        
     #set_property IOSTANDARD LVCMOS33 [get_ports PS2Clk]
@@ -258,6 +262,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 #set_property PACKAGE_PIN B17 [get_ports PS2Data]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports PS2Data]   
     #set_property PULLUP true [get_ports PS2Data]
+
 ##Quad SPI Flash
 ##Note that CCLK_0 cannot be placed in 7 series devices. You can access it using the
 ##STARTUPE2 primitive.

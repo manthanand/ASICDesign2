@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.1 (win64) Build 4081461 Thu Dec 14 12:24:51 MST 2023
-| Date         : Sat Feb 24 23:23:46 2024
+| Date         : Wed Mar 27 13:14:50 2024
 | Host         : DESKTOP-RR47J6M running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file AES_Core_timing_summary_routed.rpt -pb AES_Core_timing_summary_routed.pb -rpx AES_Core_timing_summary_routed.rpx -warn_on_violation
 | Design       : AES_Core
@@ -41,9 +41,10 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity          Description                  Violations  
----------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  1000        
+Rule       Severity          Description                    Violations  
+---------  ----------------  -----------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell    1000        
+TIMING-18  Warning           Missing input or output delay  7           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -57,8 +58,8 @@ Table of Contents
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
 4. checking unconstrained_internal_endpoints (1964)
-5. checking no_input_delay (6)
-6. checking no_output_delay (2)
+5. checking no_input_delay (8)
+6. checking no_output_delay (5)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -68,11 +69,11 @@ Table of Contents
 
 1. checking no_clock (1042)
 ---------------------------
- There are 400 register/latch pins with no clock driven by root clock pin: CLK (HIGH)
-
- There are 386 register/latch pins with no clock driven by root clock pin: SCLK (HIGH)
-
  There are 256 register/latch pins with no clock driven by root clock pin: SU (HIGH)
+
+ There are 400 register/latch pins with no clock driven by root clock pin: CLKAES_reg/Q (HIGH)
+
+ There are 386 register/latch pins with no clock driven by root clock pin: SCLKAES_reg/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -92,16 +93,16 @@ Table of Contents
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (6)
+5. checking no_input_delay (8)
 ------------------------------
- There are 6 input ports with no input delay specified. (HIGH)
+ There are 8 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (2)
+6. checking no_output_delay (5)
 -------------------------------
- There are 2 ports with no output delay specified. (HIGH)
+ There are 5 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -146,16 +147,20 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                 1966          inf        0.000                      0                 1966           NA           NA                      NA                    NA  
+        inf        0.000                      0                 1974          inf        0.000                      0                 1974        4.500        0.000                       0                     6  
 
 
-There are no user specified timing constraints.
+All user specified timing constraints are met.
 
 
 ------------------------------------------------------------------------------------------------
 | Clock Summary
 | -------------
 ------------------------------------------------------------------------------------------------
+
+Clock        Waveform(ns)       Period(ns)      Frequency(MHz)
+-----        ------------       ----------      --------------
+sys_clk_pin  {0.000 5.000}      10.000          100.000         
 
 
 ------------------------------------------------------------------------------------------------
@@ -165,6 +170,7 @@ There are no user specified timing constraints.
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+sys_clk_pin                                                                                                                                                     4.500        0.000                       0                     6  
 
 
 ------------------------------------------------------------------------------------------------
@@ -202,12 +208,61 @@ Path Group    From Clock    To Clock
 Path Group    From Clock    To Clock    
 ----------    ----------    --------    
 (none)                                    
+(none)        sys_clk_pin                 
+(none)                      sys_clk_pin   
 
 
 ------------------------------------------------------------------------------------------------
 | Timing Details
 | --------------
 ------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  sys_clk_pin
+  To Clock:  sys_clk_pin
+
+Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         sys_clk_pin
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { clk }
+
+Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y3  clk_IBUF_BUFG_inst/I
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X12Y85   CLKAES_reg/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X12Y37   SCLKAES_reg/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X0Y47    dbg0_reg/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X0Y69    dbg1_reg/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X0Y59    dbg2_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y85   CLKAES_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y85   CLKAES_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y37   SCLKAES_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y37   SCLKAES_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    dbg0_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    dbg0_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y69    dbg1_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y69    dbg1_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y59    dbg2_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y59    dbg2_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y85   CLKAES_reg/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y85   CLKAES_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y37   SCLKAES_reg/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X12Y37   SCLKAES_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    dbg0_reg/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    dbg0_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y69    dbg1_reg/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y69    dbg1_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y59    dbg2_reg/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y59    dbg2_reg/C
+
 
 
 --------------------------------------------------------------------------------------
@@ -223,347 +278,349 @@ Min Delay          1966 Endpoints
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[70]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[43]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[121]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.487ns  (logic 2.268ns (19.744%)  route 9.219ns (80.256%))
-  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=2 LUT6=5)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X24Y145        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[70]/C
-    SLICE_X24Y145        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[70]/Q
-                         net (fo=12, routed)          1.664     2.120    AES_Comp/AES_Comp_ENC/Q[70]
-    SLICE_X16Y146        LUT6 (Prop_lut6_I5_O)        0.124     2.244 r  AES_Comp/AES_Comp_ENC/Drg[38]_i_11/O
-                         net (fo=10, routed)          1.081     3.326    AES_Comp/AES_Comp_ENC/SB2/Sbox0/a__7[6]
-    SLICE_X16Y147        LUT4 (Prop_lut4_I1_O)        0.152     3.478 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_10/O
-                         net (fo=3, routed)           0.833     4.310    AES_Comp/AES_Comp_ENC/SB2/Sbox0/AES_Comp_GFinvComp/db[4]
-    SLICE_X16Y148        LUT6 (Prop_lut6_I4_O)        0.326     4.636 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_20/O
-                         net (fo=10, routed)          1.068     5.705    AES_Comp/AES_Comp_ENC/SB2/Sbox0/AES_Comp_GFinvComp/p_0_in9_in
-    SLICE_X17Y147        LUT4 (Prop_lut4_I0_O)        0.152     5.857 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_17/O
-                         net (fo=2, routed)           0.959     6.816    AES_Comp/AES_Comp_ENC/SB2/Sbox0/AES_Comp_GFinvComp/va[5]
-    SLICE_X18Y147        LUT6 (Prop_lut6_I5_O)        0.332     7.148 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_7/O
-                         net (fo=5, routed)           0.671     7.819    AES_Comp/AES_Comp_ENC/SB2/Sbox0/b[2]
-    SLICE_X19Y146        LUT3 (Prop_lut3_I2_O)        0.124     7.943 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_3/O
-                         net (fo=8, routed)           1.327     9.270    AES_Comp/AES_Comp_ENC/EC/MX1/sr[7]
-    SLICE_X21Y143        LUT2 (Prop_lut2_I0_O)        0.152     9.422 r  AES_Comp/AES_Comp_ENC/EC/MX1/Drg[44]_i_5/O
-                         net (fo=3, routed)           0.421     9.843    AES_Comp/AES_Comp_ENC/EC/MX1/p_42_in
-    SLICE_X23Y143        LUT6 (Prop_lut6_I5_O)        0.326    10.169 r  AES_Comp/AES_Comp_ENC/EC/MX1/Drg[43]_i_2/O
-                         net (fo=1, routed)           1.195    11.363    AES_Comp/AES_Comp_ENC/mx[43]
-    SLICE_X32Y137        LUT6 (Prop_lut6_I3_O)        0.124    11.487 r  AES_Comp/AES_Comp_ENC/Drg[43]_i_1/O
-                         net (fo=1, routed)           0.000    11.487    AES_Comp/AES_Comp_ENC/Drg[43]_i_1_n_0
-    SLICE_X32Y137        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[43]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[79]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[20]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.429ns  (logic 1.862ns (16.292%)  route 9.567ns (83.708%))
+  Data Path Delay:        13.018ns  (logic 2.060ns (15.824%)  route 10.958ns (84.176%))
   Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=5)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X34Y145        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[79]/C
-    SLICE_X34Y145        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  AES_Comp/AES_Comp_ENC/Drg_reg[79]/Q
-                         net (fo=14, routed)          1.596     2.114    AES_Comp/AES_Comp_ENC/Q[79]
-    SLICE_X36Y145        LUT5 (Prop_lut5_I4_O)        0.150     2.264 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_19/O
-                         net (fo=8, routed)           0.799     3.063    AES_Comp/AES_Comp_ENC/SB2/Sbox1/a__7[4]
-    SLICE_X36Y147        LUT6 (Prop_lut6_I0_O)        0.326     3.389 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_33/O
-                         net (fo=2, routed)           0.878     4.267    AES_Comp/AES_Comp_ENC/SB2/Sbox1/AES_Comp_GFinvComp/p_43_in
-    SLICE_X36Y146        LUT6 (Prop_lut6_I1_O)        0.124     4.391 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_22/O
-                         net (fo=10, routed)          1.544     5.936    AES_Comp/AES_Comp_ENC/SB2/Sbox1/AES_Comp_GFinvComp/p_0_in
-    SLICE_X34Y146        LUT6 (Prop_lut6_I4_O)        0.124     6.060 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_12/O
-                         net (fo=2, routed)           0.952     7.012    AES_Comp/AES_Comp_ENC/SB2/Sbox1/AES_Comp_GFinvComp/p_77_in
-    SLICE_X37Y146        LUT4 (Prop_lut4_I0_O)        0.124     7.136 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_6/O
-                         net (fo=2, routed)           0.977     8.112    AES_Comp/AES_Comp_ENC/SB2/Sbox1/b[3]
-    SLICE_X32Y145        LUT3 (Prop_lut3_I1_O)        0.124     8.236 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_3/O
-                         net (fo=8, routed)           1.181     9.417    AES_Comp/AES_Comp_ENC/EC/MX0/sr[15]
-    SLICE_X22Y141        LUT2 (Prop_lut2_I0_O)        0.124     9.541 r  AES_Comp/AES_Comp_ENC/EC/MX0/Drg[20]_i_5/O
-                         net (fo=3, routed)           0.829    10.370    AES_Comp/AES_Comp_ENC/EC/MX0/p_54_in
-    SLICE_X22Y142        LUT6 (Prop_lut6_I5_O)        0.124    10.494 r  AES_Comp/AES_Comp_ENC/EC/MX0/Drg[20]_i_2/O
-                         net (fo=1, routed)           0.810    11.305    AES_Comp/AES_Comp_ENC/mx[20]
-    SLICE_X22Y144        LUT6 (Prop_lut6_I3_O)        0.124    11.429 r  AES_Comp/AES_Comp_ENC/Drg[20]_i_1/O
-                         net (fo=1, routed)           0.000    11.429    AES_Comp/AES_Comp_ENC/Drg[20]_i_1_n_0
-    SLICE_X22Y144        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[20]/D
+    SLICE_X16Y146        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+    SLICE_X16Y146        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/Q
+                         net (fo=12, routed)          2.130     2.586    AES_Comp/AES_Comp_ENC/Q[123]
+    SLICE_X10Y147        LUT5 (Prop_lut5_I2_O)        0.152     2.738 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_20/O
+                         net (fo=8, routed)           1.029     3.767    AES_Comp/AES_Comp_ENC/SB3/Sbox3/a__7[4]
+    SLICE_X12Y148        LUT6 (Prop_lut6_I0_O)        0.348     4.115 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_34/O
+                         net (fo=2, routed)           0.844     4.960    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_43_in
+    SLICE_X11Y148        LUT6 (Prop_lut6_I1_O)        0.124     5.084 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_23/O
+                         net (fo=10, routed)          1.169     6.252    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_0_in
+    SLICE_X12Y149        LUT6 (Prop_lut6_I2_O)        0.124     6.376 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_12/O
+                         net (fo=2, routed)           1.106     7.482    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_8_in
+    SLICE_X11Y147        LUT4 (Prop_lut4_I3_O)        0.124     7.606 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_6/O
+                         net (fo=6, routed)           0.645     8.251    AES_Comp/AES_Comp_ENC/SB3/Sbox3/b[7]
+    SLICE_X12Y147        LUT3 (Prop_lut3_I0_O)        0.124     8.375 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_4/O
+                         net (fo=8, routed)           1.745    10.120    AES_Comp/AES_Comp_ENC/EC/MX3/sr[31]
+    SLICE_X21Y136        LUT2 (Prop_lut2_I1_O)        0.152    10.272 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[124]_i_5/O
+                         net (fo=3, routed)           1.143    11.415    AES_Comp/AES_Comp_ENC/EC/MX3/p_17_in
+    SLICE_X19Y138        LUT6 (Prop_lut6_I5_O)        0.332    11.747 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[121]_i_2/O
+                         net (fo=1, routed)           1.147    12.894    AES_Comp/AES_Comp_ENC/mx[121]
+    SLICE_X16Y146        LUT6 (Prop_lut6_I3_O)        0.124    13.018 r  AES_Comp/AES_Comp_ENC/Drg[121]_i_1/O
+                         net (fo=1, routed)           0.000    13.018    AES_Comp/AES_Comp_ENC/Drg[121]_i_1_n_0
+    SLICE_X16Y146        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[121]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[42]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[113]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[124]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.354ns  (logic 2.032ns (17.896%)  route 9.322ns (82.104%))
-  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=2 LUT5=1 LUT6=4)
+  Data Path Delay:        12.985ns  (logic 2.060ns (15.865%)  route 10.925ns (84.135%))
+  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=5)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X31Y141        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[42]/C
-    SLICE_X31Y141        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[42]/Q
-                         net (fo=13, routed)          1.434     1.890    AES_Comp/AES_Comp_ENC/Q[42]
-    SLICE_X33Y136        LUT5 (Prop_lut5_I3_O)        0.124     2.014 r  AES_Comp/AES_Comp_ENC/Drg[108]_i_8/O
-                         net (fo=6, routed)           1.015     3.030    AES_Comp/AES_Comp_ENC/SB1/Sbox1/a__7[2]
-    SLICE_X34Y136        LUT4 (Prop_lut4_I0_O)        0.150     3.180 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_30/O
-                         net (fo=1, routed)           0.859     4.039    AES_Comp/AES_Comp_ENC/SB1/Sbox1/AES_Comp_GFinvComp/da[3]
-    SLICE_X35Y136        LUT6 (Prop_lut6_I3_O)        0.328     4.367 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_20/O
-                         net (fo=10, routed)          1.179     5.546    AES_Comp/AES_Comp_ENC/SB1/Sbox1/AES_Comp_GFinvComp/p_0_in9_in
-    SLICE_X33Y134        LUT4 (Prop_lut4_I0_O)        0.152     5.698 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_17/O
-                         net (fo=2, routed)           1.023     6.721    AES_Comp/AES_Comp_ENC/SB1/Sbox1/AES_Comp_GFinvComp/va[5]
-    SLICE_X33Y136        LUT6 (Prop_lut6_I5_O)        0.326     7.047 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_7/O
-                         net (fo=5, routed)           0.654     7.700    AES_Comp/AES_Comp_ENC/SB1/Sbox1/b[2]
-    SLICE_X33Y135        LUT3 (Prop_lut3_I2_O)        0.124     7.824 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_3/O
-                         net (fo=8, routed)           1.320     9.145    AES_Comp/AES_Comp_ENC/EC/MX3/sr[15]
-    SLICE_X22Y136        LUT2 (Prop_lut2_I0_O)        0.124     9.269 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[116]_i_5/O
-                         net (fo=3, routed)           0.803    10.072    AES_Comp/AES_Comp_ENC/EC/MX3/p_54_in
-    SLICE_X26Y135        LUT6 (Prop_lut6_I5_O)        0.124    10.196 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[113]_i_2/O
-                         net (fo=1, routed)           1.035    11.230    AES_Comp/AES_Comp_ENC/mx[113]
-    SLICE_X28Y135        LUT6 (Prop_lut6_I3_O)        0.124    11.354 r  AES_Comp/AES_Comp_ENC/Drg[113]_i_1/O
-                         net (fo=1, routed)           0.000    11.354    AES_Comp/AES_Comp_ENC/Drg[113]_i_1_n_0
-    SLICE_X28Y135        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[113]/D
+    SLICE_X16Y146        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+    SLICE_X16Y146        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/Q
+                         net (fo=12, routed)          2.130     2.586    AES_Comp/AES_Comp_ENC/Q[123]
+    SLICE_X10Y147        LUT5 (Prop_lut5_I2_O)        0.152     2.738 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_20/O
+                         net (fo=8, routed)           1.029     3.767    AES_Comp/AES_Comp_ENC/SB3/Sbox3/a__7[4]
+    SLICE_X12Y148        LUT6 (Prop_lut6_I0_O)        0.348     4.115 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_34/O
+                         net (fo=2, routed)           0.844     4.960    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_43_in
+    SLICE_X11Y148        LUT6 (Prop_lut6_I1_O)        0.124     5.084 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_23/O
+                         net (fo=10, routed)          1.169     6.252    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_0_in
+    SLICE_X12Y149        LUT6 (Prop_lut6_I2_O)        0.124     6.376 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_12/O
+                         net (fo=2, routed)           1.106     7.482    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_8_in
+    SLICE_X11Y147        LUT4 (Prop_lut4_I3_O)        0.124     7.606 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_6/O
+                         net (fo=6, routed)           0.645     8.251    AES_Comp/AES_Comp_ENC/SB3/Sbox3/b[7]
+    SLICE_X12Y147        LUT3 (Prop_lut3_I0_O)        0.124     8.375 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_4/O
+                         net (fo=8, routed)           1.745    10.120    AES_Comp/AES_Comp_ENC/EC/MX3/sr[31]
+    SLICE_X21Y136        LUT2 (Prop_lut2_I1_O)        0.152    10.272 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[124]_i_5/O
+                         net (fo=3, routed)           1.252    11.523    AES_Comp/AES_Comp_ENC/EC/MX3/p_17_in
+    SLICE_X19Y139        LUT6 (Prop_lut6_I5_O)        0.332    11.855 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[124]_i_2/O
+                         net (fo=1, routed)           1.005    12.861    AES_Comp/AES_Comp_ENC/mx[124]
+    SLICE_X12Y147        LUT6 (Prop_lut6_I3_O)        0.124    12.985 r  AES_Comp/AES_Comp_ENC/Drg[124]_i_1/O
+                         net (fo=1, routed)           0.000    12.985    AES_Comp/AES_Comp_ENC/Drg[124]_i_1_n_0
+    SLICE_X12Y147        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[124]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[79]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[6]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[123]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.288ns  (logic 1.966ns (17.417%)  route 9.322ns (82.583%))
+  Data Path Delay:        12.749ns  (logic 2.060ns (16.159%)  route 10.689ns (83.841%))
+  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=5)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X16Y146        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+    SLICE_X16Y146        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/Q
+                         net (fo=12, routed)          2.130     2.586    AES_Comp/AES_Comp_ENC/Q[123]
+    SLICE_X10Y147        LUT5 (Prop_lut5_I2_O)        0.152     2.738 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_20/O
+                         net (fo=8, routed)           1.029     3.767    AES_Comp/AES_Comp_ENC/SB3/Sbox3/a__7[4]
+    SLICE_X12Y148        LUT6 (Prop_lut6_I0_O)        0.348     4.115 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_34/O
+                         net (fo=2, routed)           0.844     4.960    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_43_in
+    SLICE_X11Y148        LUT6 (Prop_lut6_I1_O)        0.124     5.084 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_23/O
+                         net (fo=10, routed)          1.169     6.252    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_0_in
+    SLICE_X12Y149        LUT6 (Prop_lut6_I2_O)        0.124     6.376 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_12/O
+                         net (fo=2, routed)           1.106     7.482    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_8_in
+    SLICE_X11Y147        LUT4 (Prop_lut4_I3_O)        0.124     7.606 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_6/O
+                         net (fo=6, routed)           0.645     8.251    AES_Comp/AES_Comp_ENC/SB3/Sbox3/b[7]
+    SLICE_X12Y147        LUT3 (Prop_lut3_I0_O)        0.124     8.375 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_4/O
+                         net (fo=8, routed)           1.745    10.120    AES_Comp/AES_Comp_ENC/EC/MX3/sr[31]
+    SLICE_X21Y136        LUT2 (Prop_lut2_I1_O)        0.152    10.272 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[124]_i_5/O
+                         net (fo=3, routed)           0.971    11.243    AES_Comp/AES_Comp_ENC/EC/MX3/p_17_in
+    SLICE_X19Y137        LUT6 (Prop_lut6_I5_O)        0.332    11.575 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[123]_i_2/O
+                         net (fo=1, routed)           1.050    12.625    AES_Comp/AES_Comp_ENC/mx[123]
+    SLICE_X16Y146        LUT6 (Prop_lut6_I3_O)        0.124    12.749 r  AES_Comp/AES_Comp_ENC/Drg[123]_i_1/O
+                         net (fo=1, routed)           0.000    12.749    AES_Comp/AES_Comp_ENC/Drg[123]_i_1_n_0
+    SLICE_X16Y146        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[52]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[91]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        12.238ns  (logic 2.324ns (18.991%)  route 9.914ns (81.009%))
+  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=3 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X34Y144        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[52]/C
+    SLICE_X34Y144        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  AES_Comp/AES_Comp_ENC/Drg_reg[52]/Q
+                         net (fo=8, routed)           1.297     1.815    AES_Comp/AES_Comp_ENC/Q[52]
+    SLICE_X32Y148        LUT6 (Prop_lut6_I0_O)        0.124     1.939 r  AES_Comp/AES_Comp_ENC/Drg[86]_i_11/O
+                         net (fo=10, routed)          1.197     3.136    AES_Comp/AES_Comp_ENC/SB1/Sbox2/a__7[6]
+    SLICE_X33Y147        LUT4 (Prop_lut4_I1_O)        0.152     3.288 r  AES_Comp/AES_Comp_ENC/Drg[87]_i_10/O
+                         net (fo=3, routed)           0.973     4.261    AES_Comp/AES_Comp_ENC/SB1/Sbox2/AES_Comp_GFinvComp/db[4]
+    SLICE_X33Y148        LUT6 (Prop_lut6_I4_O)        0.326     4.587 r  AES_Comp/AES_Comp_ENC/Drg[87]_i_20/O
+                         net (fo=10, routed)          1.066     5.653    AES_Comp/AES_Comp_ENC/SB1/Sbox2/AES_Comp_GFinvComp/p_0_in9_in
+    SLICE_X34Y147        LUT4 (Prop_lut4_I0_O)        0.150     5.803 r  AES_Comp/AES_Comp_ENC/Drg[87]_i_9/O
+                         net (fo=2, routed)           0.485     6.288    AES_Comp/AES_Comp_ENC/SB1/Sbox2/AES_Comp_GFinvComp/va[4]
+    SLICE_X34Y147        LUT4 (Prop_lut4_I2_O)        0.328     6.616 r  AES_Comp/AES_Comp_ENC/Drg[87]_i_6/O
+                         net (fo=2, routed)           1.179     7.795    AES_Comp/AES_Comp_ENC/SB1/Sbox2/b[3]
+    SLICE_X31Y146        LUT3 (Prop_lut3_I1_O)        0.124     7.919 r  AES_Comp/AES_Comp_ENC/Drg[87]_i_3/O
+                         net (fo=8, routed)           1.720     9.639    AES_Comp/AES_Comp_ENC/EC/MX2/sr[23]
+    SLICE_X24Y139        LUT2 (Prop_lut2_I0_O)        0.152     9.791 r  AES_Comp/AES_Comp_ENC/EC/MX2/Drg[92]_i_5/O
+                         net (fo=3, routed)           0.841    10.633    AES_Comp/AES_Comp_ENC/EC/MX2/p_17_in
+    SLICE_X23Y139        LUT6 (Prop_lut6_I5_O)        0.326    10.959 r  AES_Comp/AES_Comp_ENC/EC/MX2/Drg[91]_i_2/O
+                         net (fo=1, routed)           1.155    12.114    AES_Comp/AES_Comp_ENC/mx[91]
+    SLICE_X24Y145        LUT6 (Prop_lut6_I3_O)        0.124    12.238 r  AES_Comp/AES_Comp_ENC/Drg[91]_i_1/O
+                         net (fo=1, routed)           0.000    12.238    AES_Comp/AES_Comp_ENC/Drg[91]_i_1_n_0
+    SLICE_X24Y145        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[91]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[127]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        12.203ns  (logic 2.162ns (17.718%)  route 10.041ns (82.282%))
   Logic Levels:           9  (FDRE=1 LUT4=2 LUT5=2 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X34Y145        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[79]/C
-    SLICE_X34Y145        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  AES_Comp/AES_Comp_ENC/Drg_reg[79]/Q
-                         net (fo=14, routed)          1.596     2.114    AES_Comp/AES_Comp_ENC/Q[79]
-    SLICE_X36Y145        LUT5 (Prop_lut5_I4_O)        0.150     2.264 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_19/O
-                         net (fo=8, routed)           0.799     3.063    AES_Comp/AES_Comp_ENC/SB2/Sbox1/a__7[4]
-    SLICE_X36Y147        LUT6 (Prop_lut6_I0_O)        0.326     3.389 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_33/O
-                         net (fo=2, routed)           0.878     4.267    AES_Comp/AES_Comp_ENC/SB2/Sbox1/AES_Comp_GFinvComp/p_43_in
-    SLICE_X36Y146        LUT6 (Prop_lut6_I1_O)        0.124     4.391 r  AES_Comp/AES_Comp_ENC/Drg[15]_i_22/O
-                         net (fo=10, routed)          1.239     5.631    AES_Comp/AES_Comp_ENC/SB2/Sbox1/AES_Comp_GFinvComp/p_0_in
-    SLICE_X35Y145        LUT4 (Prop_lut4_I1_O)        0.124     5.755 r  AES_Comp/AES_Comp_ENC/Drg[14]_i_10/O
-                         net (fo=4, routed)           1.093     6.848    AES_Comp/AES_Comp_ENC/SB2/Sbox1/AES_Comp_GFinvComp/va[6]
-    SLICE_X34Y145        LUT6 (Prop_lut6_I0_O)        0.124     6.972 r  AES_Comp/AES_Comp_ENC/Drg[14]_i_7/O
-                         net (fo=2, routed)           1.010     7.981    AES_Comp/AES_Comp_ENC/SB2/Sbox1/b[5]
-    SLICE_X32Y145        LUT4 (Prop_lut4_I3_O)        0.150     8.131 r  AES_Comp/AES_Comp_ENC/Drg[14]_i_3/O
-                         net (fo=6, routed)           1.878    10.010    AES_Comp/AES_Comp_ENC/EC/MX0/sr[14]
-    SLICE_X21Y140        LUT5 (Prop_lut5_I2_O)        0.326    10.336 r  AES_Comp/AES_Comp_ENC/EC/MX0/Drg[6]_i_2/O
-                         net (fo=1, routed)           0.828    11.164    AES_Comp/AES_Comp_ENC/mx[6]
-    SLICE_X22Y140        LUT6 (Prop_lut6_I3_O)        0.124    11.288 r  AES_Comp/AES_Comp_ENC/Drg[6]_i_1/O
-                         net (fo=1, routed)           0.000    11.288    AES_Comp/AES_Comp_ENC/Drg[6]_i_1_n_0
-    SLICE_X22Y140        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[6]/D
+    SLICE_X16Y146        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+    SLICE_X16Y146        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/Q
+                         net (fo=12, routed)          2.130     2.586    AES_Comp/AES_Comp_ENC/Q[123]
+    SLICE_X10Y147        LUT5 (Prop_lut5_I2_O)        0.152     2.738 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_20/O
+                         net (fo=8, routed)           1.029     3.767    AES_Comp/AES_Comp_ENC/SB3/Sbox3/a__7[4]
+    SLICE_X12Y148        LUT6 (Prop_lut6_I0_O)        0.348     4.115 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_34/O
+                         net (fo=2, routed)           0.844     4.960    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_43_in
+    SLICE_X11Y148        LUT6 (Prop_lut6_I1_O)        0.124     5.084 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_23/O
+                         net (fo=10, routed)          1.169     6.252    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_0_in
+    SLICE_X12Y149        LUT6 (Prop_lut6_I2_O)        0.124     6.376 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_12/O
+                         net (fo=2, routed)           1.106     7.482    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_8_in
+    SLICE_X11Y147        LUT4 (Prop_lut4_I3_O)        0.124     7.606 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_6/O
+                         net (fo=6, routed)           0.837     8.443    AES_Comp/AES_Comp_ENC/SB3/Sbox3/b[7]
+    SLICE_X13Y147        LUT4 (Prop_lut4_I1_O)        0.150     8.593 r  AES_Comp/AES_Comp_ENC/Drg[126]_i_3/O
+                         net (fo=6, routed)           1.603    10.196    AES_Comp/AES_Comp_ENC/EC/MX3/sr[30]
+    SLICE_X20Y137        LUT5 (Prop_lut5_I4_O)        0.358    10.554 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[127]_i_3/O
+                         net (fo=1, routed)           1.323    11.877    AES_Comp/AES_Comp_ENC/mx[127]
+    SLICE_X12Y145        LUT6 (Prop_lut6_I3_O)        0.326    12.203 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_2/O
+                         net (fo=1, routed)           0.000    12.203    AES_Comp/AES_Comp_ENC/Drg[127]_i_2_n_0
+    SLICE_X12Y145        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[127]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[70]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[44]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[99]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.245ns  (logic 2.268ns (20.169%)  route 8.977ns (79.831%))
+  Data Path Delay:        12.133ns  (logic 1.824ns (15.033%)  route 10.309ns (84.967%))
+  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=5)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X16Y146        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+    SLICE_X16Y146        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/Q
+                         net (fo=12, routed)          2.130     2.586    AES_Comp/AES_Comp_ENC/Q[123]
+    SLICE_X10Y147        LUT5 (Prop_lut5_I2_O)        0.152     2.738 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_20/O
+                         net (fo=8, routed)           1.029     3.767    AES_Comp/AES_Comp_ENC/SB3/Sbox3/a__7[4]
+    SLICE_X12Y148        LUT6 (Prop_lut6_I0_O)        0.348     4.115 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_34/O
+                         net (fo=2, routed)           0.844     4.960    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_43_in
+    SLICE_X11Y148        LUT6 (Prop_lut6_I1_O)        0.124     5.084 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_23/O
+                         net (fo=10, routed)          1.169     6.252    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_0_in
+    SLICE_X12Y149        LUT6 (Prop_lut6_I2_O)        0.124     6.376 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_12/O
+                         net (fo=2, routed)           1.106     7.482    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_8_in
+    SLICE_X11Y147        LUT4 (Prop_lut4_I3_O)        0.124     7.606 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_6/O
+                         net (fo=6, routed)           0.645     8.251    AES_Comp/AES_Comp_ENC/SB3/Sbox3/b[7]
+    SLICE_X12Y147        LUT3 (Prop_lut3_I0_O)        0.124     8.375 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_4/O
+                         net (fo=8, routed)           1.454     9.829    AES_Comp/AES_Comp_ENC/EC/MX3/sr[31]
+    SLICE_X17Y137        LUT2 (Prop_lut2_I0_O)        0.124     9.953 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[100]_i_5/O
+                         net (fo=3, routed)           1.125    11.078    AES_Comp/AES_Comp_ENC/EC/MX3/p_50_in
+    SLICE_X18Y136        LUT6 (Prop_lut6_I5_O)        0.124    11.202 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[99]_i_2/O
+                         net (fo=1, routed)           0.808    12.009    AES_Comp/AES_Comp_ENC/mx[99]
+    SLICE_X16Y136        LUT6 (Prop_lut6_I3_O)        0.124    12.133 r  AES_Comp/AES_Comp_ENC/Drg[99]_i_1/O
+                         net (fo=1, routed)           0.000    12.133    AES_Comp/AES_Comp_ENC/Drg[99]_i_1_n_0
+    SLICE_X16Y136        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[99]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[100]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[75]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        12.042ns  (logic 2.324ns (19.299%)  route 9.718ns (80.701%))
   Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=2 LUT6=5)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X24Y145        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[70]/C
-    SLICE_X24Y145        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[70]/Q
-                         net (fo=12, routed)          1.664     2.120    AES_Comp/AES_Comp_ENC/Q[70]
-    SLICE_X16Y146        LUT6 (Prop_lut6_I5_O)        0.124     2.244 r  AES_Comp/AES_Comp_ENC/Drg[38]_i_11/O
-                         net (fo=10, routed)          1.081     3.326    AES_Comp/AES_Comp_ENC/SB2/Sbox0/a__7[6]
-    SLICE_X16Y147        LUT4 (Prop_lut4_I1_O)        0.152     3.478 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_10/O
-                         net (fo=3, routed)           0.833     4.310    AES_Comp/AES_Comp_ENC/SB2/Sbox0/AES_Comp_GFinvComp/db[4]
-    SLICE_X16Y148        LUT6 (Prop_lut6_I4_O)        0.326     4.636 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_20/O
-                         net (fo=10, routed)          1.068     5.705    AES_Comp/AES_Comp_ENC/SB2/Sbox0/AES_Comp_GFinvComp/p_0_in9_in
-    SLICE_X17Y147        LUT4 (Prop_lut4_I0_O)        0.152     5.857 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_17/O
-                         net (fo=2, routed)           0.959     6.816    AES_Comp/AES_Comp_ENC/SB2/Sbox0/AES_Comp_GFinvComp/va[5]
-    SLICE_X18Y147        LUT6 (Prop_lut6_I5_O)        0.332     7.148 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_7/O
-                         net (fo=5, routed)           0.671     7.819    AES_Comp/AES_Comp_ENC/SB2/Sbox0/b[2]
-    SLICE_X19Y146        LUT3 (Prop_lut3_I2_O)        0.124     7.943 r  AES_Comp/AES_Comp_ENC/Drg[39]_i_3/O
-                         net (fo=8, routed)           1.327     9.270    AES_Comp/AES_Comp_ENC/EC/MX1/sr[7]
-    SLICE_X21Y143        LUT2 (Prop_lut2_I0_O)        0.152     9.422 r  AES_Comp/AES_Comp_ENC/EC/MX1/Drg[44]_i_5/O
-                         net (fo=3, routed)           0.305     9.727    AES_Comp/AES_Comp_ENC/EC/MX1/p_42_in
-    SLICE_X23Y143        LUT6 (Prop_lut6_I5_O)        0.326    10.053 r  AES_Comp/AES_Comp_ENC/EC/MX1/Drg[44]_i_2/O
-                         net (fo=1, routed)           1.069    11.121    AES_Comp/AES_Comp_ENC/mx[44]
-    SLICE_X33Y140        LUT6 (Prop_lut6_I3_O)        0.124    11.245 r  AES_Comp/AES_Comp_ENC/Drg[44]_i_1/O
-                         net (fo=1, routed)           0.000    11.245    AES_Comp/AES_Comp_ENC/Drg[44]_i_1_n_0
-    SLICE_X33Y140        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[44]/D
+    SLICE_X14Y138        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[100]/C
+    SLICE_X14Y138        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  AES_Comp/AES_Comp_ENC/Drg_reg[100]/Q
+                         net (fo=8, routed)           1.484     2.002    AES_Comp/AES_Comp_ENC/Q[100]
+    SLICE_X12Y136        LUT6 (Prop_lut6_I0_O)        0.124     2.126 r  AES_Comp/AES_Comp_ENC/Drg[70]_i_11/O
+                         net (fo=10, routed)          0.452     2.578    AES_Comp/AES_Comp_ENC/SB3/Sbox0/a__7[6]
+    SLICE_X12Y136        LUT4 (Prop_lut4_I1_O)        0.150     2.728 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_10/O
+                         net (fo=3, routed)           1.297     4.026    AES_Comp/AES_Comp_ENC/SB3/Sbox0/AES_Comp_GFinvComp/db[4]
+    SLICE_X12Y135        LUT6 (Prop_lut6_I4_O)        0.328     4.354 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_20/O
+                         net (fo=10, routed)          1.072     5.426    AES_Comp/AES_Comp_ENC/SB3/Sbox0/AES_Comp_GFinvComp/p_0_in9_in
+    SLICE_X15Y135        LUT4 (Prop_lut4_I0_O)        0.152     5.578 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_17/O
+                         net (fo=2, routed)           1.001     6.579    AES_Comp/AES_Comp_ENC/SB3/Sbox0/AES_Comp_GFinvComp/va[5]
+    SLICE_X14Y136        LUT6 (Prop_lut6_I5_O)        0.326     6.905 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_7/O
+                         net (fo=5, routed)           1.269     8.173    AES_Comp/AES_Comp_ENC/SB3/Sbox0/b[2]
+    SLICE_X17Y136        LUT3 (Prop_lut3_I2_O)        0.124     8.297 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_3/O
+                         net (fo=8, routed)           1.435     9.732    AES_Comp/AES_Comp_ENC/EC/MX2/sr[7]
+    SLICE_X24Y138        LUT2 (Prop_lut2_I0_O)        0.152     9.884 r  AES_Comp/AES_Comp_ENC/EC/MX2/Drg[76]_i_5/O
+                         net (fo=3, routed)           0.606    10.490    AES_Comp/AES_Comp_ENC/EC/MX2/p_42_in
+    SLICE_X25Y139        LUT6 (Prop_lut6_I5_O)        0.326    10.816 r  AES_Comp/AES_Comp_ENC/EC/MX2/Drg[75]_i_2/O
+                         net (fo=1, routed)           1.102    11.918    AES_Comp/AES_Comp_ENC/mx[75]
+    SLICE_X27Y134        LUT6 (Prop_lut6_I3_O)        0.124    12.042 r  AES_Comp/AES_Comp_ENC/Drg[75]_i_1/O
+                         net (fo=1, routed)           0.000    12.042    AES_Comp/AES_Comp_ENC/Drg[75]_i_1_n_0
+    SLICE_X27Y134        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[75]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[105]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[100]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[49]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[76]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.228ns  (logic 1.802ns (16.049%)  route 9.426ns (83.951%))
-  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT5=2 LUT6=5)
+  Data Path Delay:        12.023ns  (logic 2.324ns (19.330%)  route 9.699ns (80.670%))
+  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=2 LUT6=5)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X27Y135        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[105]/C
-    SLICE_X27Y135        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[105]/Q
-                         net (fo=15, routed)          1.516     1.972    AES_Comp/AES_Comp_ENC/Q[105]
-    SLICE_X35Y133        LUT5 (Prop_lut5_I0_O)        0.152     2.124 r  AES_Comp/AES_Comp_ENC/Drg[47]_i_19/O
-                         net (fo=8, routed)           0.498     2.622    AES_Comp/AES_Comp_ENC/SB3/Sbox1/a__7[4]
-    SLICE_X35Y133        LUT6 (Prop_lut6_I0_O)        0.326     2.948 r  AES_Comp/AES_Comp_ENC/Drg[47]_i_33/O
-                         net (fo=2, routed)           1.019     3.967    AES_Comp/AES_Comp_ENC/SB3/Sbox1/AES_Comp_GFinvComp/p_43_in
-    SLICE_X33Y133        LUT6 (Prop_lut6_I1_O)        0.124     4.091 r  AES_Comp/AES_Comp_ENC/Drg[47]_i_22/O
-                         net (fo=10, routed)          1.326     5.417    AES_Comp/AES_Comp_ENC/SB3/Sbox1/AES_Comp_GFinvComp/p_0_in
-    SLICE_X31Y132        LUT5 (Prop_lut5_I2_O)        0.124     5.541 r  AES_Comp/AES_Comp_ENC/Drg[47]_i_13/O
-                         net (fo=2, routed)           0.798     6.340    AES_Comp/AES_Comp_ENC/SB3/Sbox1/AES_Comp_GFinvComp/p_3_in73_in
-    SLICE_X33Y132        LUT6 (Prop_lut6_I4_O)        0.124     6.464 r  AES_Comp/AES_Comp_ENC/Drg[47]_i_7/O
-                         net (fo=5, routed)           0.836     7.300    AES_Comp/AES_Comp_ENC/SB3/Sbox1/b[2]
-    SLICE_X31Y133        LUT3 (Prop_lut3_I2_O)        0.124     7.424 r  AES_Comp/AES_Comp_ENC/Drg[47]_i_3/O
-                         net (fo=8, routed)           1.371     8.795    AES_Comp/AES_Comp_ENC/EC/MX1/sr[15]
-    SLICE_X21Y144        LUT2 (Prop_lut2_I0_O)        0.124     8.919 r  AES_Comp/AES_Comp_ENC/EC/MX1/Drg[52]_i_5/O
-                         net (fo=3, routed)           1.098    10.018    AES_Comp/AES_Comp_ENC/EC/MX1/p_54_in
-    SLICE_X22Y145        LUT6 (Prop_lut6_I5_O)        0.124    10.142 r  AES_Comp/AES_Comp_ENC/EC/MX1/Drg[49]_i_2/O
-                         net (fo=1, routed)           0.962    11.104    AES_Comp/AES_Comp_ENC/mx[49]
-    SLICE_X27Y144        LUT6 (Prop_lut6_I3_O)        0.124    11.228 r  AES_Comp/AES_Comp_ENC/Drg[49]_i_1/O
-                         net (fo=1, routed)           0.000    11.228    AES_Comp/AES_Comp_ENC/Drg[49]_i_1_n_0
-    SLICE_X27Y144        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[49]/D
+    SLICE_X14Y138        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[100]/C
+    SLICE_X14Y138        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  AES_Comp/AES_Comp_ENC/Drg_reg[100]/Q
+                         net (fo=8, routed)           1.484     2.002    AES_Comp/AES_Comp_ENC/Q[100]
+    SLICE_X12Y136        LUT6 (Prop_lut6_I0_O)        0.124     2.126 r  AES_Comp/AES_Comp_ENC/Drg[70]_i_11/O
+                         net (fo=10, routed)          0.452     2.578    AES_Comp/AES_Comp_ENC/SB3/Sbox0/a__7[6]
+    SLICE_X12Y136        LUT4 (Prop_lut4_I1_O)        0.150     2.728 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_10/O
+                         net (fo=3, routed)           1.297     4.026    AES_Comp/AES_Comp_ENC/SB3/Sbox0/AES_Comp_GFinvComp/db[4]
+    SLICE_X12Y135        LUT6 (Prop_lut6_I4_O)        0.328     4.354 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_20/O
+                         net (fo=10, routed)          1.072     5.426    AES_Comp/AES_Comp_ENC/SB3/Sbox0/AES_Comp_GFinvComp/p_0_in9_in
+    SLICE_X15Y135        LUT4 (Prop_lut4_I0_O)        0.152     5.578 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_17/O
+                         net (fo=2, routed)           1.001     6.579    AES_Comp/AES_Comp_ENC/SB3/Sbox0/AES_Comp_GFinvComp/va[5]
+    SLICE_X14Y136        LUT6 (Prop_lut6_I5_O)        0.326     6.905 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_7/O
+                         net (fo=5, routed)           1.269     8.173    AES_Comp/AES_Comp_ENC/SB3/Sbox0/b[2]
+    SLICE_X17Y136        LUT3 (Prop_lut3_I2_O)        0.124     8.297 r  AES_Comp/AES_Comp_ENC/Drg[71]_i_3/O
+                         net (fo=8, routed)           1.435     9.732    AES_Comp/AES_Comp_ENC/EC/MX2/sr[7]
+    SLICE_X24Y138        LUT2 (Prop_lut2_I0_O)        0.152     9.884 r  AES_Comp/AES_Comp_ENC/EC/MX2/Drg[76]_i_5/O
+                         net (fo=3, routed)           0.692    10.576    AES_Comp/AES_Comp_ENC/EC/MX2/p_42_in
+    SLICE_X25Y138        LUT6 (Prop_lut6_I5_O)        0.326    10.902 r  AES_Comp/AES_Comp_ENC/EC/MX2/Drg[76]_i_2/O
+                         net (fo=1, routed)           0.997    11.899    AES_Comp/AES_Comp_ENC/mx[76]
+    SLICE_X28Y135        LUT6 (Prop_lut6_I3_O)        0.124    12.023 r  AES_Comp/AES_Comp_ENC/Drg[76]_i_1/O
+                         net (fo=1, routed)           0.000    12.023    AES_Comp/AES_Comp_ENC/Drg[76]_i_1_n_0
+    SLICE_X28Y135        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[76]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[113]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[28]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[112]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.220ns  (logic 2.266ns (20.196%)  route 8.954ns (79.804%))
-  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=2 LUT5=1 LUT6=4)
+  Data Path Delay:        11.772ns  (logic 1.700ns (14.442%)  route 10.072ns (85.558%))
+  Logic Levels:           9  (FDRE=1 LUT4=1 LUT5=3 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X28Y135        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[113]/C
-    SLICE_X28Y135        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[113]/Q
-                         net (fo=15, routed)          1.653     2.109    AES_Comp/AES_Comp_ENC/Q[113]
-    SLICE_X25Y130        LUT5 (Prop_lut5_I4_O)        0.124     2.233 r  AES_Comp/AES_Comp_ENC/Drg[20]_i_8/O
-                         net (fo=6, routed)           1.131     3.364    AES_Comp/AES_Comp_ENC/SB3/Sbox2/a__7[2]
-    SLICE_X24Y133        LUT4 (Prop_lut4_I0_O)        0.152     3.516 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_30/O
-                         net (fo=1, routed)           0.770     4.285    AES_Comp/AES_Comp_ENC/SB3/Sbox2/AES_Comp_GFinvComp/da[3]
-    SLICE_X25Y132        LUT6 (Prop_lut6_I3_O)        0.332     4.617 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_20/O
-                         net (fo=10, routed)          0.771     5.388    AES_Comp/AES_Comp_ENC/SB3/Sbox2/AES_Comp_GFinvComp/p_0_in9_in
-    SLICE_X23Y131        LUT4 (Prop_lut4_I0_O)        0.150     5.538 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_17/O
-                         net (fo=2, routed)           0.835     6.373    AES_Comp/AES_Comp_ENC/SB3/Sbox2/AES_Comp_GFinvComp/va[5]
-    SLICE_X24Y131        LUT6 (Prop_lut6_I5_O)        0.326     6.699 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_7/O
-                         net (fo=5, routed)           0.862     7.561    AES_Comp/AES_Comp_ENC/SB3/Sbox2/b[2]
-    SLICE_X22Y132        LUT3 (Prop_lut3_I2_O)        0.124     7.685 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_3/O
-                         net (fo=8, routed)           1.172     8.857    AES_Comp/AES_Comp_ENC/EC/MX0/sr[23]
-    SLICE_X22Y141        LUT2 (Prop_lut2_I0_O)        0.152     9.009 r  AES_Comp/AES_Comp_ENC/EC/MX0/Drg[28]_i_5/O
-                         net (fo=3, routed)           0.816     9.825    AES_Comp/AES_Comp_ENC/EC/MX0/p_17_in
-    SLICE_X21Y141        LUT6 (Prop_lut6_I5_O)        0.326    10.151 r  AES_Comp/AES_Comp_ENC/EC/MX0/Drg[28]_i_2/O
-                         net (fo=1, routed)           0.945    11.096    AES_Comp/AES_Comp_ENC/mx[28]
-    SLICE_X8Y141         LUT6 (Prop_lut6_I3_O)        0.124    11.220 r  AES_Comp/AES_Comp_ENC/Drg[28]_i_1/O
-                         net (fo=1, routed)           0.000    11.220    AES_Comp/AES_Comp_ENC/Drg[28]_i_1_n_0
-    SLICE_X8Y141         FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[28]/D
+    SLICE_X16Y146        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/C
+    SLICE_X16Y146        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[123]/Q
+                         net (fo=12, routed)          2.130     2.586    AES_Comp/AES_Comp_ENC/Q[123]
+    SLICE_X10Y147        LUT5 (Prop_lut5_I2_O)        0.152     2.738 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_20/O
+                         net (fo=8, routed)           1.029     3.767    AES_Comp/AES_Comp_ENC/SB3/Sbox3/a__7[4]
+    SLICE_X12Y148        LUT6 (Prop_lut6_I0_O)        0.348     4.115 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_34/O
+                         net (fo=2, routed)           0.844     4.960    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_43_in
+    SLICE_X11Y148        LUT6 (Prop_lut6_I1_O)        0.124     5.084 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_23/O
+                         net (fo=10, routed)          1.169     6.252    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_0_in
+    SLICE_X12Y149        LUT6 (Prop_lut6_I2_O)        0.124     6.376 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_12/O
+                         net (fo=2, routed)           1.106     7.482    AES_Comp/AES_Comp_ENC/SB3/Sbox3/AES_Comp_GFinvComp/p_8_in
+    SLICE_X11Y147        LUT4 (Prop_lut4_I3_O)        0.124     7.606 r  AES_Comp/AES_Comp_ENC/Drg[127]_i_6/O
+                         net (fo=6, routed)           1.036     8.642    AES_Comp/AES_Comp_ENC/SB3/Sbox3/b[7]
+    SLICE_X13Y147        LUT5 (Prop_lut5_I1_O)        0.124     8.766 r  AES_Comp/AES_Comp_ENC/Drg[120]_i_3/O
+                         net (fo=6, routed)           1.645    10.411    AES_Comp/AES_Comp_ENC/EC/MX3/sr[24]
+    SLICE_X20Y136        LUT5 (Prop_lut5_I2_O)        0.124    10.535 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[112]_i_2/O
+                         net (fo=1, routed)           1.113    11.648    AES_Comp/AES_Comp_ENC/mx[112]
+    SLICE_X28Y140        LUT6 (Prop_lut6_I3_O)        0.124    11.772 r  AES_Comp/AES_Comp_ENC/Drg[112]_i_1/O
+                         net (fo=1, routed)           0.000    11.772    AES_Comp/AES_Comp_ENC/Drg[112]_i_1_n_0
+    SLICE_X28Y140        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[112]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[113]/C
+  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[81]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[31]/D
+  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[116]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.151ns  (logic 2.150ns (19.280%)  route 9.001ns (80.720%))
-  Logic Levels:           9  (FDRE=1 LUT4=3 LUT5=2 LUT6=3)
+  Data Path Delay:        11.697ns  (logic 2.035ns (17.398%)  route 9.662ns (82.602%))
+  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=5)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X28Y135        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[113]/C
-    SLICE_X28Y135        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[113]/Q
-                         net (fo=15, routed)          1.653     2.109    AES_Comp/AES_Comp_ENC/Q[113]
-    SLICE_X25Y130        LUT5 (Prop_lut5_I4_O)        0.124     2.233 r  AES_Comp/AES_Comp_ENC/Drg[20]_i_8/O
-                         net (fo=6, routed)           1.131     3.364    AES_Comp/AES_Comp_ENC/SB3/Sbox2/a__7[2]
-    SLICE_X24Y133        LUT4 (Prop_lut4_I0_O)        0.152     3.516 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_30/O
-                         net (fo=1, routed)           0.770     4.285    AES_Comp/AES_Comp_ENC/SB3/Sbox2/AES_Comp_GFinvComp/da[3]
-    SLICE_X25Y132        LUT6 (Prop_lut6_I3_O)        0.332     4.617 f  AES_Comp/AES_Comp_ENC/Drg[23]_i_20/O
-                         net (fo=10, routed)          1.025     5.642    AES_Comp/AES_Comp_ENC/SB3/Sbox2/AES_Comp_GFinvComp/p_0_in9_in
-    SLICE_X23Y131        LUT6 (Prop_lut6_I0_O)        0.124     5.766 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_11/O
-                         net (fo=2, routed)           0.826     6.593    AES_Comp/AES_Comp_ENC/SB3/Sbox2/AES_Comp_GFinvComp/p_8_in
-    SLICE_X24Y131        LUT4 (Prop_lut4_I3_O)        0.124     6.717 r  AES_Comp/AES_Comp_ENC/Drg[23]_i_5/O
-                         net (fo=6, routed)           1.131     7.848    AES_Comp/AES_Comp_ENC/SB3/Sbox2/b[7]
-    SLICE_X22Y132        LUT4 (Prop_lut4_I1_O)        0.152     8.000 r  AES_Comp/AES_Comp_ENC/Drg[22]_i_3/O
-                         net (fo=6, routed)           1.479     9.479    AES_Comp/AES_Comp_ENC/EC/MX0/sr[22]
-    SLICE_X22Y141        LUT5 (Prop_lut5_I3_O)        0.354     9.833 r  AES_Comp/AES_Comp_ENC/EC/MX0/Drg[31]_i_2/O
-                         net (fo=1, routed)           0.987    10.819    AES_Comp/AES_Comp_ENC/mx[31]
-    SLICE_X11Y141        LUT6 (Prop_lut6_I3_O)        0.332    11.151 r  AES_Comp/AES_Comp_ENC/Drg[31]_i_1/O
-                         net (fo=1, routed)           0.000    11.151    AES_Comp/AES_Comp_ENC/Drg[31]_i_1_n_0
-    SLICE_X11Y141        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[31]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/Drg_reg[42]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/Drg_reg[108]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.142ns  (logic 2.260ns (20.283%)  route 8.882ns (79.717%))
-  Logic Levels:           10  (FDRE=1 LUT2=1 LUT3=1 LUT4=2 LUT5=1 LUT6=4)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X31Y141        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[42]/C
-    SLICE_X31Y141        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[42]/Q
-                         net (fo=13, routed)          1.434     1.890    AES_Comp/AES_Comp_ENC/Q[42]
-    SLICE_X33Y136        LUT5 (Prop_lut5_I3_O)        0.124     2.014 r  AES_Comp/AES_Comp_ENC/Drg[108]_i_8/O
-                         net (fo=6, routed)           1.015     3.030    AES_Comp/AES_Comp_ENC/SB1/Sbox1/a__7[2]
-    SLICE_X34Y136        LUT4 (Prop_lut4_I0_O)        0.150     3.180 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_30/O
-                         net (fo=1, routed)           0.859     4.039    AES_Comp/AES_Comp_ENC/SB1/Sbox1/AES_Comp_GFinvComp/da[3]
-    SLICE_X35Y136        LUT6 (Prop_lut6_I3_O)        0.328     4.367 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_20/O
-                         net (fo=10, routed)          1.179     5.546    AES_Comp/AES_Comp_ENC/SB1/Sbox1/AES_Comp_GFinvComp/p_0_in9_in
-    SLICE_X33Y134        LUT4 (Prop_lut4_I0_O)        0.152     5.698 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_17/O
-                         net (fo=2, routed)           1.023     6.721    AES_Comp/AES_Comp_ENC/SB1/Sbox1/AES_Comp_GFinvComp/va[5]
-    SLICE_X33Y136        LUT6 (Prop_lut6_I5_O)        0.326     7.047 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_7/O
-                         net (fo=5, routed)           0.654     7.700    AES_Comp/AES_Comp_ENC/SB1/Sbox1/b[2]
-    SLICE_X33Y135        LUT3 (Prop_lut3_I2_O)        0.124     7.824 r  AES_Comp/AES_Comp_ENC/Drg[111]_i_3/O
-                         net (fo=8, routed)           1.275     9.099    AES_Comp/AES_Comp_ENC/EC/MX3/sr[15]
-    SLICE_X22Y135        LUT2 (Prop_lut2_I1_O)        0.150     9.249 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[108]_i_5/O
-                         net (fo=3, routed)           0.964    10.213    AES_Comp/AES_Comp_ENC/EC/MX3/p_42_in
-    SLICE_X24Y134        LUT6 (Prop_lut6_I5_O)        0.326    10.539 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[108]_i_2/O
-                         net (fo=1, routed)           0.479    11.018    AES_Comp/AES_Comp_ENC/mx[108]
-    SLICE_X32Y134        LUT6 (Prop_lut6_I3_O)        0.124    11.142 r  AES_Comp/AES_Comp_ENC/Drg[108]_i_1/O
-                         net (fo=1, routed)           0.000    11.142    AES_Comp/AES_Comp_ENC/Drg[108]_i_1_n_0
-    SLICE_X32Y134        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[108]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 AES_Comp/AES_Comp_ENC/KrgX_reg[19]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            AES_Comp/AES_Comp_ENC/KrgX_reg[24]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.100ns  (logic 1.768ns (15.928%)  route 9.332ns (84.072%))
-  Logic Levels:           9  (FDRE=1 LUT5=1 LUT6=6 MUXF7=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X23Y143        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/KrgX_reg[19]/C
-    SLICE_X23Y143        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/KrgX_reg[19]/Q
-                         net (fo=13, routed)          2.192     2.648    AES_Comp/AES_Comp_ENC/KrgX_reg_n_0_[19]
-    SLICE_X4Y140         LUT5 (Prop_lut5_I2_O)        0.152     2.800 r  AES_Comp/AES_Comp_ENC/KrgX[127]_i_20/O
-                         net (fo=8, routed)           0.982     3.782    AES_Comp/AES_Comp_ENC/SBK/Sbox3/a__7[4]
-    SLICE_X7Y140         LUT6 (Prop_lut6_I0_O)        0.326     4.108 r  AES_Comp/AES_Comp_ENC/KrgX[127]_i_35/O
-                         net (fo=2, routed)           0.582     4.691    AES_Comp/AES_Comp_ENC/SBK/Sbox3/AES_Comp_GFinvComp/p_43_in
-    SLICE_X4Y140         LUT6 (Prop_lut6_I0_O)        0.124     4.815 r  AES_Comp/AES_Comp_ENC/KrgX[127]_i_24/O
-                         net (fo=18, routed)          1.945     6.760    AES_Comp/AES_Comp_ENC/SBK/Sbox3/AES_Comp_GFinvComp/u0__2
-    SLICE_X5Y141         LUT6 (Prop_lut6_I2_O)        0.124     6.884 r  AES_Comp/AES_Comp_ENC/KrgX[127]_i_15/O
-                         net (fo=6, routed)           0.832     7.716    AES_Comp/AES_Comp_ENC/SBK/Sbox3/AES_Comp_GFinvComp/p_74_in
-    SLICE_X5Y140         LUT6 (Prop_lut6_I5_O)        0.124     7.840 r  AES_Comp/AES_Comp_ENC/KrgX[124]_i_3/O
-                         net (fo=8, routed)           1.497     9.337    AES_Comp/AES_Comp_ENC/SBK/Sbox3/b[0]
-    SLICE_X11Y138        LUT6 (Prop_lut6_I2_O)        0.124     9.461 r  AES_Comp/AES_Comp_ENC/KrgX[120]_i_2/O
-                         net (fo=5, routed)           1.301    10.762    AES_Comp/AES_Comp_ENC/Knext[120]
-    SLICE_X14Y141        LUT6 (Prop_lut6_I3_O)        0.124    10.886 r  AES_Comp/AES_Comp_ENC/KrgX[24]_i_3/O
-                         net (fo=1, routed)           0.000    10.886    AES_Comp/AES_Comp_ENC/KrgX[24]_i_3_n_0
-    SLICE_X14Y141        MUXF7 (Prop_muxf7_I1_O)      0.214    11.100 r  AES_Comp/AES_Comp_ENC/KrgX_reg[24]_i_1/O
-                         net (fo=1, routed)           0.000    11.100    AES_Comp/AES_Comp_ENC/p_1_in[24]
-    SLICE_X14Y141        FDRE                                         r  AES_Comp/AES_Comp_ENC/KrgX_reg[24]/D
+    SLICE_X31Y140        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/Drg_reg[81]/C
+    SLICE_X31Y140        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/Drg_reg[81]/Q
+                         net (fo=15, routed)          1.324     1.780    AES_Comp/AES_Comp_ENC/Q[81]
+    SLICE_X37Y143        LUT5 (Prop_lut5_I0_O)        0.154     1.934 r  AES_Comp/AES_Comp_ENC/Drg[119]_i_19/O
+                         net (fo=8, routed)           1.027     2.961    AES_Comp/AES_Comp_ENC/SB2/Sbox2/a__7[4]
+    SLICE_X38Y143        LUT6 (Prop_lut6_I0_O)        0.327     3.288 r  AES_Comp/AES_Comp_ENC/Drg[119]_i_33/O
+                         net (fo=2, routed)           0.681     3.969    AES_Comp/AES_Comp_ENC/SB2/Sbox2/AES_Comp_GFinvComp/p_43_in
+    SLICE_X38Y143        LUT6 (Prop_lut6_I0_O)        0.124     4.093 r  AES_Comp/AES_Comp_ENC/Drg[119]_i_23/O
+                         net (fo=10, routed)          1.127     5.220    AES_Comp/AES_Comp_ENC/SB2/Sbox2/AES_Comp_GFinvComp/u0__2
+    SLICE_X36Y141        LUT4 (Prop_lut4_I1_O)        0.152     5.372 r  AES_Comp/AES_Comp_ENC/Drg[119]_i_17/O
+                         net (fo=2, routed)           0.823     6.195    AES_Comp/AES_Comp_ENC/SB2/Sbox2/AES_Comp_GFinvComp/va[5]
+    SLICE_X36Y142        LUT6 (Prop_lut6_I5_O)        0.326     6.521 r  AES_Comp/AES_Comp_ENC/Drg[119]_i_7/O
+                         net (fo=5, routed)           1.028     7.549    AES_Comp/AES_Comp_ENC/SB2/Sbox2/b[2]
+    SLICE_X34Y142        LUT3 (Prop_lut3_I2_O)        0.124     7.673 r  AES_Comp/AES_Comp_ENC/Drg[119]_i_3/O
+                         net (fo=8, routed)           1.382     9.054    AES_Comp/AES_Comp_ENC/EC/MX3/sr[23]
+    SLICE_X20Y137        LUT2 (Prop_lut2_I1_O)        0.124     9.178 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[116]_i_5/O
+                         net (fo=3, routed)           0.978    10.156    AES_Comp/AES_Comp_ENC/EC/MX3/p_54_in
+    SLICE_X19Y139        LUT6 (Prop_lut6_I5_O)        0.124    10.280 r  AES_Comp/AES_Comp_ENC/EC/MX3/Drg[116]_i_2/O
+                         net (fo=1, routed)           1.293    11.573    AES_Comp/AES_Comp_ENC/mx[116]
+    SLICE_X28Y142        LUT6 (Prop_lut6_I3_O)        0.124    11.697 r  AES_Comp/AES_Comp_ENC/Drg[116]_i_1/O
+                         net (fo=1, routed)           0.000    11.697    AES_Comp/AES_Comp_ENC/Drg[116]_i_1_n_0
+    SLICE_X28Y142        FDRE                                         r  AES_Comp/AES_Comp_ENC/Drg_reg[116]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -573,26 +630,77 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 scan/scan_ins_142/w1_reg/C
+  Source:                 scan/scan_ins_246/Din_DUT_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_142/Din_DUT_reg/D
+  Destination:            AES_Comp/AES_Comp_ENC/Krg_reg[18]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.201ns  (logic 0.128ns (63.592%)  route 0.073ns (36.408%))
+  Data Path Delay:        0.202ns  (logic 0.128ns (63.220%)  route 0.074ns (36.780%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y134        FDRE                         0.000     0.000 r  scan/scan_ins_142/w1_reg/C
-    SLICE_X13Y134        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_142/w1_reg/Q
-                         net (fo=2, routed)           0.073     0.201    scan/scan_ins_142/w1_reg_0
-    SLICE_X12Y134        FDRE                                         r  scan/scan_ins_142/Din_DUT_reg/D
+    SLICE_X31Y145        FDRE                         0.000     0.000 r  scan/scan_ins_246/Din_DUT_reg/C
+    SLICE_X31Y145        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_246/Din_DUT_reg/Q
+                         net (fo=2, routed)           0.074     0.202    AES_Comp/AES_Comp_ENC/D[18]
+    SLICE_X30Y145        FDRE                                         r  AES_Comp/AES_Comp_ENC/Krg_reg[18]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_136/w1_reg/C
+  Source:                 scan/scan_ins_170/w1_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_136/Din_DUT_reg/D
+  Destination:            scan/scan_ins_170/Din_DUT_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.205ns  (logic 0.141ns (68.701%)  route 0.064ns (31.299%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X15Y145        FDRE                         0.000     0.000 r  scan/scan_ins_170/w1_reg/C
+    SLICE_X15Y145        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_170/w1_reg/Q
+                         net (fo=2, routed)           0.064     0.205    scan/scan_ins_170/w1_reg_0
+    SLICE_X14Y145        FDRE                                         r  scan/scan_ins_170/Din_DUT_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan/scan_ins_194/w1_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            scan/scan_ins_194/Din_DUT_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.206ns  (logic 0.141ns (68.417%)  route 0.065ns (31.583%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X20Y135        FDRE                         0.000     0.000 r  scan/scan_ins_194/w1_reg/C
+    SLICE_X20Y135        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_194/w1_reg/Q
+                         net (fo=2, routed)           0.065     0.206    scan/scan_ins_194/w1_reg_0
+    SLICE_X21Y135        FDRE                                         r  scan/scan_ins_194/Din_DUT_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan/scan_ins_216/Din_DUT_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            AES_Comp/AES_Comp_ENC/Krg_reg[48]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.207ns  (logic 0.141ns (68.037%)  route 0.066ns (31.963%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y140        FDRE                         0.000     0.000 r  scan/scan_ins_216/Din_DUT_reg/C
+    SLICE_X35Y140        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_216/Din_DUT_reg/Q
+                         net (fo=2, routed)           0.066     0.207    AES_Comp/AES_Comp_ENC/D[48]
+    SLICE_X34Y140        FDRE                                         r  AES_Comp/AES_Comp_ENC/Krg_reg[48]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan/scan_ins_160/w1_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            scan/scan_ins_160/Din_DUT_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
   Data Path Delay:        0.208ns  (logic 0.128ns (61.600%)  route 0.080ns (38.400%))
@@ -600,149 +708,696 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X18Y137        FDRE                         0.000     0.000 r  scan/scan_ins_136/w1_reg/C
-    SLICE_X18Y137        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_136/w1_reg/Q
-                         net (fo=2, routed)           0.080     0.208    scan/scan_ins_136/w1_reg_0
-    SLICE_X19Y137        FDRE                                         r  scan/scan_ins_136/Din_DUT_reg/D
+    SLICE_X18Y131        FDRE                         0.000     0.000 r  scan/scan_ins_160/w1_reg/C
+    SLICE_X18Y131        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_160/w1_reg/Q
+                         net (fo=2, routed)           0.080     0.208    scan/scan_ins_160/w1_reg_0
+    SLICE_X19Y131        FDRE                                         r  scan/scan_ins_160/Din_DUT_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_186/w1_reg/C
+  Source:                 scan/scan_ins_50/w1_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_186/Din_DUT_reg/D
+  Destination:            scan/scan_ins_51/w1_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.212ns  (logic 0.141ns (66.657%)  route 0.071ns (33.343%))
+  Data Path Delay:        0.225ns  (logic 0.148ns (65.650%)  route 0.077ns (34.350%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X37Y144        FDRE                         0.000     0.000 r  scan/scan_ins_186/w1_reg/C
-    SLICE_X37Y144        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_186/w1_reg/Q
-                         net (fo=2, routed)           0.071     0.212    scan/scan_ins_186/w1_reg_0
-    SLICE_X36Y144        FDRE                                         r  scan/scan_ins_186/Din_DUT_reg/D
+    SLICE_X34Y146        FDRE                         0.000     0.000 r  scan/scan_ins_50/w1_reg/C
+    SLICE_X34Y146        FDRE (Prop_fdre_C_Q)         0.148     0.148 r  scan/scan_ins_50/w1_reg/Q
+                         net (fo=2, routed)           0.077     0.225    scan/scan_ins_51/w1_reg_1
+    SLICE_X35Y146        FDRE                                         r  scan/scan_ins_51/w1_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_280/w1_reg/C
+  Source:                 scan/scan_ins_143/w1_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_281/w1_reg/D
+  Destination:            scan/scan_ins_144/w1_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.240ns  (logic 0.186ns (77.515%)  route 0.054ns (22.485%))
+  Data Path Delay:        0.238ns  (logic 0.128ns (53.815%)  route 0.110ns (46.185%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y146        FDRE                         0.000     0.000 r  scan/scan_ins_143/w1_reg/C
+    SLICE_X13Y146        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_143/w1_reg/Q
+                         net (fo=2, routed)           0.110     0.238    scan/scan_ins_144/w1_reg_1
+    SLICE_X15Y146        FDRE                                         r  scan/scan_ins_144/w1_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 scan/scan_ins_277/w1_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            scan/scan_ins_278/w1_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.466%)  route 0.054ns (22.534%))
   Logic Levels:           2  (FDRE=1 LUT3=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X28Y133        FDRE                         0.000     0.000 r  scan/scan_ins_280/w1_reg/C
-    SLICE_X28Y133        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_280/w1_reg/Q
-                         net (fo=1, routed)           0.054     0.195    scan/scan_ins_280/scan_280
-    SLICE_X29Y133        LUT3 (Prop_lut3_I0_O)        0.045     0.240 r  scan/scan_ins_280/w1_i_1__15/O
-                         net (fo=1, routed)           0.000     0.240    scan/scan_ins_281/w1_reg_1
-    SLICE_X29Y133        FDRE                                         r  scan/scan_ins_281/w1_reg/D
+    SLICE_X31Y142        FDRE                         0.000     0.000 r  scan/scan_ins_277/w1_reg/C
+    SLICE_X31Y142        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_277/w1_reg/Q
+                         net (fo=1, routed)           0.054     0.195    scan/scan_ins_277/scan_277
+    SLICE_X30Y142        LUT3 (Prop_lut3_I0_O)        0.045     0.240 r  scan/scan_ins_277/w1_i_1__12/O
+                         net (fo=1, routed)           0.000     0.240    scan/scan_ins_278/w1_reg_1
+    SLICE_X30Y142        FDRE                                         r  scan/scan_ins_278/w1_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_165/w1_reg/C
+  Source:                 scan/scan_ins_235/w1_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_165/Din_DUT_reg/D
+  Destination:            scan/scan_ins_235/Din_DUT_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.243ns  (logic 0.141ns (57.909%)  route 0.102ns (42.091%))
+  Data Path Delay:        0.244ns  (logic 0.128ns (52.512%)  route 0.116ns (47.488%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X19Y134        FDRE                         0.000     0.000 r  scan/scan_ins_165/w1_reg/C
-    SLICE_X19Y134        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_165/w1_reg/Q
-                         net (fo=2, routed)           0.102     0.243    scan/scan_ins_165/w1_reg_0
-    SLICE_X17Y135        FDRE                                         r  scan/scan_ins_165/Din_DUT_reg/D
+    SLICE_X15Y145        FDRE                         0.000     0.000 r  scan/scan_ins_235/w1_reg/C
+    SLICE_X15Y145        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_235/w1_reg/Q
+                         net (fo=2, routed)           0.116     0.244    scan/scan_ins_235/w1_reg_0
+    SLICE_X14Y145        FDRE                                         r  scan/scan_ins_235/Din_DUT_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_208/w1_reg/C
+  Source:                 scan/scan_ins_95/w1_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_208/Din_DUT_reg/D
+  Destination:            scan/scan_ins_95/Din_DUT_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.246ns  (logic 0.141ns (57.422%)  route 0.105ns (42.578%))
+  Data Path Delay:        0.244ns  (logic 0.141ns (57.830%)  route 0.103ns (42.170%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y146        FDRE                         0.000     0.000 r  scan/scan_ins_208/w1_reg/C
-    SLICE_X13Y146        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_208/w1_reg/Q
-                         net (fo=2, routed)           0.105     0.246    scan/scan_ins_208/w1_reg_0
-    SLICE_X15Y145        FDRE                                         r  scan/scan_ins_208/Din_DUT_reg/D
+    SLICE_X22Y135        FDRE                         0.000     0.000 r  scan/scan_ins_95/w1_reg/C
+    SLICE_X22Y135        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_95/w1_reg/Q
+                         net (fo=2, routed)           0.103     0.244    scan/scan_ins_95/w1_reg_0
+    SLICE_X21Y136        FDRE                                         r  scan/scan_ins_95/Din_DUT_reg/D
   -------------------------------------------------------------------    -------------------
 
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  sys_clk_pin
+  To Clock:  
+
+Max Delay             3 Endpoints
+Min Delay             3 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 scan/scan_ins_28/w1_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_29/w1_reg/D
+  Source:                 dbg2_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            dbg2
+                            (output port)
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.247ns  (logic 0.128ns (51.746%)  route 0.119ns (48.254%))
-  Logic Levels:           1  (FDRE=1)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.066ns  (logic 3.957ns (55.999%)  route 3.109ns (44.001%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X33Y135        FDRE                         0.000     0.000 r  scan/scan_ins_28/w1_reg/C
-    SLICE_X33Y135        FDRE (Prop_fdre_C_Q)         0.128     0.128 r  scan/scan_ins_28/w1_reg/Q
-                         net (fo=2, routed)           0.119     0.247    scan/scan_ins_29/w1_reg_1
-    SLICE_X31Y135        FDRE                                         r  scan/scan_ins_29/w1_reg/D
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.624     5.145    clk_IBUF_BUFG
+    SLICE_X0Y59          FDRE                                         r  dbg2_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y59          FDRE (Prop_fdre_C_Q)         0.456     5.601 r  dbg2_reg/Q
+                         net (fo=1, routed)           3.109     8.710    dbg2_OBUF
+    U19                  OBUF (Prop_obuf_I_O)         3.501    12.211 r  dbg2_OBUF_inst/O
+                         net (fo=0)                   0.000    12.211    dbg2
+    U19                                                               r  dbg2 (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_68/w1_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_69/w1_reg/D
+  Source:                 dbg0_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            dbg0
+                            (output port)
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.248ns  (logic 0.141ns (56.785%)  route 0.107ns (43.215%))
-  Logic Levels:           1  (FDRE=1)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.024ns  (logic 3.961ns (56.393%)  route 3.063ns (43.607%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X19Y145        FDRE                         0.000     0.000 r  scan/scan_ins_68/w1_reg/C
-    SLICE_X19Y145        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_68/w1_reg/Q
-                         net (fo=2, routed)           0.107     0.248    scan/scan_ins_69/w1_reg_1
-    SLICE_X17Y145        FDRE                                         r  scan/scan_ins_69/w1_reg/D
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.639     5.160    clk_IBUF_BUFG
+    SLICE_X0Y47          FDRE                                         r  dbg0_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y47          FDRE (Prop_fdre_C_Q)         0.456     5.616 r  dbg0_reg/Q
+                         net (fo=1, routed)           3.063     8.679    dbg0_OBUF
+    U16                  OBUF (Prop_obuf_I_O)         3.505    12.184 r  dbg0_OBUF_inst/O
+                         net (fo=0)                   0.000    12.184    dbg0
+    U16                                                               r  dbg0 (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_208/w1_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_209/w1_reg/D
+  Source:                 dbg1_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            dbg1
+                            (output port)
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.250ns  (logic 0.141ns (56.317%)  route 0.109ns (43.683%))
-  Logic Levels:           1  (FDRE=1)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.484ns  (logic 3.986ns (61.472%)  route 2.498ns (38.528%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y146        FDRE                         0.000     0.000 r  scan/scan_ins_208/w1_reg/C
-    SLICE_X13Y146        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_208/w1_reg/Q
-                         net (fo=2, routed)           0.109     0.250    scan/scan_ins_209/w1_reg_1
-    SLICE_X15Y146        FDRE                                         r  scan/scan_ins_209/w1_reg/D
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.614     5.135    clk_IBUF_BUFG
+    SLICE_X0Y69          FDRE                                         r  dbg1_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y69          FDRE (Prop_fdre_C_Q)         0.456     5.591 r  dbg1_reg/Q
+                         net (fo=1, routed)           2.498     8.089    dbg1_OBUF
+    E19                  OBUF (Prop_obuf_I_O)         3.530    11.619 r  dbg1_OBUF_inst/O
+                         net (fo=0)                   0.000    11.619    dbg1
+    E19                                                               r  dbg1 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 dbg1_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            dbg1
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        2.063ns  (logic 1.372ns (66.498%)  route 0.691ns (33.502%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.585     1.468    clk_IBUF_BUFG
+    SLICE_X0Y69          FDRE                                         r  dbg1_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y69          FDRE (Prop_fdre_C_Q)         0.141     1.609 r  dbg1_reg/Q
+                         net (fo=1, routed)           0.691     2.300    dbg1_OBUF
+    E19                  OBUF (Prop_obuf_I_O)         1.231     3.531 r  dbg1_OBUF_inst/O
+                         net (fo=0)                   0.000     3.531    dbg1
+    E19                                                               r  dbg1 (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 scan/scan_ins_238/w1_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            scan/scan_ins_238/Din_DUT_reg/D
+  Source:                 dbg2_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            dbg2
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.251ns  (logic 0.141ns (56.105%)  route 0.110ns (43.895%))
-  Logic Levels:           1  (FDRE=1)
+  Data Path Delay:        2.299ns  (logic 1.343ns (58.416%)  route 0.956ns (41.584%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y142        FDRE                         0.000     0.000 r  scan/scan_ins_238/w1_reg/C
-    SLICE_X13Y142        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  scan/scan_ins_238/w1_reg/Q
-                         net (fo=2, routed)           0.110     0.251    scan/scan_ins_238/w1_reg_0
-    SLICE_X14Y143        FDRE                                         r  scan/scan_ins_238/Din_DUT_reg/D
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.592     1.475    clk_IBUF_BUFG
+    SLICE_X0Y59          FDRE                                         r  dbg2_reg/C
   -------------------------------------------------------------------    -------------------
+    SLICE_X0Y59          FDRE (Prop_fdre_C_Q)         0.141     1.616 r  dbg2_reg/Q
+                         net (fo=1, routed)           0.956     2.572    dbg2_OBUF
+    U19                  OBUF (Prop_obuf_I_O)         1.202     3.774 r  dbg2_OBUF_inst/O
+                         net (fo=0)                   0.000     3.774    dbg2
+    U19                                                               r  dbg2 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 dbg0_reg/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            dbg0
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        2.360ns  (logic 1.347ns (57.081%)  route 1.013ns (42.919%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.596     1.479    clk_IBUF_BUFG
+    SLICE_X0Y47          FDRE                                         r  dbg0_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y47          FDRE (Prop_fdre_C_Q)         0.141     1.620 r  dbg0_reg/Q
+                         net (fo=1, routed)           1.013     2.633    dbg0_OBUF
+    U16                  OBUF (Prop_obuf_I_O)         1.206     3.839 r  dbg0_OBUF_inst/O
+                         net (fo=0)                   0.000     3.839    dbg0
+    U16                                                               r  dbg0 (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  sys_clk_pin
+
+Max Delay             5 Endpoints
+Min Delay             5 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 KRDY
+                            (input port)
+  Destination:            dbg1_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.490ns  (logic 1.457ns (32.446%)  route 3.033ns (67.554%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        4.839ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.839ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  KRDY (IN)
+                         net (fo=0)                   0.000     0.000    KRDY
+    A16                  IBUF (Prop_ibuf_I_O)         1.457     1.457 r  KRDY_IBUF_inst/O
+                         net (fo=137, routed)         3.033     4.490    KRDY_IBUF
+    SLICE_X0Y69          FDRE                                         r  dbg1_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388     1.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862     3.250    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091     3.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.498     4.839    clk_IBUF_BUFG
+    SLICE_X0Y69          FDRE                                         r  dbg1_reg/C
+
+Slack:                    inf
+  Source:                 DRDY
+                            (input port)
+  Destination:            dbg2_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.405ns  (logic 1.448ns (32.879%)  route 2.956ns (67.121%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        4.848ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.848ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A15                                               0.000     0.000 r  DRDY (IN)
+                         net (fo=0)                   0.000     0.000    DRDY
+    A15                  IBUF (Prop_ibuf_I_O)         1.448     1.448 r  DRDY_IBUF_inst/O
+                         net (fo=8, routed)           2.956     4.405    DRDY_IBUF
+    SLICE_X0Y59          FDRE                                         r  dbg2_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388     1.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862     3.250    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091     3.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.507     4.848    clk_IBUF_BUFG
+    SLICE_X0Y59          FDRE                                         r  dbg2_reg/C
+
+Slack:                    inf
+  Source:                 CLK
+                            (input port)
+  Destination:            CLKAES_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        3.954ns  (logic 1.453ns (36.751%)  route 2.501ns (63.249%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        4.776ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.776ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A17                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    A17                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.501     3.954    CLK_IBUF
+    SLICE_X12Y85         FDRE                                         r  CLKAES_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388     1.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862     3.250    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091     3.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.435     4.776    clk_IBUF_BUFG
+    SLICE_X12Y85         FDRE                                         r  CLKAES_reg/C
+
+Slack:                    inf
+  Source:                 SCLK
+                            (input port)
+  Destination:            SCLKAES_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        3.010ns  (logic 1.453ns (48.265%)  route 1.557ns (51.735%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        4.787ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.787ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    M18                                               0.000     0.000 r  SCLK (IN)
+                         net (fo=0)                   0.000     0.000    SCLK
+    M18                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  SCLK_IBUF_inst/O
+                         net (fo=1, routed)           1.557     3.010    SCLK_IBUF
+    SLICE_X12Y37         FDRE                                         r  SCLKAES_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388     1.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862     3.250    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091     3.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.446     4.787    clk_IBUF_BUFG
+    SLICE_X12Y37         FDRE                                         r  SCLKAES_reg/C
+
+Slack:                    inf
+  Source:                 AES_Comp/AES_Comp_ENC/BSYrg_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            dbg0_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        2.944ns  (logic 0.456ns (15.487%)  route 2.488ns (84.513%))
+  Logic Levels:           1  (FDRE=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X11Y131        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/BSYrg_reg/C
+    SLICE_X11Y131        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  AES_Comp/AES_Comp_ENC/BSYrg_reg/Q
+                         net (fo=103, routed)         2.488     2.944    BSY_OBUF
+    SLICE_X0Y47          FDRE                                         r  dbg0_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388     1.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862     3.250    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.091     3.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           1.520     4.861    clk_IBUF_BUFG
+    SLICE_X0Y47          FDRE                                         r  dbg0_reg/C
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 SCLK
+                            (input port)
+  Destination:            SCLKAES_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        0.897ns  (logic 0.221ns (24.663%)  route 0.675ns (75.337%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        1.959ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.959ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    M18                                               0.000     0.000 r  SCLK (IN)
+                         net (fo=0)                   0.000     0.000    SCLK
+    M18                  IBUF (Prop_ibuf_I_O)         0.221     0.221 r  SCLK_IBUF_inst/O
+                         net (fo=1, routed)           0.675     0.897    SCLK_IBUF
+    SLICE_X12Y37         FDRE                                         r  SCLKAES_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.832     1.959    clk_IBUF_BUFG
+    SLICE_X12Y37         FDRE                                         r  SCLKAES_reg/C
+
+Slack:                    inf
+  Source:                 AES_Comp/AES_Comp_ENC/BSYrg_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            dbg0_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.149ns  (logic 0.141ns (12.267%)  route 1.008ns (87.733%))
+  Logic Levels:           1  (FDRE=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X11Y131        FDRE                         0.000     0.000 r  AES_Comp/AES_Comp_ENC/BSYrg_reg/C
+    SLICE_X11Y131        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  AES_Comp/AES_Comp_ENC/BSYrg_reg/Q
+                         net (fo=103, routed)         1.008     1.149    BSY_OBUF
+    SLICE_X0Y47          FDRE                                         r  dbg0_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.867     1.994    clk_IBUF_BUFG
+    SLICE_X0Y47          FDRE                                         r  dbg0_reg/C
+
+Slack:                    inf
+  Source:                 CLK
+                            (input port)
+  Destination:            CLKAES_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.330ns  (logic 0.221ns (16.635%)  route 1.109ns (83.365%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        1.956ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.956ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A17                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    A17                  IBUF (Prop_ibuf_I_O)         0.221     0.221 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.109     1.330    CLK_IBUF
+    SLICE_X12Y85         FDRE                                         r  CLKAES_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.828     1.956    clk_IBUF_BUFG
+    SLICE_X12Y85         FDRE                                         r  CLKAES_reg/C
+
+Slack:                    inf
+  Source:                 DRDY
+                            (input port)
+  Destination:            dbg2_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.388ns  (logic 0.216ns (15.590%)  route 1.171ns (84.410%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        1.990ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.990ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A15                                               0.000     0.000 r  DRDY (IN)
+                         net (fo=0)                   0.000     0.000    DRDY
+    A15                  IBUF (Prop_ibuf_I_O)         0.216     0.216 r  DRDY_IBUF_inst/O
+                         net (fo=8, routed)           1.171     1.388    DRDY_IBUF
+    SLICE_X0Y59          FDRE                                         r  dbg2_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.862     1.990    clk_IBUF_BUFG
+    SLICE_X0Y59          FDRE                                         r  dbg2_reg/C
+
+Slack:                    inf
+  Source:                 KRDY
+                            (input port)
+  Destination:            dbg1_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.509ns  (logic 0.225ns (14.907%)  route 1.284ns (85.093%))
+  Logic Levels:           1  (IBUF=1)
+  Clock Path Skew:        1.981ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.981ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  KRDY (IN)
+                         net (fo=0)                   0.000     0.000    KRDY
+    A16                  IBUF (Prop_ibuf_I_O)         0.225     0.225 r  KRDY_IBUF_inst/O
+                         net (fo=137, routed)         1.284     1.509    KRDY_IBUF
+    SLICE_X0Y69          FDRE                                         r  dbg1_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=5, routed)           0.853     1.981    clk_IBUF_BUFG
+    SLICE_X0Y69          FDRE                                         r  dbg1_reg/C
 
 
 

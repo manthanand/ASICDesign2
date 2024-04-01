@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2.1 (win64) Build 4081461 Thu Dec 14 12:24:51 MST 2023
-| Date             : Mon Mar 18 16:51:57 2024
+| Date             : Wed Mar 27 13:23:10 2024
 | Host             : DESKTOP-RR47J6M running 64-bit major release  (build 9200)
 | Command          : report_power -file AES_Testbenchsp_power_routed.rpt -pb AES_Testbenchsp_power_summary_routed.pb -rpx AES_Testbenchsp_power_routed.rpx
 | Design           : AES_Testbenchsp
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.065        |
+| Total On-Chip Power (W)  | 0.066        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.004        |
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      680 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      265 |     20800 |            1.27 |
-|   CARRY4       |    <0.001 |       50 |      8150 |            0.61 |
-|   Register     |    <0.001 |      256 |     41600 |            0.62 |
+| Slice Logic    |    <0.001 |      697 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      311 |     20800 |            1.50 |
+|   CARRY4       |    <0.001 |       60 |      8150 |            0.74 |
+|   Register     |    <0.001 |      267 |     41600 |            0.64 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |        2 |       --- |             --- |
-| Signals        |    <0.001 |      640 |       --- |             --- |
+| Signals        |    <0.001 |      686 |       --- |             --- |
 | I/O            |     0.002 |       19 |       106 |           17.92 |
 | Static Power   |     0.062 |          |           |                 |
-| Total          |     0.065 |          |           |                 |
+| Total          |     0.066 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       0.950 |     0.007 |       0.001 |      0.006 |       NA    | Unspecified | NA         |
+| Vccint    |       0.950 |     0.008 |       0.002 |      0.006 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.011 |       0.000 |      0.011 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |

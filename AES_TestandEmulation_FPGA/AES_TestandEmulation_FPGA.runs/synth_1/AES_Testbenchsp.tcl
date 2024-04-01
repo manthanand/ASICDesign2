@@ -86,7 +86,12 @@ set_property ip_output_repo c:/Users/manth/Github/ASICDesign2/AES_TestandEmulati
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v
+read_verilog -library xil_defaultlib {
+  C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Comp.v
+  C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Core.v
+  C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v
+  C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sources_1/new/scanchain.v
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
