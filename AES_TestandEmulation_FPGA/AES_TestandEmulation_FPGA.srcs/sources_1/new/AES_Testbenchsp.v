@@ -26,26 +26,17 @@
 `define MYOUT2  128'h85E5F163C857B0AC1162E07DD3432B66
 `define DIVIDER 14
 
-module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, SCLK, CLK, testpassed, rdy, done, dbg0, dbg1, dbg2);
-    input clk; // Clock
-    input runtest; // Start test
-    input BSY; // AES Busy
-    input SO; // Scan Chain Out
-    output reg Krdy; // Key input ready
-    output reg Drdy; // Data input ready
-    output reg RSTn; // Reset (Low active)
-    output reg EN; // AES circuit enable
-    output reg SU; // Scan Chain Update
-    output reg SI; // Scan Chain In
-    output reg SE; // Scan Chain Enable
-    output reg testpassed = 1'b0;
-    output reg rdy = 1'b1;
-    output reg done = 1'b0;
-    output wire dbg0;
-    output wire dbg1;
-    output wire dbg2;
-    output CLK;
-    output SCLK;
+module AES_Testbenchsp(
+    input clk, runtest, BSY, SO, //TESTBENCH INPUT PORTS
+    output SI_AES, SE_AES, SU_AES, SCLK_AES, RSTN_AES, EN_AES, KRDY_AES, DRDY_AES, CLK_AES, //CLKOUT,//AES INPUT PORTS
+    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done,//TESTBENCH REG PORTS
+    output SCLK, CLK, dbg0, dbg1, dbg2, //TESTBENCH WIRE PORTS
+    output SO_AES, BSY_AES //AES PORTS
+    );
+    
+    reg testpassed = 1'b0;
+    reg rdy = 1'b1;
+    reg done = 1'b0;
 
     assign dbg0 = BSY;
     assign dbg1 = EN;
@@ -65,8 +56,20 @@ module AES_Testbenchsp(clk, runtest, BSY, SO, Krdy, Drdy, RSTn, EN, SU, SE, SI, 
     always @(posedge clk) divider <= divider + 1;
 
     //Intantiate AES Core within FPGA so if wires dont work, we can validate internally
-   AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK),.SO(SO), .BSY(BSY), .CLKOUT(CLKOUT));
-
+//   AES_Core AES1(.SI(SI_AES), .SE(SE_AES), .SU(SU_AES), .SCLK(SCLK_AES), .RSTN(RSTN_AES), .EN(EN_AES), .KRDY(KRDY_AES), .DRDY(DRDY_AES), .CLK(CLK_AES),.SO(SO_AES), .BSY(BSY_AES), .CLKOUT(CLKOUT_AES));
+    assign SI_AES = SI;
+    assign SE_AES = SE;
+    assign SU_AES = SU;
+    assign SCLK_AES = SCLK;
+    assign RSTN_AES = RSTn;
+    assign EN_AES = EN;
+    assign KRDY_AES = Krdy;
+    assign DRDY_AES = Drdy;
+    assign CLK_AES = CLK;
+    assign SO_AES = SO;
+    assign BSY_AES = BSY;
+    // assign CLKOUT_AES = CLKOUT;
+    
     reg [1:0] csbutton = 0;
 
     // timer1 

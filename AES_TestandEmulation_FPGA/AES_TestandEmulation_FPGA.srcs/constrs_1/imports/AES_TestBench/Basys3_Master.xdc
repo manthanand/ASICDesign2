@@ -116,92 +116,93 @@ set_property PACKAGE_PIN U18 [get_ports {runtest}]
  
 ##Pmod Header JA
 ##Sch name = JA1
-#set_property PACKAGE_PIN J1 [get_ports {JA[0]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[0]}]
-##Sch name = JA2
-#set_property PACKAGE_PIN L2 [get_ports {JA[1]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[1]}]
-##Sch name = JA3
-#set_property PACKAGE_PIN J2 [get_ports {JA[2]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[2]}]
-##Sch name = JA4
-#set_property PACKAGE_PIN G2 [get_ports {JA[3]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[3]}]
-##Sch name = JA7
-#set_property PACKAGE_PIN H1 [get_ports {JA[4]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[4]}]
-##Sch name = JA8
-#set_property PACKAGE_PIN K2 [get_ports {JA[5]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[5]}]
-##Sch name = JA9
-#set_property PACKAGE_PIN H2 [get_ports {JA[6]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[6]}]
-##Sch name = JA10
-#set_property PACKAGE_PIN G3 [get_ports {JA[7]}]                    
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JA[7]}]
+set_property PACKAGE_PIN J1 [get_ports {BSY_AES}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {BSY_AES}]
+#Sch name = JA2
+set_property PACKAGE_PIN L2 [get_ports {KRDY_AES}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {KRDY_AES}]
+#Sch name = JA3
+set_property PACKAGE_PIN J2 [get_ports {EN_AES}]                    
+    set_property IOSTANDARD LVCMOS33 [get_ports {EN_AES}]
+#Sch name = JA4
+set_property PACKAGE_PIN G2 [get_ports {SI_AES}]                    
+    set_property IOSTANDARD LVCMOS33 [get_ports {SI_AES}]
+#Sch name = JA7
+set_property PACKAGE_PIN H1 [get_ports {DRDY_AES}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {DRDY_AES}]
+#Sch name = JA8
+set_property PACKAGE_PIN K2 [get_ports {SU_AES}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {SU_AES}]
+#Sch name = JA9
+set_property PACKAGE_PIN H2 [get_ports {RSTN_AES}]                    
+    set_property IOSTANDARD LVCMOS33 [get_ports {RSTN_AES}]
+#Sch name = JA10
+set_property PACKAGE_PIN G3 [get_ports {SE_AES}]                    
+    set_property IOSTANDARD LVCMOS33 [get_ports {SE_AES}]
     
 ##Pmod Header JB
 ##Sch name = JB1
-set_property PACKAGE_PIN A14 [get_ports {BSY}]          
-    set_property IOSTANDARD LVCMOS33 [get_ports {BSY}]
+set_property PACKAGE_PIN A14 [get_ports {CLK}]          
+    set_property IOSTANDARD LVCMOS33 [get_ports {CLK}]
 #Sch name = JB2
-set_property PACKAGE_PIN A16 [get_ports {Krdy}]                 
-    set_property IOSTANDARD LVCMOS33 [get_ports {Krdy}]
+set_property PACKAGE_PIN A16 [get_ports {SE}]                 
+    set_property IOSTANDARD LVCMOS33 [get_ports {SE}]
 #Sch name = JB3
 set_property PACKAGE_PIN B15 [get_ports {EN}]                   
     set_property IOSTANDARD LVCMOS33 [get_ports {EN}]
 #Sch name = JB4
-set_property PACKAGE_PIN B16 [get_ports {SI}]                   
-    set_property IOSTANDARD LVCMOS33 [get_ports {SI}]
+set_property PACKAGE_PIN B16 [get_ports {Krdy}]                   
+    set_property IOSTANDARD LVCMOS33 [get_ports {Krdy}]
 #Sch name = JB7
-set_property PACKAGE_PIN A15 [get_ports {Drdy}]                 
-    set_property IOSTANDARD LVCMOS33 [get_ports {Drdy}]
+set_property PACKAGE_PIN A15 [get_ports {SI}]                 
+    set_property IOSTANDARD LVCMOS33 [get_ports {SI}]
 #Sch name = JB8
-set_property PACKAGE_PIN A17 [get_ports {CLK}]                  
-    set_property IOSTANDARD LVCMOS33 [get_ports {CLK}]
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {CLKOUT_OBUF}]
+set_property PACKAGE_PIN A17 [get_ports {SCLK}]                  
+    set_property IOSTANDARD LVCMOS33 [get_ports {SCLK}]
 #Sch name = JB9
-set_property PACKAGE_PIN C15 [get_ports {RSTn}]                 
-    set_property IOSTANDARD LVCMOS33 [get_ports {RSTn}]
+set_property PACKAGE_PIN C15 [get_ports {SU}]                 
+    set_property IOSTANDARD LVCMOS33 [get_ports {SU}]
 #Sch name = JB10 
-set_property PACKAGE_PIN C16 [get_ports {SE}]                   
-    set_property IOSTANDARD LVCMOS33 [get_ports {SE}]
+set_property PACKAGE_PIN C16 [get_ports {RSTn}]                   
+    set_property IOSTANDARD LVCMOS33 [get_ports {RSTn}]
     
 ##Pmod Header JC
 ##Sch name = JC1
-set_property PACKAGE_PIN K17 [get_ports {SO}]                   
+# set_property PACKAGE_PIN K17 [get_ports {SO}]                   
+#     set_property IOSTANDARD LVCMOS33 [get_ports {SO}]
+# #Sch name = JC2
+# set_property PACKAGE_PIN M18 [get_ports {SCLK}]                 
+#     set_property IOSTANDARD LVCMOS33 [get_ports {SCLK}]
+# #Sch name = JC3
+# set_property PACKAGE_PIN N17 [get_ports {SU}]                   
+#     set_property IOSTANDARD LVCMOS33 [get_ports {SU}]
+# #Sch name = JC4
+# set_property PACKAGE_PIN P18 [get_ports {SO_AES}]                   
+#    set_property IOSTANDARD LVCMOS33 [get_ports {SO_AES}]
+#Sch name = JC7
+set_property PACKAGE_PIN L17 [get_ports {Drdy}]                   
+    set_property IOSTANDARD LVCMOS33 [get_ports {Drdy}]
+#Sch name = JC8
+set_property PACKAGE_PIN M19 [get_ports {SO}]                   
     set_property IOSTANDARD LVCMOS33 [get_ports {SO}]
-#Sch name = JC2
-set_property PACKAGE_PIN M18 [get_ports {SCLK}]                 
-    set_property IOSTANDARD LVCMOS33 [get_ports {SCLK}]
-#Sch name = JC3
-set_property PACKAGE_PIN N17 [get_ports {SU}]                   
-    set_property IOSTANDARD LVCMOS33 [get_ports {SU}]
-#Sch name = JC4
-#set_property PACKAGE_PIN P18 [get_ports {CLKOUT}]                   
-#    set_property IOSTANDARD LVCMOS33 [get_ports {CLKOUT}]
-##Sch name = JC7
-#set_property PACKAGE_PIN L17 [get_ports {JC[4]}]                   
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JC[4]}]
-##Sch name = JC8
-#set_property PACKAGE_PIN M19 [get_ports {JC[5]}]                   
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JC[5]}]
-##Sch name = JC9
-#set_property PACKAGE_PIN P17 [get_ports {JC[6]}]                   
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JC[6]}]
-##Sch name = JC10
-#set_property PACKAGE_PIN R18 [get_ports {JC[7]}]                   
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
+#Sch name = JC9
+set_property PACKAGE_PIN P17 [get_ports {BSY}]                   
+    set_property IOSTANDARD LVCMOS33 [get_ports {BSY}]
+# #Sch name = JC10
+# set_property PACKAGE_PIN R18 [get_ports {JC[7]}]                   
+#     set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
+
 ##Pmod Header JXADC
-##Sch name = XA1_P
-#set_property PACKAGE_PIN J3 [get_ports {JXADC[0]}]             
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[0]}]
-##Sch name = XA2_P
-#set_property PACKAGE_PIN L3 [get_ports {JXADC[1]}]             
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[1]}]
-##Sch name = XA3_P
-#set_property PACKAGE_PIN M2 [get_ports {JXADC[2]}]             
-    #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[2]}]
+#Sch name = XA1_P
+set_property PACKAGE_PIN J3 [get_ports {SO_AES}]             
+    set_property IOSTANDARD LVCMOS33 [get_ports {SO_AES}]
+#Sch name = XA2_P
+set_property PACKAGE_PIN L3 [get_ports {CLK_AES}]             
+    set_property IOSTANDARD LVCMOS33 [get_ports {CLK_AES}]
+    set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {CLK_AES_IBUF}]
+#Sch name = XA3_P
+set_property PACKAGE_PIN M2 [get_ports {SCLK_AES}]             
+    set_property IOSTANDARD LVCMOS33 [get_ports {SCLK_AES}]
 ##Sch name = XA4_P
 #set_property PACKAGE_PIN N2 [get_ports {JXADC[3]}]             
     #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[3]}]
@@ -217,6 +218,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 ##Sch name = XA4_N
 #set_property PACKAGE_PIN N1 [get_ports {JXADC[7]}]             
     #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[7]}]
+
 ##VGA Connector
 #set_property PACKAGE_PIN G19 [get_ports {vgaRed[0]}]               
     #set_property IOSTANDARD LVCMOS33 [get_ports {vgaRed[0]}]
@@ -246,11 +248,13 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
     #set_property IOSTANDARD LVCMOS33 [get_ports Hsync]
 #set_property PACKAGE_PIN R19 [get_ports Vsync]                     
     #set_property IOSTANDARD LVCMOS33 [get_ports Vsync]
+
 ##USB-RS232 Interface
 #set_property PACKAGE_PIN B18 [get_ports RsRx]                      
     #set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
 #set_property PACKAGE_PIN A18 [get_ports RsTx]                      
     #set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+
 ##USB HID (PS/2)
 #set_property PACKAGE_PIN C17 [get_ports PS2Clk]                        
     #set_property IOSTANDARD LVCMOS33 [get_ports PS2Clk]
@@ -258,6 +262,7 @@ set_property PACKAGE_PIN N17 [get_ports {SU}]
 #set_property PACKAGE_PIN B17 [get_ports PS2Data]                   
     #set_property IOSTANDARD LVCMOS33 [get_ports PS2Data]   
     #set_property PULLUP true [get_ports PS2Data]
+
 ##Quad SPI Flash
 ##Note that CCLK_0 cannot be placed in 7 series devices. You can access it using the
 ##STARTUPE2 primitive.
