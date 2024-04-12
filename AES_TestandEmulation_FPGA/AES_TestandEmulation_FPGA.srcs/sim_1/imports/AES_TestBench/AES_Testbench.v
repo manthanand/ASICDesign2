@@ -34,8 +34,10 @@ wire SE;
 wire SO;
 wire SCLK;
 wire CLK;
+wire BSY;
 
-AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed));
+AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK), .SO(SO), .BSY(BSY), .CLKOUT());
+AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .BSY(BSY), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed));
 
 initial begin
 	#20
@@ -43,10 +45,10 @@ initial begin
 	#20;
 //	runtest = 0;
 	#75000000
-	runtest = 0;
+	runtest = 1;
 	#90000;
 //	runtest = 1;
-	#100000000
+	#200000000
 	$finish;
 end
 
