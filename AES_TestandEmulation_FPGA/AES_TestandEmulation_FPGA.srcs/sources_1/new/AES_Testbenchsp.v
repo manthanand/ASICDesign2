@@ -313,8 +313,6 @@ module AES_Testbenchsp(
     assign SCAN_IN_REG[261] = Kin[17];
     assign SCAN_IN_REG[262] = Kin[124];
     assign SCAN_IN_REG[263] = Din[124];
-
-
     assign Dout[19] = SCAN_OUT_REG[0];
     assign Dout[20] = SCAN_OUT_REG[1];
     assign Dout[49] = SCAN_OUT_REG[2];
