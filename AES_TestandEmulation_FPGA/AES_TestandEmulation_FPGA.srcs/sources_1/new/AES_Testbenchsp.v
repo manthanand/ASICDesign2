@@ -43,8 +43,8 @@ module AES_Testbenchsp(
     assign dbg2 = RSTn;
 
 
-    wire [127:0] Din = `MYIN1;
-    wire [127:0] Kin = `MYKEY1;
+    wire [127:0] Din = `MYIN2;
+    wire [127:0] Kin = `MYKEY2;
     wire [7:0] VRStage_SC = 8'b0;
     wire [127:0] Dout;
     wire [263:0] SCAN_IN_REG;
@@ -579,7 +579,7 @@ module AES_Testbenchsp(
 
             else if (ns == 9) begin
             	SE <= 1'b0;
-                if (Dout[127:0] == `MYOUT1) begin
+                if (Dout[127:0] == `MYOUT2) begin
                     testpassed <= 1'b1;
                 end
                 else begin 

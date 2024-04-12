@@ -11,22 +11,26 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="230.527355000 ms"></ZoomStartTime>
-      <ZoomEndTime time="258.147355001 ms"></ZoomEndTime>
-      <Cursor1Time time="234.127355000 ms"></Cursor1Time>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="55.400000001 ms"></ZoomEndTime>
+      <Cursor1Time time="177.997059655 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="203"></NameColumnWidth>
-      <ValueColumnWidth column_width="294"></ValueColumnWidth>
+      <NameColumnWidth column_width="262"></NameColumnWidth>
+      <ValueColumnWidth column_width="227"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="14" />
+   <WVObjectSize size="15" />
    <wvobject fp_name="/AES_Testbench/test1/SCAN_IN_REG" type="array">
-      <obj_property name="ElementShortName">SCAN_IN_REG[264:0]</obj_property>
-      <obj_property name="ObjectShortName">SCAN_IN_REG[264:0]</obj_property>
+      <obj_property name="ElementShortName">SCAN_IN_REG[263:0]</obj_property>
+      <obj_property name="ObjectShortName">SCAN_IN_REG[263:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/AES_Testbench/test1/SCAN_OUT_REG" type="array">
       <obj_property name="ElementShortName">SCAN_OUT_REG[131:0]</obj_property>
       <obj_property name="ObjectShortName">SCAN_OUT_REG[131:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/test1/Dout" type="array">
+      <obj_property name="ElementShortName">Dout[127:0]</obj_property>
+      <obj_property name="ObjectShortName">Dout[127:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/AES_Testbench/test1/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
