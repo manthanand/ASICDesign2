@@ -38,7 +38,7 @@ Actual:   1110010110000001100010101001001000100100100010000001110000000111001001
 */
 
 module AES_Testbenchsp(
-    input clk, runtest, BSY, SO, //TESTBENCH INPUT PORTS
+    input clk, runtest, BSY, SO, rst, //TESTBENCH INPUT PORTS
     input [15:0] DIVIDER, //Clock divider for testbench
     output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done, CLK, //TESTBENCH REG PORTS
     output SCLK//TESTBENCH WIRE PORTS
@@ -453,7 +453,10 @@ module AES_Testbenchsp(
     reg [15:0] clk_div = 0;
 
     always @(posedge clk) begin
-        if (clk_div == DIVIDER) begin
+        if (rst) begin
+            clk_div <= 0;
+        end
+        else if (clk_div == DIVIDER) begin
             CLK <= ~CLK;
             clk_div <= 0;
         end
@@ -467,40 +470,62 @@ module AES_Testbenchsp(
     reg [4:0] ns = 5'b0;
     
     // timer1 
-    always @(posedge CLK) begin
-        case (csbutton)
-            0: begin
-                if (runtest == 1) begin
-                    csbutton <= 1;
-                end
-                timer <= 0;
-            end
-            1: begin
-                if (done == 1) begin
-                    csbutton <= 2;
+    always @(posedge CLK or posedge rst) begin
+        if (rst) begin
+            csbutton <= 0;
+            timer <= 0;
+        end
+        else begin
+            case (csbutton)
+                0: begin
+                    if (runtest == 1) begin
+                        csbutton <= 1;
+                    end
                     timer <= 0;
                 end
-                else begin
-                    timer <= timer + 1;
+                1: begin
+                    if (done == 1) begin
+                        csbutton <= 2;
+                        timer <= 0;
+                    end
+                    else begin
+                        timer <= timer + 1;
+                    end
                 end
-            end
-            2: begin
-                if (runtest && !done) begin
-                    csbutton <= 1;
+                2: begin
+                    if (runtest && !done) begin
+                        csbutton <= 1;
+                    end
+                    else if (runtest && done) begin
+                        timer <= timer + 1;
+                    end
+                    else begin
+                        csbutton <= 0;
+                    end
                 end
-                else if (runtest && done) begin
-                    timer <= timer + 1;
-                end
-                else begin
-                    csbutton <= 0;
-                end
-            end
-        endcase
+            endcase
+        end
     end
 
     // 1 initialization
-    always@(posedge CLK) begin 
-        if (timer == cntr) begin
+    always@(posedge CLK or posedge rst) begin 
+        if (rst) begin
+            testpassed <= 0;
+            rdy <= 1;
+            done <= 0;
+            cntr <= 10;
+            ns <= 0;
+            i <= 0;
+            SU <= 1'b0;
+            SI <= 1'b0;
+            SE <= 1'b0;
+            Krdy <= 1'b0;
+            Drdy <= 1'b0;
+            RSTn <= 1'b0;
+            EN <= 1'b0;
+            RSTn <= 1'b0;
+        end
+        else if (timer == cntr) begin
             if (ns == 0) begin
             	SU <= 1'b0;
                 SI <= 1'b0;

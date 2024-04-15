@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="141.450000001 ms"></ZoomEndTime>
-      <Cursor1Time time="6.350000000 ms"></Cursor1Time>
+      <ZoomStartTime time="6.310000 us"></ZoomStartTime>
+      <ZoomEndTime time="239.110001 us"></ZoomEndTime>
+      <Cursor1Time time="200.310000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="449"></NameColumnWidth>
-      <ValueColumnWidth column_width="490"></ValueColumnWidth>
+      <ValueColumnWidth column_width="482"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="18" />
    <wvobject fp_name="/AES_Testbench/test1/SCAN_IN_REG" type="array">
       <obj_property name="ElementShortName">SCAN_IN_REG[263:0]</obj_property>
       <obj_property name="ObjectShortName">SCAN_IN_REG[263:0]</obj_property>
@@ -87,5 +87,9 @@
    <wvobject fp_name="/AES_Testbench/runtest" type="logic">
       <obj_property name="ElementShortName">runtest</obj_property>
       <obj_property name="ObjectShortName">runtest</obj_property>
+   </wvobject>
+   <wvobject fp_name="/AES_Testbench/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
 </wave_config>

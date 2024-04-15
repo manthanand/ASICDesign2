@@ -23,6 +23,7 @@ module AES_Testbench;
 
 reg runtest = 0;
 reg clk = 0;
+reg rst = 0;
 wire testpassed;
 wire Krdy;
 wire Drdy;
@@ -37,18 +38,36 @@ wire CLK;
 wire BSY;
 
 AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK), .SO(SO), .BSY(BSY), .CLKOUT());
-AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .BSY(BSY), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed), .DIVIDER(0));
+AES_Testbenchsp test1(
+	.clk(clk), 
+	.runtest(runtest), 
+	.Krdy(Krdy), 
+	.Drdy(Drdy), 
+	.RSTn(RSTn), 
+	.EN(EN), 
+	.SU(SU), 
+	.SI(SI), 
+	.SE(SE), 
+	.SO(SO), 
+	.BSY(BSY), 
+	.SCLK(SCLK), 
+	.CLK(CLK), 
+	.testpassed(testpassed), 
+	.DIVIDER(0),
+	.rst(rst));
 
 initial begin
-	#20
+	#10
 	runtest = 1;
-	#20;
-//	runtest = 0;
-	#75000000
+	#100
+	runtest = 0;
+	#100000
 	runtest = 1;
-	#90000;
-//	runtest = 1;
-	#200000000
+	#100000
+	runtest = 0;
+	#1000
+	rst = 1;
+	#1000
 	$finish;
 end
 
