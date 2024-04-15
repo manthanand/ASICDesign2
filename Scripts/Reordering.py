@@ -34,7 +34,9 @@ while(len(scanlist)):
             currNode = i
 
 fwrite = open("SCAN_REG_UPDATED.v", "w")
-for i in range(len(nets)): fwrite.write(f"assign SCAN_IN_REG[{i}] = {nets[i]};\n")
+for i in range(len(nets)): fwrite.write(f"    assign SCAN_IN_REG[{263 - i}] = {nets[i]};\n")
+
+fwrite.write("\n")
 
 # For Scan Chain Out
 scanlist = [1]
@@ -64,5 +66,5 @@ while(len(scanlist)):
             scanlist.remove(i)
             currNode = i
 
-for i in range(len(nets)): fwrite.write(f"assign {nets[i]} = SCAN_OUT_REG[{i}];\n")
+for i in range(len(nets)): fwrite.write(f"    assign {nets[i]} = SCAN_OUT_REG[{127 - i}];\n")
 fwrite.close()
