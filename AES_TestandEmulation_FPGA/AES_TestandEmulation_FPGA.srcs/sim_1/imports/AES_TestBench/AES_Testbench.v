@@ -37,7 +37,7 @@ wire CLK;
 wire BSY;
 
 AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK), .SO(SO), .BSY(BSY), .CLKOUT());
-AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .BSY(BSY), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed));
+AES_Testbenchsp test1(.clk(clk), .runtest(runtest), .Krdy(Krdy), .Drdy(Drdy), .RSTn(RSTn), .EN(EN), .SU(SU), .SI(SI), .SE(SE), .SO(SO), .BSY(BSY), .SCLK(SCLK), .CLK(CLK), .testpassed(testpassed), .DIVIDER(0));
 
 initial begin
 	#20

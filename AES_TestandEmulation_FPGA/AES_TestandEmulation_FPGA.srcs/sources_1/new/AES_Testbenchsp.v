@@ -26,7 +26,6 @@
 `define MYKEY2  128'h0
 `define MYIN2   128'h0
 `define MYOUT2  128'h66e94bd4ef8a2c3b884cfa59ca342b2e
-`define DIVIDER 14
 
 /*
 Din
@@ -40,15 +39,17 @@ Actual:   1110010110000001100010101001001000100100100010000001110000000111001001
 
 module AES_Testbenchsp(
     input clk, runtest, BSY, SO, //TESTBENCH INPUT PORTS
-    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done,//TESTBENCH REG PORTS
-    output SCLK, CLK//TESTBENCH WIRE PORTS
+    input [15:0] DIVIDER, //Clock divider for testbench
+    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done, CLK, //TESTBENCH REG PORTS
+    output SCLK//TESTBENCH WIRE PORTS
     );
     
     reg testpassed = 1'b0;
     reg rdy = 1'b1;
     reg done = 1'b0;
-
-
+    reg CLK = 1'b0;
+    assign SCLK = CLK;
+    
     wire [127:0] Din = `MYIN1;
     wire [127:0] Kin = `MYKEY1;
     wire [7:0] VRStage_SC = 8'b0;
@@ -448,21 +449,23 @@ module AES_Testbenchsp(
     assign Dout[100] = SCAN_OUT_REG[2];
     assign Dout[97] = SCAN_OUT_REG[1];
     assign Dout[0] = SCAN_OUT_REG[0];
+    
+    reg [15:0] clk_div = 0;
 
-
-    reg [`DIVIDER:0] divider = 0;
-    assign CLK = divider[`DIVIDER];
-    assign SCLK = divider[`DIVIDER];
-
+    always @(posedge clk) begin
+        if (clk_div == DIVIDER) begin
+            CLK <= ~CLK;
+            clk_div <= 0;
+        end
+        else clk_div <= clk_div + 1;
+    end
+    
+    reg [1:0] csbutton = 0;
     reg [31:0] cntr =   32'd10;
     reg [31:0] timer =  32'd10;
     reg [31:0] i =      32'b0;
     reg [4:0] ns = 5'b0;
     
-    always @(posedge clk) divider <= divider + 1;
-    
-    reg [1:0] csbutton = 0;
-
     // timer1 
     always @(posedge CLK) begin
         case (csbutton)
