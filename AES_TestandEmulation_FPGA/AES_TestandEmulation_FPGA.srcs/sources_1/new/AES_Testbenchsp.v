@@ -39,16 +39,17 @@ Actual:   1110010110000001100010101001001000100100100010000001110000000111001001
 
 module AES_Testbenchsp(
     input clk, runtest, BSY, SO, rst, //TESTBENCH INPUT PORTS
-    input [15:0] DIVIDER, //Clock divider for testbench
-    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done, CLK, //TESTBENCH REG PORTS
-    output SCLK//TESTBENCH WIRE PORTS
+    input clk_90, clk_80, clk_72, clk_60,
+    input [8:0] DIVIDER, //Clock divider for testbench
+    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done, //TESTBENCH REG PORTS
+    output CLK, SCLK, clk_out//TESTBENCH WIRE PORTS
     );
     
     reg testpassed = 1'b0;
     reg rdy = 1'b1;
     reg done = 1'b0;
-    reg CLK = 1'b0;
     assign SCLK = CLK;
+    assign clk_out = clk;
     
     wire [127:0] Din = `MYIN1;
     wire [127:0] Kin = `MYKEY1;
@@ -450,24 +451,33 @@ module AES_Testbenchsp(
     assign Dout[97] = SCAN_OUT_REG[1];
     assign Dout[0] = SCAN_OUT_REG[0];
     
-    reg [15:0] clk_div = 0;
+    reg clk_50 = 0;
+    reg clk_40 = 0;
+    reg clk_30 = 0;
+    reg clk_20 = 0;
+    reg clk_10 = 0;
 
-    always @(posedge clk) begin
-        if (rst) begin
-            clk_div <= 0;
-        end
-        else if (clk_div == DIVIDER) begin
-            CLK <= ~CLK;
-            clk_div <= 0;
-        end
-        else clk_div <= clk_div + 1;
-    end
+    always @(posedge clk) clk_50 <= clk_50 + 1;
+    always @(posedge clk_80) clk_40 <= clk_40 + 1;
+    always @(posedge clk_60) clk_30 <= clk_30 + 1;
+    always @(posedge clk_40) clk_20 <= clk_20 + 1;
+    always @(posedge clk_20) clk_10 <= clk_10 + 1;
     
     reg [1:0] csbutton = 0;
     reg [31:0] cntr =   32'd10;
     reg [31:0] timer =  32'd10;
     reg [31:0] i =      32'b0;
     reg [4:0] ns = 5'b0;
+    
+    assign CLK = DIVIDER[0] ? clk_90 : 
+                DIVIDER[1] ? clk_80 :
+                DIVIDER[2] ? clk_72 :
+                DIVIDER[3] ? clk_60 :
+                DIVIDER[4] ? clk_50 : 
+                DIVIDER[5] ? clk_40 :
+                DIVIDER[6] ? clk_30 :
+                DIVIDER[7] ? clk_20 : 
+                DIVIDER[8] ? clk_10 : clk;
     
     // timer1 
     always @(posedge CLK or posedge rst) begin

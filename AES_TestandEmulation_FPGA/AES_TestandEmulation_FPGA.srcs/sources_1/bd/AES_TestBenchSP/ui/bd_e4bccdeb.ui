@@ -1,0 +1,20 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"2.0",
+   "Default View_TopLeft":"-404,-164",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
+#  -string -flagsOSRD
+preplace inst AES_Testbenchsp_0 -pg 1 -lvl 1 -x 130 -y 180 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 2 -x 350 -y 210 -defaultsOSRD
+preplace netloc Net 1 0 2 0 0 260
+preplace netloc AES_Testbenchsp_0_clk_out 1 1 1 260 220n
+preplace netloc clk_wiz_0_clk_90 1 0 3 -30 -30 NJ -30 460
+preplace netloc clk_wiz_0_clk_80 1 0 3 -10 -10 NJ -10 440
+preplace netloc clk_wiz_0_clk_72 1 0 3 -20 -20 NJ -20 450
+preplace netloc clk_wiz_0_clk_60 1 0 3 -40 -40 NJ -40 470
+levelinfo -pg 1 -60 130 350 490
+pagesize -pg 1 -db -bbox -sgen -60 -120 490 360
+"
+}
+

@@ -1,0 +1,244 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7a35ticpg236-1L",
+      "gen_directory": "../../../../AES_TestandEmulation_FPGA.gen/sources_1/bd/AES_TestBenchSP",
+      "name": "AES_TestBenchSP",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2023.2.1"
+    },
+    "design_tree": {
+      "AES_Testbenchsp_0": "",
+      "clk_wiz_0": ""
+    },
+    "components": {
+      "AES_Testbenchsp_0": {
+        "vlnv": "xilinx.com:module_ref:AES_Testbenchsp:1.0",
+        "ip_revision": "1713323416",
+        "xci_name": "AES_TestBenchSP_AES_Testbenchsp_0_0",
+        "xci_path": "ip\\AES_TestBenchSP_AES_Testbenchsp_0_0\\AES_TestBenchSP_AES_Testbenchsp_0_0.xci",
+        "inst_hier_path": "AES_Testbenchsp_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "AES_Testbenchsp",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "CLK": {
+            "type": "clk",
+            "direction": "O",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "RSTn",
+                "value_src": "constant"
+              }
+            }
+          },
+          "runtest": {
+            "direction": "I"
+          },
+          "BSY": {
+            "direction": "I"
+          },
+          "SO": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "clk_90": {
+            "direction": "I"
+          },
+          "clk_80": {
+            "direction": "I"
+          },
+          "clk_72": {
+            "direction": "I"
+          },
+          "clk_60": {
+            "direction": "I"
+          },
+          "DIVIDER": {
+            "direction": "I",
+            "left": "8",
+            "right": "0"
+          },
+          "Krdy": {
+            "direction": "O"
+          },
+          "Drdy": {
+            "direction": "O"
+          },
+          "RSTn": {
+            "type": "rst",
+            "direction": "O",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "EN": {
+            "direction": "O"
+          },
+          "SU": {
+            "direction": "O"
+          },
+          "SE": {
+            "direction": "O"
+          },
+          "SI": {
+            "direction": "O"
+          },
+          "testpassed": {
+            "direction": "O"
+          },
+          "rdy": {
+            "direction": "O"
+          },
+          "done": {
+            "direction": "O"
+          },
+          "SCLK": {
+            "direction": "O"
+          },
+          "clk_out": {
+            "direction": "O"
+          }
+        }
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "13",
+        "xci_name": "AES_TestBenchSP_clk_wiz_0_1",
+        "xci_path": "ip\\AES_TestBenchSP_clk_wiz_0_1\\AES_TestBenchSP_clk_wiz_0_1.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "333.077"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "328.297"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "90"
+          },
+          "CLKOUT1_USED": {
+            "value": "true"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "340.684"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "328.297"
+          },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "80"
+          },
+          "CLKOUT2_USED": {
+            "value": "true"
+          },
+          "CLKOUT3_JITTER": {
+            "value": "347.809"
+          },
+          "CLKOUT3_PHASE_ERROR": {
+            "value": "328.297"
+          },
+          "CLKOUT3_REQUESTED_OUT_FREQ": {
+            "value": "72"
+          },
+          "CLKOUT3_USED": {
+            "value": "true"
+          },
+          "CLKOUT4_JITTER": {
+            "value": "360.957"
+          },
+          "CLKOUT4_PHASE_ERROR": {
+            "value": "328.297"
+          },
+          "CLKOUT4_REQUESTED_OUT_FREQ": {
+            "value": "60"
+          },
+          "CLKOUT4_USED": {
+            "value": "true"
+          },
+          "CLK_OUT1_PORT": {
+            "value": "clk_90"
+          },
+          "CLK_OUT2_PORT": {
+            "value": "clk_80"
+          },
+          "CLK_OUT3_PORT": {
+            "value": "clk_72"
+          },
+          "CLK_OUT4_PORT": {
+            "value": "clk_60"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "36.000"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "8.000"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "9"
+          },
+          "MMCM_CLKOUT2_DIVIDE": {
+            "value": "10"
+          },
+          "MMCM_CLKOUT3_DIVIDE": {
+            "value": "12"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "5"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "4"
+          }
+        }
+      }
+    },
+    "nets": {
+      "AES_Testbenchsp_0_clk_out": {
+        "ports": [
+          "AES_Testbenchsp_0/clk_out",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "clk_wiz_0/reset",
+          "AES_Testbenchsp_0/rst"
+        ]
+      },
+      "clk_wiz_0_clk_60": {
+        "ports": [
+          "clk_wiz_0/clk_60",
+          "AES_Testbenchsp_0/clk_60"
+        ]
+      },
+      "clk_wiz_0_clk_72": {
+        "ports": [
+          "clk_wiz_0/clk_72",
+          "AES_Testbenchsp_0/clk_72"
+        ]
+      },
+      "clk_wiz_0_clk_80": {
+        "ports": [
+          "clk_wiz_0/clk_80",
+          "AES_Testbenchsp_0/clk_80"
+        ]
+      },
+      "clk_wiz_0_clk_90": {
+        "ports": [
+          "clk_wiz_0/clk_90",
+          "AES_Testbenchsp_0/clk_90"
+        ]
+      }
+    }
+  }
+}
