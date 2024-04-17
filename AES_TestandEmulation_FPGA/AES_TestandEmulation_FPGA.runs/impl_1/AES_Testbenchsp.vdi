@@ -3,8 +3,8 @@
 # SW Build 4081461 on Thu Dec 14 12:24:51 MST 2023
 # IP Build 4080415 on Thu Dec 14 21:01:57 MST 2023
 # SharedData Build 4077621 on Mon Dec 11 00:23:44 MST 2023
-# Start of session at: Tue Apr 16 22:28:13 2024
-# Process ID: 4732
+# Start of session at: Wed Apr 17 13:29:50 2024
+# Process ID: 4668
 # Current directory: C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.runs/impl_1
 # Command line: vivado.exe -log AES_Testbenchsp.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source AES_Testbenchsp.tcl -notrace
 # Log file: C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.runs/impl_1/AES_Testbenchsp.vdi
@@ -12,41 +12,28 @@
 # Running On: DESKTOP-RR47J6M, OS: Windows, CPU Frequency: 2803 MHz, CPU Physical cores: 4, Host memory: 16856 MB
 #-----------------------------------------------------------
 source AES_Testbenchsp.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 460.918 ; gain = 182.055
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 461.074 ; gain = 184.738
 Command: link_design -top AES_Testbenchsp -part xc7a35ticpg236-1L
 Design is defaulting to srcset: sources_1
 Design is defaulting to constrset: constrs_1
 INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 856.984 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 855.898 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 54 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2023.2.1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 Parsing XDC File [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc]
-CRITICAL WARNING: [Designutils 20-1307] Command 'place_ports' is not supported in the xdc constraint file. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:10]
-CRITICAL WARNING: [Netlist 29-177] Cannot set property 'IOSTANDRD' because the property does not exist. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:11]
-Resolution: Create this property using create_property command before setting it.
-CRITICAL WARNING: [Designutils 20-1307] Command 'place_ports' is not supported in the xdc constraint file. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:12]
-CRITICAL WARNING: [Netlist 29-177] Cannot set property 'IOSTANDRD' because the property does not exist. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:13]
-Resolution: Create this property using create_property command before setting it.
-CRITICAL WARNING: [Designutils 20-1307] Command 'place_ports' is not supported in the xdc constraint file. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:14]
-CRITICAL WARNING: [Netlist 29-177] Cannot set property 'IOSTANDRD' because the property does not exist. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:15]
-Resolution: Create this property using create_property command before setting it.
-CRITICAL WARNING: [Designutils 20-1307] Command 'place_ports' is not supported in the xdc constraint file. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:16]
-CRITICAL WARNING: [Netlist 29-177] Cannot set property 'IOSTANDRD' because the property does not exist. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:17]
-Resolution: Create this property using create_property command before setting it.
-CRITICAL WARNING: [Designutils 20-1307] Command 'place_ports' is not supported in the xdc constraint file. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:18]
-CRITICAL WARNING: [Netlist 29-177] Cannot set property 'IOSTANDRD' because the property does not exist. [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc:19]
-Resolution: Create this property using create_property command before setting it.
 Finished Parsing XDC File [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/imports/AES_TestBench/Basys3_Master.xdc]
+Parsing XDC File [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/new/test.xdc]
+Finished Parsing XDC File [C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/constrs_1/new/test.xdc]
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 984.105 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 983.727 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-7 Infos, 0 Warnings, 10 Critical Warnings and 0 Errors encountered.
+7 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 link_design completed successfully
-link_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 989.168 ; gain = 528.250
+link_design: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 987.703 ; gain = 526.629
 Command: opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a35ti'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35ti'
@@ -57,110 +44,110 @@ INFO: [DRC 23-27] Running DRC with 2 threads
 INFO: [Project 1-461] DRC finished with 0 Errors
 INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1008.098 ; gain = 18.930
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.986 . Memory (MB): peak = 1008.133 ; gain = 20.430
 
 Starting Cache Timing Information Task
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Ending Cache Timing Information Task | Checksum: 21a0cdad2
+Ending Cache Timing Information Task | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 1553.898 ; gain = 545.801
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1553.664 ; gain = 545.531
 
 Starting Logic Optimization Task
 
 Phase 1 Initialization
 
 Phase 1.1 Core Generation And Design Setup
-Phase 1.1 Core Generation And Design Setup | Checksum: 21a0cdad2
+Phase 1.1 Core Generation And Design Setup | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Phase 1.2 Setup Constraints And Sort Netlist
-Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 21a0cdad2
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Phase 1 Initialization | Checksum: 21a0cdad2
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Phase 1 Initialization | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Phase 2 Timer Update And Timing Data Collection
 
 Phase 2.1 Timer Update
-Phase 2.1 Timer Update | Checksum: 21a0cdad2
+Phase 2.1 Timer Update | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Phase 2.2 Timing Data Collection
-Phase 2.2 Timing Data Collection | Checksum: 21a0cdad2
+Phase 2.2 Timing Data Collection | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.059 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Phase 2 Timer Update And Timing Data Collection | Checksum: 21a0cdad2
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.059 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Phase 3 Retarget
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Opt 31-49] Retargeted 0 cell(s).
-Phase 3 Retarget | Checksum: 21a0cdad2
+Phase 3 Retarget | Checksum: 270e72a55
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.086 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Retarget | Checksum: 21a0cdad2
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Retarget | Checksum: 270e72a55
 INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
 
 Phase 4 Constant propagation
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Phase 4 Constant propagation | Checksum: 1f766874d
+Phase 4 Constant propagation | Checksum: 24e40d6d0
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.105 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Constant propagation | Checksum: 1f766874d
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Constant propagation | Checksum: 24e40d6d0
 INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
 
 Phase 5 Sweep
-Phase 5 Sweep | Checksum: 235bca72f
+Phase 5 Sweep | Checksum: 28c96f6b2
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.124 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Sweep | Checksum: 235bca72f
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Sweep | Checksum: 28c96f6b2
 INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
 
 Phase 6 BUFG optimization
-Phase 6 BUFG optimization | Checksum: 235bca72f
+Phase 6 BUFG optimization | Checksum: 28c96f6b2
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.172 . Memory (MB): peak = 1920.652 ; gain = 0.000
-BUFG optimization | Checksum: 235bca72f
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.079 . Memory (MB): peak = 1919.633 ; gain = 0.000
+BUFG optimization | Checksum: 28c96f6b2
 INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
 
 Phase 7 Shift Register Optimization
 INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
-Phase 7 Shift Register Optimization | Checksum: 235bca72f
+Phase 7 Shift Register Optimization | Checksum: 28c96f6b2
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.175 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Shift Register Optimization | Checksum: 235bca72f
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.080 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Shift Register Optimization | Checksum: 28c96f6b2
 INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
 
 Phase 8 Post Processing Netlist
-Phase 8 Post Processing Netlist | Checksum: 235bca72f
+Phase 8 Post Processing Netlist | Checksum: 28c96f6b2
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.179 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Post Processing Netlist | Checksum: 235bca72f
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.082 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Post Processing Netlist | Checksum: 28c96f6b2
 INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
 
 Phase 9 Finalization
 
 Phase 9.1 Finalizing Design Cores and Updating Shapes
-Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 1462169c4
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.195 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.094 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Phase 9.2 Verifying Netlist Connectivity
 
 Starting Connectivity Check Task
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Phase 9.2 Verifying Netlist Connectivity | Checksum: 1462169c4
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.198 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Phase 9 Finalization | Checksum: 1462169c4
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.095 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Phase 9 Finalization | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.198 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.096 . Memory (MB): peak = 1919.633 ; gain = 0.000
 Opt_design Change Summary
 =========================
 
@@ -177,32 +164,32 @@ Opt_design Change Summary
 -------------------------------------------------------------------------------------------------------------------------
 
 
-Ending Logic Optimization Task | Checksum: 1462169c4
+Ending Logic Optimization Task | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.200 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.097 . Memory (MB): peak = 1919.633 ; gain = 0.000
 INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
-Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Starting Power Optimization Task
 INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
-Ending Power Optimization Task | Checksum: 1462169c4
+Ending Power Optimization Task | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Starting Final Cleanup Task
-Ending Final Cleanup Task | Checksum: 1462169c4
+Ending Final Cleanup Task | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Starting Netlist Obfuscation Task
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Ending Netlist Obfuscation Task | Checksum: 1462169c4
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 19cfbb947
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
-25 Infos, 0 Warnings, 10 Critical Warnings and 0 Errors encountered.
+25 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 opt_design completed successfully
-opt_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:14 . Memory (MB): peak = 1920.652 ; gain = 931.484
+opt_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1919.633 ; gain = 931.930
 INFO: [runtcl-4] Executing : report_drc -file AES_Testbenchsp_drc_opted.rpt -pb AES_Testbenchsp_drc_opted.pb -rpx AES_Testbenchsp_drc_opted.rpx
 Command: report_drc -file AES_Testbenchsp_drc_opted.rpt -pb AES_Testbenchsp_drc_opted.pb -rpx AES_Testbenchsp_drc_opted.rpx
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -212,16 +199,16 @@ INFO: [DRC 23-27] Running DRC with 2 threads
 INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.runs/impl_1/AES_Testbenchsp_drc_opted.rpt.
 report_drc completed successfully
 INFO: [Timing 38-480] Writing timing data to binary archive.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.633 ; gain = 0.000
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.061 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.035 . Memory (MB): peak = 1919.633 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.runs/impl_1/AES_Testbenchsp_opt.dcp' has been generated.
 Command: place_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a35ti'
@@ -241,72 +228,31 @@ Starting Placer Task
 Phase 1 Placer Initialization
 
 Phase 1.1 Placer Initialization Netlist Sorting
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Phase 1.1 Placer Initialization Netlist Sorting | Checksum: e0487ffe
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 13722cf81
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1920.652 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1919.633 ; gain = 0.000
 
 Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-ERROR: [Place 30-57] IO placement is illegal: 
-Terminal BSY and clk_80 have incompatible I/O standards in the same bank. The placement generated by the tools could not converge to a legal solution. The following table lists the illegal portions of the last known placement generated by the tools. Please analyze any user constraints (i.e., PACKAGE_PIN, LOC, IOSTANDARD ) which may cause a feasible placement to be impossible.
- The following table uses the following notations:
- c1 - is IOStandard compatible with bank? 1 - compatible, 0 is not
- c2 - is IO VREF compatible with INTERNAL_VREF bank? 1 - compatible, 0 is not
- c3 - is IO with DriveStrength compatible with bank? 1 - compatible, 0 is not
-+--------+------------+----+----+----+-----------------------------------------------------+
-| BankId | IOStandard | c1 | c2 | c3 | Terminal Name                                       |
-+--------+------------+----+----+----+-----------------------------------------------------+
-|   35   |LVCMOS18    |  1 |  1 |  1 |   clk_60                                            |
-|   35   |LVCMOS18    |  1 |  1 |  1 |   clk_72                                            |
-|   35   |LVCMOS18    |  1 |  1 |  1 |   clk_90                                            |
-|   35   |LVCMOS18    |  1 |  1 |  1 |   clk_out                                           |
-+--------+------------+----+----+----+-----------------------------------------------------+
-|   34   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[8]                                        |
-|   34   |LVCMOS33    |  1 |  1 |  1 |   clk                                               |
-+--------+------------+----+----+----+-----------------------------------------------------+
-|   16   |LVCMOS33    |  1 |  1 |  1 |   CLK                                               |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   EN                                                |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   Krdy                                              |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   RSTn                                              |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   SCLK                                              |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   SE                                                |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   SI                                                |
-|   16   |LVCMOS33    |  1 |  1 |  1 |   SU                                                |
-+--------+------------+----+----+----+-----------------------------------------------------+
-|   14   |LVCMOS33    |  1 |  1 |  1 |   BSY                                               |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[0]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[1]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[2]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[3]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[4]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[5]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[6]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   DIVIDER[7]                                        |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   Drdy                                              |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   SO                                                |
-|   14   |LVCMOS18    |  1 |  1 |  1 |   clk_80                                            |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   done                                              |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   rdy                                               |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   rst                                               |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   runtest                                           |
-|   14   |LVCMOS33    |  1 |  1 |  1 |   testpassed                                        |
-+--------+------------+----+----+----+-----------------------------------------------------+
+ERROR: [Place 30-876] Port 'clk_60' 'clk_80'  is assigned to PACKAGE_PIN 'W4' 'W6'  which can only be used as the N side of a differential clock input. 
+Please use the following constraint(s) to pass this DRC check:
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {clk_60_IBUF}]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {clk_80_IBUF}]
+Resolution: Please use the xdc constraints above.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 1e9de2df0
 
-ERROR: [Place 30-743] IO/clock placer failed to collectively place all IOs and clock instances. This is likely due to design requirements or user constraints specified in the constraint file such as IO standards, bank/voltage/DCI/VREF specifications, together with the part and package being used for the implementation. Please check the above for any possible conflicts.
-Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 19303de6d
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.878 . Memory (MB): peak = 1919.633 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 1e9de2df0
 
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1920.652 ; gain = 0.000
-Phase 1 Placer Initialization | Checksum: 19303de6d
-
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1920.652 ; gain = 0.000
-ERROR: [Place 30-99] Placer failed with error: 'IO Clock Placer failed'
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.879 . Memory (MB): peak = 1919.633 ; gain = 0.000
+ERROR: [Place 30-99] Placer failed with error: 'Implementation Feasibility check failed, Please see the previously displayed individual error or warning messages for more details.'
 Please review all ERROR, CRITICAL WARNING, and WARNING messages during placement to understand the cause for failure.
-Ending Placer Task | Checksum: 19303de6d
+Ending Placer Task | Checksum: 1e9de2df0
 
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1920.652 ; gain = 0.000
-43 Infos, 0 Warnings, 10 Critical Warnings and 4 Errors encountered.
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.880 . Memory (MB): peak = 1919.633 ; gain = 0.000
+43 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
 place_design failed
 ERROR: [Common 17-69] Command failed: Placer could not place all instances
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 16 22:28:52 2024...
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 17 13:30:21 2024...

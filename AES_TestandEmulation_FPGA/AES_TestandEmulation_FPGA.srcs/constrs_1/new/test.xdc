@@ -1,0 +1,5 @@
+set_property IOSTANDARD LVCMOS33 [get_ports clk_60]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_72]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_80]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_90]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_out]
