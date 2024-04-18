@@ -22,7 +22,8 @@
 module AES_Testbench;
 
 reg runtest = 0;
-reg clk = 0;
+reg clk100 = 0;
+reg clk450 = 0;
 reg rst = 0;
 wire testpassed;
 wire Krdy;
@@ -39,7 +40,8 @@ wire BSY;
 
 AES_Core AES1(.SI(SI), .SE(SE), .SU(SU), .SCLK(SCLK), .RSTN(RSTn), .EN(EN), .KRDY(Krdy), .DRDY(Drdy), .CLK(CLK), .SO(SO), .BSY(BSY), .CLKOUT());
 AES_Testbenchsp test1(
-	.clk(clk), 
+    .clk450(clk450),
+	.clk100(clk100), 
 	.runtest(runtest), 
 	.Krdy(Krdy), 
 	.Drdy(Drdy), 
@@ -71,6 +73,7 @@ initial begin
 	$finish;
 end
 
-always #5  clk = ~clk;
+always #2 clk450 = ~clk450;
+always #9 clk100 = ~clk100;
 
 endmodule

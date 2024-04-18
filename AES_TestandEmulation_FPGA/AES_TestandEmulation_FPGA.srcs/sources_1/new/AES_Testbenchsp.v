@@ -38,16 +38,15 @@ Actual:   1110010110000001100010101001001000100100100010000001110000000111001001
 */
 
 module AES_Testbenchsp(
-    input clk, runtest, BSY, SO, rst, //TESTBENCH INPUT PORTS
+    input clk100, clk450, runtest, BSY, SO, rst, //TESTBENCH INPUT PORTS
     input [15:0] DIVIDER, //Clock divider for testbench
-    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done, CLK, //TESTBENCH REG PORTS
-    output SCLK//TESTBENCH WIRE PORTS
+    output reg Krdy, Drdy, RSTn, EN, SU, SE, SI, testpassed, rdy, done, //TESTBENCH REG PORTS
+    output CLK, SCLK//TESTBENCH WIRE PORTS
     );
     
     reg testpassed = 1'b0;
     reg rdy = 1'b1;
     reg done = 1'b0;
-    reg CLK = 1'b0;
     assign SCLK = CLK;
     
     wire [127:0] Din = `MYIN1;
@@ -450,23 +449,60 @@ module AES_Testbenchsp(
     assign Dout[97] = SCAN_OUT_REG[1];
     assign Dout[0] = SCAN_OUT_REG[0];
     
-    reg [15:0] clk_div = 0;
+    reg [5:0] clk_450_cntr = 1'b0;
+    reg [5:0] clk_100_cntr = 1'b0;
+    reg clk_150 = 1'b0;
+    reg clk_112_5 = 1'b0;
+    reg clk_90 = 1'b0;
+    reg clk_75 = 1'b0;
+    reg clk_56_25 = 1'b0;
+    reg clk_50 = 1'b0;
+    reg clk_33 = 1'b0;
+    reg clk_25 = 1'b0;
+    reg clk_20 = 1'b0;
+    reg clk_10 = 1'b0;
+    reg clk_5 = 1'b0;
 
-    always @(posedge clk) begin
-        if (rst) begin
-            clk_div <= 0;
-        end
-        else if (clk_div == DIVIDER) begin
-            CLK <= ~CLK;
-            clk_div <= 0;
-        end
-        else clk_div <= clk_div + 1;
+    always @(posedge clk450) begin
+        if (clk_450_cntr == 13) clk_450_cntr <= 0;
+        else clk_450_cntr <= clk_450_cntr + 1'b1;
+
+        if (clk_450_cntr % 3 == 0) clk_150 <= ~clk_150;
+        if (clk_450_cntr % 4 == 0) clk_112_5 <= ~clk_112_5;
+        if (clk_450_cntr % 5 == 0) clk_90 <= ~clk_90;
+        if (clk_450_cntr % 6 == 0) clk_75 <= ~clk_75;
+        if (clk_450_cntr % 7 == 0) clk_56_25 <= ~clk_56_25;
     end
+
+    always @(posedge clk100) begin
+        if (clk_100_cntr == 39) clk_100_cntr <= 0;
+        else clk_100_cntr <= clk_100_cntr + 1'b1;
+
+        if (clk_100_cntr % 2 == 0) clk_50 <= ~clk_50;
+        if (clk_100_cntr % 3 == 0) clk_33 <= ~clk_33;
+        if (clk_100_cntr % 4 == 0) clk_25 <= ~clk_25;
+        if (clk_100_cntr % 5 == 0) clk_20 <= ~clk_20;
+        if (clk_100_cntr % 10 == 0) clk_10 <= ~clk_10;
+        if (clk_100_cntr % 20 == 0) clk_5 <= ~clk_5;
+    end
+
+    assign CLK = DIVIDER[0] ? clk_150 :
+                DIVIDER[1] ? clk_112_5 :
+                DIVIDER[2] ? clk_90 :
+                DIVIDER[3] ? clk_75 :
+                DIVIDER[4] ? clk_56_25 :
+                DIVIDER[5] ? clk_50 :
+                DIVIDER[6] ? clk_33 :
+                DIVIDER[7] ? clk_25 :
+                DIVIDER[8] ? clk_20 :
+                DIVIDER[9] ? clk_10 :
+                DIVIDER[10] ? clk_5 : clk100;
+
     
     reg [1:0] csbutton = 0;
-    reg [31:0] cntr =   32'd10;
-    reg [31:0] timer =  32'd10;
-    reg [31:0] i =      32'b0;
+    reg [31:0] cntr = 32'd10;
+    reg [31:0] timer = 32'd10;
+    reg [31:0] i = 32'b0;
     reg [4:0] ns = 5'b0;
     
     // timer1 

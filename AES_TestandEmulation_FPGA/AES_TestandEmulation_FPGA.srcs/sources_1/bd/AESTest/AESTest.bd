@@ -1,0 +1,154 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7a35ticpg236-1L",
+      "gen_directory": "../../../../AES_TestandEmulation_FPGA.gen/sources_1/bd/AESTest",
+      "name": "AESTest",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2023.2.1"
+    },
+    "design_tree": {
+      "clk_wiz_0": "",
+      "AES_Testbenchsp_0": ""
+    },
+    "components": {
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "13",
+        "xci_name": "AESTest_clk_wiz_0_0",
+        "xci_path": "ip\\AESTest_clk_wiz_0_0\\AESTest_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "98.066"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "97.646"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "450"
+          },
+          "CLK_OUT1_PORT": {
+            "value": "clk_450"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "10.125"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "2.250"
+          }
+        }
+      },
+      "AES_Testbenchsp_0": {
+        "vlnv": "xilinx.com:module_ref:AES_Testbenchsp:1.0",
+        "ip_revision": "1713455106",
+        "xci_name": "AESTest_AES_Testbenchsp_0_0",
+        "xci_path": "ip\\AESTest_AES_Testbenchsp_0_0\\AESTest_AES_Testbenchsp_0_0.xci",
+        "inst_hier_path": "AES_Testbenchsp_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "AES_Testbenchsp",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk100": {
+            "direction": "I"
+          },
+          "clk450": {
+            "direction": "I"
+          },
+          "runtest": {
+            "direction": "I"
+          },
+          "BSY": {
+            "direction": "I"
+          },
+          "SO": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "DIVIDER": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "Krdy": {
+            "direction": "O"
+          },
+          "Drdy": {
+            "direction": "O"
+          },
+          "RSTn": {
+            "type": "rst",
+            "direction": "O",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "EN": {
+            "direction": "O"
+          },
+          "SU": {
+            "direction": "O"
+          },
+          "SE": {
+            "direction": "O"
+          },
+          "SI": {
+            "direction": "O"
+          },
+          "testpassed": {
+            "direction": "O"
+          },
+          "rdy": {
+            "direction": "O"
+          },
+          "done": {
+            "direction": "O"
+          },
+          "CLK": {
+            "type": "clk",
+            "direction": "O",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "RSTn",
+                "value_src": "constant"
+              }
+            }
+          },
+          "SCLK": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "Net": {
+        "ports": [
+          "clk_wiz_0/reset",
+          "AES_Testbenchsp_0/rst"
+        ]
+      },
+      "Net1": {
+        "ports": [
+          "clk_wiz_0/clk_in1",
+          "AES_Testbenchsp_0/clk100"
+        ]
+      },
+      "clk_wiz_0_clk_450": {
+        "ports": [
+          "clk_wiz_0/clk_450",
+          "AES_Testbenchsp_0/clk450"
+        ]
+      }
+    }
+  }
+}
