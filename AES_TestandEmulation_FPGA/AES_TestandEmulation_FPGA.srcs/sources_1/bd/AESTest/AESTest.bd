@@ -7,7 +7,8 @@
       "name": "AESTest",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2023.2.1"
+      "tool_version": "2023.2.1",
+      "validated": "true"
     },
     "design_tree": {
       "clk_wiz_0": "",
@@ -43,7 +44,7 @@
       },
       "AES_Testbenchsp_0": {
         "vlnv": "xilinx.com:module_ref:AES_Testbenchsp:1.0",
-        "ip_revision": "1713455106",
+        "ip_revision": "1713458667",
         "xci_name": "AESTest_AES_Testbenchsp_0_0",
         "xci_path": "ip\\AESTest_AES_Testbenchsp_0_0\\AESTest_AES_Testbenchsp_0_0.xci",
         "inst_hier_path": "AES_Testbenchsp_0",
@@ -57,7 +58,21 @@
             "direction": "I"
           },
           "clk450": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "450000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "runtest": {
             "direction": "I"
@@ -126,21 +141,24 @@
           },
           "SCLK": {
             "direction": "O"
+          },
+          "clk100_out": {
+            "direction": "O"
           }
         }
       }
     },
     "nets": {
+      "AES_Testbenchsp_0_clk100_out": {
+        "ports": [
+          "AES_Testbenchsp_0/clk100_out",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
       "Net": {
         "ports": [
           "clk_wiz_0/reset",
           "AES_Testbenchsp_0/rst"
-        ]
-      },
-      "Net1": {
-        "ports": [
-          "clk_wiz_0/clk_in1",
-          "AES_Testbenchsp_0/clk100"
         ]
       },
       "clk_wiz_0_clk_450": {

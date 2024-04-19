@@ -4,7 +4,7 @@
     "xci_name": "AESTest_AES_Testbenchsp_0_0",
     "cell_name": "AES_Testbenchsp_0",
     "component_reference": "xilinx.com:module_ref:AES_Testbenchsp:1.0",
-    "ip_revision": "1713455106",
+    "ip_revision": "1713458667",
     "gen_directory": "../../../../../../AES_TestandEmulation_FPGA.gen/sources_1/bd/AESTest/ip/AESTest_AES_Testbenchsp_0_0",
     "parameters": {
       "component_parameters": {
@@ -25,7 +25,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "1713455106" } ],
+        "IPREVISION": [ { "value": "1713458667" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../AES_TestandEmulation_FPGA.gen/sources_1/bd/AESTest/ip/AESTest_AES_Testbenchsp_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
@@ -54,7 +54,8 @@
         "rdy": [ { "direction": "out", "driver_value": "0x1" } ],
         "done": [ { "direction": "out", "driver_value": "0x0" } ],
         "CLK": [ { "direction": "out" } ],
-        "SCLK": [ { "direction": "out" } ]
+        "SCLK": [ { "direction": "out" } ],
+        "clk100_out": [ { "direction": "out" } ]
       },
       "interfaces": {
         "RSTn": {

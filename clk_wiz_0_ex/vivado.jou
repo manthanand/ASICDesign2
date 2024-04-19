@@ -1,0 +1,16 @@
+#-----------------------------------------------------------
+# Vivado v2023.2.1 (64-bit)
+# SW Build 4081461 on Thu Dec 14 12:24:51 MST 2023
+# IP Build 4080415 on Thu Dec 14 21:01:57 MST 2023
+# SharedData Build 4077621 on Mon Dec 11 00:23:44 MST 2023
+# Start of session at: Thu Apr 18 11:45:53 2024
+# Process ID: 28688
+# Current directory: c:/Users/manth/Github/ASICDesign2/clk_wiz_0_ex
+# Command line: vivado.exe -notrace -source c:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/.Xil/clk_wiz_0/clk_wiz_0_ex.tcl
+# Log file: c:/Users/manth/Github/ASICDesign2/clk_wiz_0_ex/vivado.log
+# Journal file: c:/Users/manth/Github/ASICDesign2/clk_wiz_0_ex\vivado.jou
+# Running On: DESKTOP-RR47J6M, OS: Windows, CPU Frequency: 2803 MHz, CPU Physical cores: 4, Host memory: 16856 MB
+#-----------------------------------------------------------
+start_gui
+source c:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/.Xil/clk_wiz_0/clk_wiz_0_ex.tcl -notrace
+update_compile_order -fileset sources_1

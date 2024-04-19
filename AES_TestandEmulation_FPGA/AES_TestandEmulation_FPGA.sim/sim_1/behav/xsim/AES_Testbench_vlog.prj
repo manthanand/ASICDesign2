@@ -1,5 +1,7 @@
 # compile verilog/system verilog design source files
-verilog xil_defaultlib  \
+verilog xil_defaultlib  --include "../../../../AES_TestandEmulation_FPGA.ip_user_files/ipstatic" \
+"../../../../AES_TestandEmulation_FPGA.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../AES_TestandEmulation_FPGA.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
 "../../../../AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Comp.v" \
 "../../../../AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Core.v" \
 "../../../../AES_TestandEmulation_FPGA.srcs/sources_1/new/AES_Testbenchsp.v" \

@@ -1,1 +1,3 @@
 Time resolution is 1 ps
+Warning: [Unisim MMCME2_ADV-20] Input CLKIN1 period and attribute CLKIN1_PERIOD are not same. Instance AES_Testbench.test1.clk_450Mhz.inst.mmcm_adv_inst 
+$finish called at time : 202110 ns : File "C:/Users/manth/Github/ASICDesign2/AES_TestandEmulation_FPGA/AES_TestandEmulation_FPGA.srcs/sim_1/imports/AES_TestBench/AES_Testbench.v" Line 71
