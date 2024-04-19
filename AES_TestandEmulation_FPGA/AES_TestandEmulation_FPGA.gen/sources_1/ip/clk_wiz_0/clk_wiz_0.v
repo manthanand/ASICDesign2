@@ -53,10 +53,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// __clk_90__90.00000______0.000______50.0______333.077____328.297
-// __clk_80__80.00000______0.000______50.0______340.684____328.297
-// __clk_72__72.00000______0.000______50.0______347.809____328.297
-// __clk_60__60.00000______0.000______50.0______360.957____328.297
+// __clk_90__90.00000______0.000______50.0______247.412____296.868
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -65,15 +62,12 @@
 
 `timescale 1ps/1ps
 
-(* CORE_GENERATION_INFO = "clk_wiz_0,clk_wiz_v6_0_13_0_0,{component_name=clk_wiz_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=4,clkin1_period=10.000,clkin2_period=10.000,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
+(* CORE_GENERATION_INFO = "clk_wiz_0,clk_wiz_v6_0_13_0_0,{component_name=clk_wiz_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=1,clkin1_period=10.000,clkin2_period=10.000,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
 
 module clk_wiz_0 
  (
   // Clock out ports
   output        clk_90,
-  output        clk_80,
-  output        clk_72,
-  output        clk_60,
   // Status and control signals
   input         reset,
   output        locked,
@@ -85,9 +79,6 @@ module clk_wiz_0
   (
   // Clock out ports  
   .clk_90(clk_90),
-  .clk_80(clk_80),
-  .clk_72(clk_72),
-  .clk_60(clk_60),
   // Status and control signals               
   .reset(reset), 
   .locked(locked),
